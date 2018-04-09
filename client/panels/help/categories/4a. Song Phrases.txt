@@ -1,0 +1,32 @@
+<font:Arial Bold:32>Song Phrases<font:Arial:16>
+
+<bitmap:Add-Ons/System_Instruments/client/images/tutorial/songsPanel01.png>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This is where you set the phrases you want to use in your song.  You can have up to CONST_MAX_SONG_PHRASES unique song phrases.
+
+Click the <font:Arial Bold:16>Set<font:Arial:16> button to set the selected row to whatever is currently in your phrase textbox.  (Note that this will be greyed out if your phrase textbox is empty)
+
+Click the <font:Arial Bold:16>Edit<font:Arial:16> button to make a quick edit of the selected song phrase\x97a dialog window will appear.
+
+Click the <font:Arial Bold:16>Clear<font:Arial:16> button to clear the selected song phrase.
+
+Click the <font:Arial Bold:16>Clear All<font:Arial:16> button to clear all song phrases.

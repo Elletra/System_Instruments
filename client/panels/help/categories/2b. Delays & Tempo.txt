@@ -1,0 +1,39 @@
+<font:Arial Bold:32>Notation - Delays and Tempo<font:Arial:16>
+<lmargin%:8>
+If you want to change the default delay between all notes, you can use either <font:Arial Bold:16>d:# <font:Arial:16>for delay (in milliseconds), or <font:Arial Bold:16>t:# <font:Arial:16>for tempo (in beats per minute).
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20><color:FF0000>d:500<color:000000>, C4, D4
+<font:Arial Bold:20><color:FF0000>t:120<color:000000>, C4, D4
+<lmargin%:8><font:Arial:16>
+(These would both set the default delay to 500 milliseconds)
+
+
+For delays, the lowest you can set is <font:Arial Bold:16>CONST_LOWEST_DELAY <font:Arial:16>and the highest is <font:Arial Bold:16>CONST_HIGHEST_DELAY <font:Arial:16>
+For tempos, the lowest you can set is <font:Arial Bold:16>CONST_LOWEST_TEMPO <font:Arial:16>and the highest is <font:Arial Bold:16>CONST_HIGHEST_TEMPO <font:Arial:16>
+
+
+<font:Arial Bold:24>Half-Delays<font:Arial:16>
+
+If you want to go to the next note quicker without setting the tempo or delay, you can use the half-delay <font:Arial Bold:16>> <font:Arial:16>symbol.
+
+The half-delay goes to the next note <font:Arial Bold:16>2x <font:Arial:16>faster.  Please be aware that rests are included in this calculation.
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20>C4, D4, E4 <color:FF0000>><color:000000>, F4
+<lmargin%:8><font:Arial:16>
+Example (with rests):
+<lmargin%:10>
+<font:Arial Bold:20>C4 <color:FF0000>_><color:000000>, D4, E4 <color:FF0000>$><color:000000>, F4
+<lmargin%:8><font:Arial:16>
+
+You can combine half-delays as well, with two half-delays being <font:Arial Bold:16>4x <font:Arial:16>faster, three being <font:Arial Bold:16>8x <font:Arial:16>faster, etc.
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20>C4 <color:FF0000>><color:000000>, D4 <color:FF0000>>><color:000000>, E4 <color:FF0000>>>><color:000000>, F4
+<lmargin%:8><font:Arial:16>
+
+Again, the delay is capped at a 50 millisecond minimum, so you cannot keep adding half-delays forever.

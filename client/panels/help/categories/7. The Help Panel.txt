@@ -1,0 +1,3 @@
+<font:Arial Bold:32>The Help Panel<font:Arial:16>
+
+<bitmap:Add-Ons/System_Instruments/client/images/tutorial/helpPanel.png>

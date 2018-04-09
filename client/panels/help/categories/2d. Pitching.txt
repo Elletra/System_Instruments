@@ -1,0 +1,16 @@
+<font:Arial Bold:32>Notation - Pitching<font:Arial:16>
+<lmargin%:8>
+If you want to change a note's pitch, use the <font:Arial Bold:16>note:pitch <font:Arial:16>notation.
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20>C4<color:FF0000>:1.331<color:000000>, D4<color:FF0000>:0.2<color:000000>, E4, F4, G4<color:FF0000>:0.9<color:000000>, A4, B4, C5<color:FF0000>:2<color:000000>
+<lmargin%:8><font:Arial:16>
+
+The lowest pitch you can use is <font:Arial Bold:16>0.2<font:Arial:16> and the highest is <font:Arial Bold:16>2<font:Arial:16>
+
+You can use pitching in chords as well.
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20>C4<color:FF0000>:1.5<color:000000>+C5, C4<color:FF0000>:2<color:000000>+E4+G4<color:FF0000>:0.8<color:000000>+C5, D4+F4<color:FF0000>:1.1<color:000000>+A4

@@ -1,0 +1,10 @@
+<font:Arial Bold:32>Notation - Repeats<font:Arial:16>
+<lmargin%:8>
+If you want a phrase to repeat forever, add a repeat <font:Arial Bold:18>% <font:Arial:16>symbol at the end.
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20>C4, D4, E4, F4, G4, A4, B4, C5, <color:FF0000>%<color:000000>
+<lmargin%:8><font:Arial:16>
+
+Please note that anything after the <font:Arial Bold:18>% <font:Arial:16>symbol will <font:Arial Bold:16>NOT <font:Arial:16>be played.

@@ -1,0 +1,32 @@
+<font:Arial Bold:32>Song Order<font:Arial:16>
+
+<bitmap:Add-Ons/System_Instruments/client/images/tutorial/songsPanel02.png>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This is where you determine what order the phrases will be played.  Please note that you have a maximum of CONST_SONG_ORDER_LIMIT phrases.
+
+Click the <font:Arial Bold:16>Add to Phrase<font:Arial:16> button to add a phrase to your song.  If you have an item selected in the song list already, your phrase will be added below whatever item you have selected\x97to deselect, simply click the same item again.
+
+Click the <font:Arial Bold:16>Move Up/Move Down<font:Arial:16> buttons to move selected item up and down in the list, respectively.
+
+If you are holding the correct instrument, click the <font:Arial Bold:16>Play<font:Arial:16> button to play your song live.  Otherwise, you can click the <font:Arial Bold:16>Preview<font:Arial:16> button to preview the song to yourself.
+
+The text below the Play and Preview buttons shows you how many phrases you have used in your song out of the CONST_SONG_ORDER_LIMIT maximum.

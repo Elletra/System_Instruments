@@ -1,0 +1,39 @@
+<font:Arial Bold:32>The Files Panel<font:Arial:16>
+
+<bitmap:Add-Ons/System_Instruments/client/images/tutorial/filesPanel.png>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In this panel, you can load, save, rename, and delete files on the server or on your own local machine.
+
+The left side is for manipulating files on the current server.  Please note that certain features may be restricted or disabled depending on the server's settings.  In some cases, server file manipulation may be disabled in its entirety.
+
+The right side is for manipulating files on your local machine and has no such restrictions.
+
+
+To browse a folder, double-click on it.  To go back to the main folder, double-click the <font:Arial Bold:16>..<font:Arial:16>
+
+<bitmap:Add-Ons/System_Instruments/client/images/tutorial/filesPanel01.png>
+
+
+
+
+
+
+(Note: This is not a full-fledged file browser; it cannot be used to browse arbitrary folders, so don't get any funny ideas)

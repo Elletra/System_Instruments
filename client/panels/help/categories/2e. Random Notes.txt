@@ -1,0 +1,21 @@
+<font:Arial Bold:32>Notation - Random Notes<font:Arial:16>
+<lmargin%:8>
+If you want to play a random note, use the <font:Arial Bold:16>? <font:Arial:16>symbol.
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20>C4, <color:FF0000>?<color:000000>, E4, <color:FF0000>?<color:000000>, <color:FF0000>?<color:000000>, A4, B4, C5, <color:FF0000>?<color:000000>
+<lmargin%:8><font:Arial:16>
+
+You can also use them in chords.
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20><color:FF0000>?<color:000000>+<color:FF0000>?<color:000000>, <color:FF0000>?<color:000000>+E4+<color:FF0000>?<color:000000>+C5, D4+<color:FF0000>?<color:000000>+A4
+<lmargin%:8><font:Arial:16>
+
+And yes, you can pitch them, too.
+
+Example:
+<lmargin%:10>
+<font:Arial Bold:20><color:FF0000>?<color:000000>:2, <color:FF0000>?<color:000000>+<color:FF0000>?<color:000000>:1.25, <color:FF0000>?<color:000000>+E4+<color:FF0000>?<color:000000>+C5, D4+<color:FF0000>?<color:000000>:0.2+A4

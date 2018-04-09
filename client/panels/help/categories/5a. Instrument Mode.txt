@@ -1,0 +1,21 @@
+<font:Arial Bold:32>Instrument Mode<font:Arial:16>
+
+<bitmap:Add-Ons/System_Instruments/client/images/tutorial/keybindsPanel03.png>
+
+
+
+
+
+
+If you want to play live with your keyboard, you must first bind a key to <font:Arial Bold:16>Switch Keyboard Mode<font:Arial:16> in <font:Arial Bold:16>Options > Controls<font:Arial:16>
+
+Once you have done that, you can then use that keybind to switch between normal mode and instrument mode.  When you are in instrument mode, you will see this icon in the bottom right of your screen:
+
+<bitmap:Add-Ons/System_Instruments/client/images/noteIcon.png>
+
+
+
+
+
+
+By default, movement keys are disabled while you are in instrument mode.  You can turn off this feature in the <font:Arial Bold:16>Settings<font:Arial:16> panel.

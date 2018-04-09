@@ -1,0 +1,4 @@
+Title: Playable Instruments
+Author: Electrk (12949)
+
+Adds a modular system for playable instruments.

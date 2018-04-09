@@ -1,0 +1,38 @@
+<font:Arial Bold:32>Instrument Notes<font:Arial:16>
+
+<bitmap:Add-Ons/System_Instruments/client/images/tutorial/pianoPanel01.png>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The top section of the "Piano" panel is all about adding notes to your phrase.
+
+The literal piano is for melodic instruments such as the guitar, harp, and... well, the piano.
+
+When you click on a key, the note will be added to your phrase if <font:Arial Bold:16>Add to Phrase<font:Arial:16> is checked.  If you right click on a key, it will add a + at the end for chords.
+
+If <font:Arial Bold:16>Play Live<font:Arial:16> is checked, and you are holding the correct instrument, the note will be played out loud.  Otherwise, the note will be played only to you.
+
+
+<bitmap:Add-Ons/System_Instruments/client/images/tutorial/pianoPanel02.png>
+
+
+
+
+
+
+
+
+
+If the currently-selected instrument has any non-melodic notes, you can select them from the list on the right.  This is usually only for drums, but other instruments have them too.
