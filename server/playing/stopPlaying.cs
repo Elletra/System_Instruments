@@ -17,6 +17,10 @@ function serverCmdStopPlayingInstrument(%client) {
 // Main function
 
 function InstrumentsServer::stopPlaying(%this, %obj) {
+  if (!isObject(%obj)) {
+    return;
+  }
+  
   cancel(%obj.phraseSchedule);
   cancel(%obj.songSchedule);
 
