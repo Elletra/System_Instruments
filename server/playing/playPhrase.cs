@@ -116,6 +116,7 @@ function InstrumentsServer::playPhrase(%this, %obj, %phrase, %phraseDelay, %dela
     // If there are no notes left and the client is not playing a song, stop playing...
     if (%obj.instrumentSong $= "") {
       InstrumentsServer.stopPlaying(%obj);
+      %obj.processInputEvent("onPhraseEnd");
       return;
     }
 
@@ -133,15 +134,18 @@ function InstrumentsServer::playPhrase(%this, %obj, %phrase, %phraseDelay, %dela
     %phraseCount = getFieldCount(%song);
     %phrasesLeft = %phraseCount - %phraseIndex;
 
-
+    // Check if the song is over
     if (%phrasesLeft <= 1) {
 
-      // If there's a repeat, go back to the beginning of the song
+      // If there's a repeat, go back to the beginning of the song...
       if (strPos(%phrase, "%") != -1) {
         %obj.phraseIndex = 0;
+        %obj.processInputEvent("onSongLoop");
       }
+      // ...otherwise stop playing
       else {
         InstrumentsServer.stopPlaying(%obj);
+        %obj.processInputEvent("onSongEnd");
         return;
       }
     }

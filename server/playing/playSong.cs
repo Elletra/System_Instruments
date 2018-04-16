@@ -54,6 +54,10 @@ function serverCmdPlaySong(%client, %song, %instrument, %preview) {
 // Main function
 
 function InstrumentsServer::playSong(%this, %obj, %song, %songDelay, %delay) {
+  if (_strEmpty(%song)) {
+    return;
+  }
+  
   if (!isObject(%obj)) {
     return;
   }
