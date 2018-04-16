@@ -284,6 +284,7 @@ function InstrumentsServer::playPhrase(%this, %obj, %phrase, %phraseDelay, %dela
   // they aren't playing a song at the moment
   if (strPos(%note, "%") != -1 && %obj.instrumentSong $= "") {
     %obj.noteIndex = 0;
+    %obj.processInputEvent("onPhraseLoop");
   }
   else {
     %obj.noteIndex++;
