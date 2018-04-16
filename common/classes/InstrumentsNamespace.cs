@@ -21,12 +21,21 @@ function InstrumentsNamespace::getInstrument(%this, %instrument) {
   return %this.get("Instrument_" @ %instrument);
 }
 
+function InstrumentsNamespace::getInstrumentFromIndex(%this, %index) {
+  %instrument = %this.name(%index);
+  return %this.getInstrument(%instrument);
+}
+
 function InstrumentsNamespace::index(%this, %instrument) {
   return %this.get("instrumentIndex_" @ %instrument);
 }
 
 function InstrumentsNamespace::name(%this, %index) {
   return %this.get("instrumentName_" @ %index);
+}
+
+function InstrumentsNamespace::isValidInstrumentIndex(%this, %index) {
+  return isObject(%this.getInstrumentFromIndex(%index));
 }
 
 function InstrumentsNamespace::newAddOn(%this, %addon, %author) {
