@@ -108,10 +108,7 @@ function InstrumentsServer::playSong(%this, %obj, %song, %songDelay, %delay) {
 
   %index = getField(%song, %phraseIndex);
 
-  if (%obj.getClassName() $= "GameConnection") {
-    %phrase = %obj.songPhrase[%index];
-  }
-  else if (%obj.getClassName() $= "Player") {
+  if (%obj.getClassName() $= "Player") {
     if (!isObject(%client = %obj.client)) {
       InstrumentsServer.stopPlaying(%obj);
       return;
@@ -119,11 +116,8 @@ function InstrumentsServer::playSong(%this, %obj, %song, %songDelay, %delay) {
 
     %phrase = %client.songPhrase[%index];
   }
-  else if (%obj.getClassName() $= "AIPlayer") {
-    %phrase = %obj.songPhrase[%index];
-  }
   else {
-    return;
+    %phrase = %obj.songPhrase[%index];
   }
   
   %obj.instrumentSong = %song;
