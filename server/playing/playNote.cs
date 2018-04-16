@@ -87,6 +87,10 @@ function InstrumentsServer::playPitchedSound(%this, %obj, %sound, %pitch, %posit
 // Main function
 
 function InstrumentsServer::playNote(%this, %obj, %note, %instrument) {
+  if (_strEmpty(%note)) {
+    return;
+  }
+  
   // Hard-coded timeout
   if (%obj.playNoteTimeout !$= "" && getSimTime() - %obj.playNoteTimeout < 10) { 
     return; 
