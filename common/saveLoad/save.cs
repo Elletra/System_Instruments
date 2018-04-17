@@ -46,9 +46,9 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
   }
 
   %path = Instruments.getFilePath(%type, %filename, %localOrServer);
-  %fileExists = isFile(%path);
+  %overwritingFile = isFile(%path);
 
-  if (%fileExists) {
+  if (%overwritingFile) {
 
     // If we're saving to server
 
@@ -172,15 +172,21 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
   %file.close();
   %file.delete();
 
-  Instruments.messageBoxOK("File Saved", "File saved successfully.", %client);
 
-  if (!%fileExists) {
+  if (!%overwritingFile) {
     if (%client $= "") {
       InstrumentsClient.refreshFileLists();
     }
-    else {
+    else if (isFile(%path)) {
       commandToAll('Instruments_onFileAdded', %filename, %type, %client.name TAB %client.getBLID());
     }
+  }
+
+  if (isFile(%path)) {
+    Instruments.messageBoxOK("File Saved", "File saved successfully.", %client);
+  }
+  else {
+    Instruments.messageBoxOK("Write Error", "Could not save file!", %client);
   }
 
   if (%client !$= "") {
