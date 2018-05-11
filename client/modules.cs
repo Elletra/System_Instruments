@@ -86,10 +86,12 @@ function clientCmdInstruments_GetVersion(%version, %notationVersion) {
   %versionCompare = semanticVersionCompare($Instruments::Version, $Instruments::Client::ServerVersion);
 
   %clientMajorVersion = getField(%clientVersion, 0);
+  %clientMinorVersion = getField(%clientVersion, 1);
   %serverMajorVersion = getField(%serverVersion, 0);
+  %serverMinorVersion = getField(%serverVersion, 1);
 
   if (%clientMajorVersion == %serverMajorVersion) {
-    if (%versionCompare == 2) {
+    if (%versionCompare == 2 && %clientMinorVersion !$= %serverMinorVersion) {
       %body = "<font:Arial Bold:18><color:FF0000>WARNING!<font:Arial:14><color:000000>" @
                 "\n\nThis server is running a newer version (" @ %version @ ") of the instruments mod." @
                 "\nThings might not work properly." @
@@ -97,7 +99,7 @@ function clientCmdInstruments_GetVersion(%version, %notationVersion) {
 
       schedule(250, 0, MessageBoxOK, "Newer Server Version Detected", %body);
     }
-    else if (%versionCompare == 1) {
+    else if (%versionCompare == 1 && %clientMinorVersion !$= %serverMinorVersion) {
       %body = "<font:Arial Bold:18><color:FF0000>WARNING!<font:Arial:14><color:000000>" @
                 "\n\nThis server is running an older version (" @ %version @ ") of the instruments mod." @
                 "\nThings might not work properly." @
