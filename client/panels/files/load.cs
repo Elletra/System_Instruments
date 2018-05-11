@@ -77,7 +77,10 @@ function InstrumentsClient::onSongLoaded(%this, %song, %filename, %author, %bl_i
        %body = %body @ " (BL_ID: " @ %bl_id @ ")";
     }
     
+    InstrumentsDlg_PlaySong.enable();
+    InstrumentsDlg_PreviewSong.enable();
     InstrumentsClient.updateSaveButtons();
+
     Instruments.messageBoxOK("Song Loaded", %body);
   }
   else {
