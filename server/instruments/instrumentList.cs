@@ -22,7 +22,13 @@ function InstrumentsServer::sendInstrumentList(%this, %client) {
       }
 
       // Send the data in chunks so we're not spamming the client with a million clientCmds
-      if (%n % 8 == 0) {
+      %reachedChunkSize = %n % Instruments.const["INSTRUMENT_LIST_CHUNK_SIZE"] == 0;
+
+      // serverCmds and clientCmds have a max length of 250 chars, so let's send it if
+      // it's too long already
+      %reachedMaxLength = strLen(%list) >= Instruments.const["MAX_PACKET_LENGTH"];
+
+      if (%reachedChunkSize || %reachedMaxLength) {
         if (!_strEmpty(%list)) {
           commandToClient(%client, 'receiveInstrumentList', %list);
         }
