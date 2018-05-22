@@ -1,0 +1,21 @@
+1.0.4	3
+snot	3180
+0,1,2,3,4,1,2,5,6,7,8,7,9,7,8,7,9,10,11,10,12,13,14,15,16,1,2,3,4,1,2,5,6,7,8,7,9,7,8,7,9,10,11,10,12,13,14,15,17
+d:100,b4+f4+f3,a4,f4,b4+f4+f3$,a4,f4,e4+gs3$,e3+gs4+b4+e5$,e3+gs4+b4+e5_,
+a3,a4,cs3+cs4+a4+a5,e5,e3+g5,cs4+a5,cs3+a4,a4,a3+cs4+a5,cs4,cs3+a4+e5,cs4+a5,e3/,cs3+a4$,
+d3,a4,f3+a4+f5+a5,a4,a3+d4,f5+a5,f4+a4,a4,f4+a5,a4,f4+a4+d5,f5+a5,a3/,f4+a4$,
+g3,g4,g4+b4+g5,d5,d3+f5,b4+g5,b3+g4,g4,g3+b4+g5,b4,b3+g3+d4,b4+g5,d3/,b3+g4$,
+c3,g4,c3+c5+g5,g3+c5,e5,c4+g5,c3+g4,c5,c3+e4+as4+g5$,c4+e4+as4+g5$,b3+ds4+as4+fs5$,as3+d4+gs4+f5$,
+g3,b4,b3+g4+b5,b4,d3+d4,g5+b5,d3+g4,b4,f5+b5,b3+g5,b4,g3+f5+b5$,b3+g4+f5$,
+c3,c4,c6+g4,c4+g5,g3,c6+g4,c3+g3+a5,d4+b5,c3+e5+g5+c6$,g3+f5+g5+b5$,c3+e5+g5+c6$,c3+d4+g4$,
+c3+e5$,e3+g3+c4$,e3+c5$,e3+g3+c4,g4,f3+a4,c5,f3+a3+c4,c5,fs3$,fs3+a3+c4,
+a4,e3+g4$,e3+g3+c4+c5$,ds3+c5$,ds3+g3+c4+g5$,d3+e5$,f3+a3+c4;,d5,g3$,f3+g3+b3$,
+a4,d3+g4$,f3+g3+c4+c5$,g3+f5,e5,g3+a3+d4+d5,c5,c3$,e3+g3+c4$,c3$,e3+g3+c4$,
+f3+e5$,f3+a3+c4,c5,f3$,f3+a3+c4+g4$,d3+e5$,e3+g3+c4,c5,d3$,e3+g3+c4$,
+ds3+ds5,c5,ds3+g3+a4+g4$,ds3+ds5$,ds3+g3+a4,d5,d3$,f3+a3+c4$,f3$,f3+g3+b3$,
+ds3+ds5,c5,ds3+g3+c4+g4$,ds3+g5$,ds3+g3+c4$,d3$,f3+a3+c4$,g3$,f3+g3+b3$,
+c3+e5$,e3+g3+c4$,c3+c5$,e3+g3+c4,g4,as3+a4,c5,f3+as3+d4,c5,as3$,f3+as3+d4,
+d5,a3+e5,c5,e3+a3+c4+g4$,a3+a4$,e3+g3+a3+c4,c5,gs3$,ds3+fs3+gs3+c4$,gs3$,ds3+fs3+gs3+c4,
+a4,d4+f4+g4+b4+g5$,a5$,g5$,a5$,g5-,g4,a3+a4+f5,e5,b3+b4+d5$,c4+c5$,
+g3+e4+g4+c5,g3+c4+d4+c5,c4,e4+g4+c5,g3+c4+e4$,c3+e4+g4+c5,g3+c4+e4,g3,e4+g4+c5,c3$,g3$,
+g3+e4+g4+c5,g3+c4+d4+c5,c4,e4+g4+c5,g3+c4+e4$,c3+e4+g4+c5,g3+c4+e4,g3,e4+g4+c5,c3$,
