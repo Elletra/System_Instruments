@@ -12,7 +12,7 @@ function InstrumentsServer::sendFilenames(%this, %client, %type) {
   commandToClient(%client, 'Instruments_receiveFileListStart', %type);
 
   %path = "config/server/instruments/" @ strLwr(%type) @ "s/*.txt";
-  %client.remainingFiles_[%type] = mCeil(getFileCount(%path) / 8);
+  %client.remainingFiles_[%type] = getFileCount(%path);
 
   %list = "";
   %count = 0;
@@ -26,9 +26,17 @@ function InstrumentsServer::sendFilenames(%this, %client, %type) {
     }
 
     // Send the data in chunks so we're not spamming the client with a million clientCmds
-    if (%count % 16 == 0) {
+    %reachedChunkSize = %count % Instruments.const["FILE_LIST_CHUNK_SIZE"] == 0 && %count > 0;
+
+    // serverCmds and clientCmds have a max length of 250 chars, so let's send it if
+    // it's too long already
+    %reachedMaxLength = strLen(%list) >= Instruments.const["MAX_PACKET_LENGTH"];
+
+    if (%reachedChunkSize || %reachedMaxLength) {
       if (!_strEmpty(%list)) {
         InstrumentsServer.schedule(1, sendFilePacket, %client, %list, %type);
+        %list = "";
+        %count = 0;
       }
 
       %list = %filename TAB %type TAB %author;
@@ -55,7 +63,7 @@ function InstrumentsServer::onFileDeleted(%this, %name, %type) {
 
 function InstrumentsServer::sendFilePacket(%this, %client, %list, %type) {
   commandToClient(%client, 'Instruments_receiveFileList', %list);
-  %client.remainingFiles_[%type]--;
+  %client.remainingFiles_[%type] -= getRecordCount(%list);
 
   if (%client.remainingFiles_[%type] <= 0) {
     commandToClient(%client, 'Instruments_receiveFileListDone', %type);
