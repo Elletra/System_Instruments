@@ -33,12 +33,15 @@ function InstrumentsClient::loadFile(%this, %type, %filename, %localOrServer) {
 }
 
 function InstrumentsClient::onFileLoadStart(%this, %type, %filename, %serverCmd) {
-  if (%type $= "bindset") {
+  if (%type $= "song") {
+    InstrumentsClient.clearAllSongPhrases();
+  }
+  else if (%type $= "bindset") {
     InstrumentsClient.clearAllKeys(%serverCmd);
   }
 }
 
-function InstrumentsClient::onPhraseLoaded(%this, %phrase, %filename, %author, %bl_id, %null, %failure) {
+function InstrumentsClient::onPhraseLoaded(%this, %phrase, %filename, %author, %bl_id, %unusedArg, %failure) {
   if (!$Instruments::Client::isLoading) {
     return;
   }
@@ -63,7 +66,7 @@ function InstrumentsClient::onPhraseLoaded(%this, %phrase, %filename, %author, %
   $Instruments::Client::isLoading = false;
 }
 
-function InstrumentsClient::onSongLoaded(%this, %song, %filename, %author, %bl_id, %null, %failure) {
+function InstrumentsClient::onSongLoaded(%this, %song, %filename, %author, %bl_id, %unusedArg, %failure) {
   if (!$Instruments::Client::isLoading) {
     return;
   }
@@ -104,7 +107,7 @@ function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %serverCmd)
   InstrumentsClient.setSongPhrase(%index, %phrase);
 }
 
-function InstrumentsClient::onBindsetLoaded(%this, %filename, %author, %bl_id, %null, %failure) {
+function InstrumentsClient::onBindsetLoaded(%this, %filename, %author, %bl_id, %unusedArg, %failure) {
   if (!$Instruments::Client::isLoading) {
     return;
   }
