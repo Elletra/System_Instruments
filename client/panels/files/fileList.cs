@@ -157,7 +157,7 @@ function InstrumentsClient::populateFileList(%this, %list, %type, %localOrServer
     %list.sort(0, 1);
 
     // This is used to go back to the main view
-    %list.insertBefore(0, "..");
+    %list.insertBefore(0, "<< Back");
   }
 }
 
@@ -243,7 +243,7 @@ function InstrumentsClient::clickFileList(%this, %localOrServer) {
       InstrumentsClient.setFileListMode(strLwr(%item));
     }
     else {
-      if (%item $= "..") {
+      if (%item $= "<< Back") {
         InstrumentsClient.setFileListMode("root");
       }
     }
