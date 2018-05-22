@@ -74,4 +74,7 @@ function InstrumentsClient::clearAllSongPhrases(%this) {
   for (%i = 0; %i < 20; %i++) {
     InstrumentsClient.clearSongPhrase(%i);
   }
+
+  $Instruments::GUI::LoadedSongAuthorName = "";
+  $Instruments::GUI::LoadedSongAuthorBL_ID = "";
 }

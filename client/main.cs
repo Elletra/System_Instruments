@@ -26,7 +26,7 @@ exec("./panels/piano/instrumentList.cs");
 exec("./panels/piano/miscellaneous.cs");
 
 // For the "Songs" section of the GUI
-exec("./panels/songs/phrases.cs");
+exec("./panels/songs/songPhrases.cs");
 exec("./panels/songs/songOrderList.cs");
 
 // For the "Keybinds" section of the GUI
