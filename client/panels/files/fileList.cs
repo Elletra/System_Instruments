@@ -266,6 +266,9 @@ function InstrumentsClient::setFileListMode(%this, %mode) {
     InstrumentsDlg_LoadLocalFile.disable();
     InstrumentsDlg_DeleteLocalFile.disable();
     InstrumentsDlg_RenameLocalFile.disable();
+
+    InstrumentsDlg_RefreshServerFiles.visible = false;
+    InstrumentsDlg_RefreshLocalFiles.visible = false;
   }
   else {
     %label = capitalizeFirstLetter(%mode) @ ": ";
@@ -278,6 +281,9 @@ function InstrumentsClient::setFileListMode(%this, %mode) {
     InstrumentsDlg_LoadLocalFile.disable();
     InstrumentsDlg_DeleteLocalFile.disable();
     InstrumentsDlg_RenameLocalFile.disable();
+
+    InstrumentsDlg_RefreshServerFiles.visible = true;
+    InstrumentsDlg_RefreshLocalFiles.visible = true;
   }
 
   InstrumentsDlg_ServerFileBrowser.setText("<font:Impact:18>Server " @ %label);

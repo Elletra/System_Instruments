@@ -2443,7 +2443,7 @@ new GuiControl(InstrumentsDlg) {
          extent = "612 334";
          minExtent = "8 2";
          enabled = "1";
-         visible = "1";
+         visible = "0";
          clipToParent = "1";
 
          new GuiScrollCtrl(InstrumentsDlg_SongPhraseContainer) {
@@ -2576,8 +2576,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
-               wrap = "0";
                enabledColor = "255 255 255 255";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_SetPhrase) {
             profile = "BlockButtonProfile";
@@ -2600,8 +2600,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
-               wrap = "0";
                enabledColor = "255 255 255 255";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_SetSongPhrase) {
             profile = "BlockButtonProfile";
@@ -2624,8 +2624,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_EditSongPhrase) {
             profile = "BlockButtonProfile";
@@ -2809,8 +2809,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_PlaySong) {
             profile = "BlockButtonProfile";
@@ -2833,8 +2833,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "0.392157 1.000000 0.392157 1.000000";
+               wrap = "0";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -2887,8 +2887,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
-               wrap = "0";
                enabledColor = "255 255 255 255";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_PasteSongOrder) {
             profile = "BlockButtonProfile";
@@ -2911,8 +2911,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
-               wrap = "0";
                enabledColor = "255 255 255 255";
+               wrap = "0";
          };
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_SettingsTab) {
@@ -2981,8 +2981,8 @@ new GuiControl(InstrumentsDlg) {
          overflowImage = "0";
          mKeepCached = "0";
          mColor = "255 255 255 255";
-            wrap = "0";
             enabledColor = "1.000000 1.000000 1.000000 1.000000";
+            wrap = "0";
       };
       new GuiControl(InstrumentsDlg_FilesPanel) {
          profile = "GuiDefaultProfile";
@@ -2992,7 +2992,7 @@ new GuiControl(InstrumentsDlg) {
          extent = "612 334";
          minExtent = "8 2";
          enabled = "1";
-         visible = "0";
+         visible = "1";
          clipToParent = "1";
 
          new GuiScrollCtrl(InstrumentsDlg_ServerFilesContainer) {
@@ -3126,8 +3126,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_LoadServerFile) {
             profile = "BlockButtonProfile";
@@ -3150,8 +3150,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_RenameServerFile) {
             profile = "BlockButtonProfile";
@@ -3174,8 +3174,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_DeleteServerFile) {
             profile = "BlockButtonProfile";
@@ -3198,8 +3198,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 0.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_SaveLocalFile) {
             profile = "BlockButtonProfile";
@@ -3222,8 +3222,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_LoadLocalFile) {
             profile = "BlockButtonProfile";
@@ -3246,8 +3246,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_RenameLocalFile) {
             profile = "BlockButtonProfile";
@@ -3270,8 +3270,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_DeleteLocalFile) {
             profile = "BlockButtonProfile";
@@ -3294,8 +3294,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 0.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_DownloadFile) {
             profile = "BlockButtonProfile";
@@ -3343,6 +3343,50 @@ new GuiControl(InstrumentsDlg) {
             mColor = "255 255 255 255";
                wrap = "0";
          };
+         new GuiBitmapButtonCtrl(InstrumentsDlg_RefreshServerFiles) {
+            profile = "GuiDefaultProfile";
+            horizSizing = "right";
+            vertSizing = "bottom";
+            position = "234 9";
+            extent = "14 14";
+            minExtent = "8 2";
+            enabled = "1";
+            visible = "1";
+            clipToParent = "1";
+            command = "InstrumentsClient.refreshFileLists();";
+            text = " ";
+            groupNum = "-1";
+            buttonType = "PushButton";
+            bitmap = "./images/refreshBtn";
+            lockAspectRatio = "0";
+            alignLeft = "0";
+            alignTop = "0";
+            overflowImage = "0";
+            mKeepCached = "0";
+            mColor = "255 255 255 255";
+         };
+         new GuiBitmapButtonCtrl(InstrumentsDlg_RefreshLocalFiles) {
+            profile = "GuiDefaultProfile";
+            horizSizing = "right";
+            vertSizing = "bottom";
+            position = "506 9";
+            extent = "14 14";
+            minExtent = "8 2";
+            enabled = "1";
+            visible = "1";
+            clipToParent = "1";
+            command = "InstrumentsClient.refreshFileLists();";
+            text = " ";
+            groupNum = "-1";
+            buttonType = "PushButton";
+            bitmap = "./images/refreshBtn";
+            lockAspectRatio = "0";
+            alignLeft = "0";
+            alignTop = "0";
+            overflowImage = "0";
+            mKeepCached = "0";
+            mColor = "255 255 255 255";
+         };
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_Preview) {
          profile = "BlockButtonProfile";
@@ -3365,8 +3409,8 @@ new GuiControl(InstrumentsDlg) {
          overflowImage = "0";
          mKeepCached = "0";
          mColor = "255 255 0 255";
-            wrap = "0";
             enabledColor = "1.000000 1.000000 0.000000 1.000000";
+            wrap = "0";
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_Play) {
          profile = "BlockButtonProfile";
@@ -3390,8 +3434,8 @@ new GuiControl(InstrumentsDlg) {
          overflowImage = "0";
          mKeepCached = "0";
          mColor = "100 255 100 255";
-            wrap = "0";
             enabledColor = "0.392157 1.000000 0.392157 1.000000";
+            wrap = "0";
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_SongsTab) {
          profile = "BlockButtonProfile";
@@ -4561,10 +4605,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "Arrow1";
                keyboardColumn = "0";
                keyBoundTo = "left";
                keyLabel = "<";
-               keyboardRow = "Arrow1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyArrow1_1) {
             profile = "GuiButtonProfile";
@@ -4588,10 +4632,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "Arrow1";
                keyboardColumn = "1";
                keyBoundTo = "down";
                keyLabel = "v";
-               keyboardRow = "Arrow1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyArrow1_2) {
             profile = "GuiButtonProfile";
@@ -4615,10 +4659,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "Arrow1";
                keyboardColumn = "2";
                keyBoundTo = "right";
                keyLabel = ">";
-               keyboardRow = "Arrow1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad1_3) {
             profile = "GuiButtonProfile";
@@ -4642,10 +4686,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad1";
                keyboardColumn = "3";
                keyBoundTo = "NUMPADADD";
                keyLabel = "+";
-               keyboardRow = "NumPad1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_4) {
             profile = "GuiButtonProfile";
@@ -4669,10 +4713,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "4";
                keyBoundTo = "4";
                keyLabel = "4";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_5) {
             profile = "GuiButtonProfile";
@@ -4696,10 +4740,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "5";
                keyBoundTo = "5";
                keyLabel = "5";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_6) {
             profile = "GuiButtonProfile";
@@ -4723,10 +4767,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "6";
                keyBoundTo = "6";
                keyLabel = "6";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_7) {
             profile = "GuiButtonProfile";
@@ -4750,10 +4794,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "7";
                keyBoundTo = "7";
                keyLabel = "7";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_8) {
             profile = "GuiButtonProfile";
@@ -4777,10 +4821,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "8";
                keyBoundTo = "8";
                keyLabel = "8";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_9) {
             profile = "GuiButtonProfile";
@@ -4804,10 +4848,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "9";
                keyBoundTo = "9";
                keyLabel = "9";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_10) {
             profile = "GuiButtonProfile";
@@ -4831,10 +4875,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "10";
                keyBoundTo = "0";
                keyLabel = "0";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_11) {
             profile = "GuiButtonProfile";
@@ -4858,10 +4902,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "11";
                keyBoundTo = "-";
                keyLabel = "-";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key5_3) {
             profile = "GuiButtonProfile";
@@ -4885,10 +4929,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "5";
                keyboardColumn = "3";
                keyBoundTo = "space";
                keyLabel = " ";
-               keyboardRow = "5";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -4924,10 +4968,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "Arrow0";
                keyboardColumn = "0";
                keyBoundTo = "up";
                keyLabel = "^";
-               keyboardRow = "Arrow0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key0_3) {
             profile = "GuiButtonProfile";
@@ -4951,10 +4995,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "0";
                keyboardColumn = "3";
                keyBoundTo = "f3";
                keyLabel = "F3";
-               keyboardRow = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_12) {
             profile = "GuiButtonProfile";
@@ -4978,10 +5022,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "12";
                keyBoundTo = "=";
                keyLabel = "=";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad2_0) {
             profile = "GuiButtonProfile";
@@ -5005,10 +5049,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad2";
                keyboardColumn = "0";
                keyBoundTo = "NUMPAD4";
                keyLabel = "4";
-               keyboardRow = "NumPad2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad2_1) {
             profile = "GuiButtonProfile";
@@ -5032,10 +5076,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad2";
                keyboardColumn = "1";
                keyBoundTo = "NUMPAD5";
                keyLabel = "5";
-               keyboardRow = "NumPad2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad2_2) {
             profile = "GuiButtonProfile";
@@ -5059,10 +5103,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad2";
                keyboardColumn = "2";
                keyBoundTo = "NUMPAD6";
                keyLabel = "6";
-               keyboardRow = "NumPad2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_3) {
             profile = "GuiButtonProfile";
@@ -5086,10 +5130,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "3";
                keyBoundTo = "e";
                keyLabel = "E";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_4) {
             profile = "GuiButtonProfile";
@@ -5113,10 +5157,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "4";
                keyBoundTo = "r";
                keyLabel = "R";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_5) {
             profile = "GuiButtonProfile";
@@ -5140,10 +5184,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "5";
                keyBoundTo = "t";
                keyLabel = "T";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_6) {
             profile = "GuiButtonProfile";
@@ -5167,10 +5211,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "6";
                keyBoundTo = "y";
                keyLabel = "Y";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_7) {
             profile = "GuiButtonProfile";
@@ -5194,10 +5238,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "7";
                keyBoundTo = "u";
                keyLabel = "U";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_8) {
             profile = "GuiButtonProfile";
@@ -5221,10 +5265,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "8";
                keyBoundTo = "i";
                keyLabel = "I";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_9) {
             profile = "GuiButtonProfile";
@@ -5248,10 +5292,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "9";
                keyBoundTo = "o";
                keyLabel = "O";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_10) {
             profile = "GuiButtonProfile";
@@ -5275,10 +5319,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "10";
                keyBoundTo = "p";
                keyLabel = "P";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_11) {
             profile = "GuiButtonProfile";
@@ -5302,10 +5346,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "11";
                keyBoundTo = "[";
                keyLabel = "[";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_12) {
             profile = "GuiButtonProfile";
@@ -5329,10 +5373,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "12";
                keyBoundTo = "]";
                keyLabel = "]";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key0_9) {
             profile = "GuiButtonProfile";
@@ -5356,10 +5400,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "0";
                keyboardColumn = "9";
                keyBoundTo = "f9";
                keyLabel = "F9";
-               keyboardRow = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_1) {
             profile = "GuiButtonProfile";
@@ -5383,10 +5427,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "1";
                keyBoundTo = "1";
                keyLabel = "1";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_2) {
             profile = "GuiButtonProfile";
@@ -5410,10 +5454,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "2";
                keyBoundTo = "2";
                keyLabel = "2";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_3) {
             profile = "GuiButtonProfile";
@@ -5437,10 +5481,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "3";
                keyBoundTo = "3";
                keyLabel = "3";
-               keyboardRow = "1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad3_0) {
             profile = "GuiButtonProfile";
@@ -5464,10 +5508,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad3";
                keyboardColumn = "0";
                keyBoundTo = "NUMPAD1";
                keyLabel = "1";
-               keyboardRow = "NumPad3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad3_1) {
             profile = "GuiButtonProfile";
@@ -5491,10 +5535,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad3";
                keyboardColumn = "1";
                keyBoundTo = "NUMPAD2";
                keyLabel = "2";
-               keyboardRow = "NumPad3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad3_2) {
             profile = "GuiButtonProfile";
@@ -5518,10 +5562,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad3";
                keyboardColumn = "2";
                keyBoundTo = "NUMPAD3";
                keyLabel = "3";
-               keyboardRow = "NumPad3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad3_3) {
             profile = "GuiButtonProfile";
@@ -5545,10 +5589,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad3";
                keyboardColumn = "3";
                keyBoundTo = "NUMPADENTER";
                keyLabel = "Enter";
-               keyboardRow = "NumPad3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_4) {
             profile = "GuiButtonProfile";
@@ -5572,10 +5616,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "4";
                keyBoundTo = "f";
                keyLabel = "F";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_5) {
             profile = "GuiButtonProfile";
@@ -5599,10 +5643,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "5";
                keyBoundTo = "g";
                keyLabel = "G";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_6) {
             profile = "GuiButtonProfile";
@@ -5626,10 +5670,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "6";
                keyBoundTo = "h";
                keyLabel = "H";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_7) {
             profile = "GuiButtonProfile";
@@ -5653,10 +5697,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "7";
                keyBoundTo = "j";
                keyLabel = "J";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_8) {
             profile = "GuiButtonProfile";
@@ -5680,10 +5724,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "8";
                keyBoundTo = "k";
                keyLabel = "K";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_9) {
             profile = "GuiButtonProfile";
@@ -5707,10 +5751,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "9";
                keyBoundTo = "l";
                keyLabel = "L";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_10) {
             profile = "GuiButtonProfile";
@@ -5734,10 +5778,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "10";
                keyBoundTo = ";";
                keyLabel = ";";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_11) {
             profile = "GuiButtonProfile";
@@ -5761,10 +5805,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "11";
                keyBoundTo = "\'";
                keyLabel = "\'";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_0) {
             profile = "GuiButtonProfile";
@@ -5788,10 +5832,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "0";
                keyBoundTo = "tab";
                keyLabel = "Tab";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_1) {
             profile = "GuiButtonProfile";
@@ -5815,10 +5859,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "1";
                keyBoundTo = "q";
                keyLabel = "Q";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key2_2) {
             profile = "GuiButtonProfile";
@@ -5842,10 +5886,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "2";
                keyBoundTo = "w";
                keyLabel = "W";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad4_0) {
             profile = "GuiButtonProfile";
@@ -5869,10 +5913,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad4";
                keyboardColumn = "0";
                keyBoundTo = "NUMPAD0";
                keyLabel = "0";
-               keyboardRow = "NumPad4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad4_1) {
             profile = "GuiButtonProfile";
@@ -5896,10 +5940,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad4";
                keyboardColumn = "1";
                keyBoundTo = "NUMPADDECIMAL";
                keyLabel = ".";
-               keyboardRow = "NumPad4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_2) {
             profile = "GuiButtonProfile";
@@ -5923,10 +5967,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "2";
                keyBoundTo = "x";
                keyLabel = "X";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_3) {
             profile = "GuiButtonProfile";
@@ -5950,10 +5994,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "3";
                keyBoundTo = "c";
                keyLabel = "C";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_4) {
             profile = "GuiButtonProfile";
@@ -5977,10 +6021,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "4";
                keyBoundTo = "v";
                keyLabel = "V";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_5) {
             profile = "GuiButtonProfile";
@@ -6004,10 +6048,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "5";
                keyBoundTo = "b";
                keyLabel = "B";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_6) {
             profile = "GuiButtonProfile";
@@ -6031,10 +6075,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "6";
                keyBoundTo = "n";
                keyLabel = "N";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_7) {
             profile = "GuiButtonProfile";
@@ -6058,10 +6102,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "7";
                keyBoundTo = "m";
                keyLabel = "M";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_8) {
             profile = "GuiButtonProfile";
@@ -6085,10 +6129,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "8";
                keyBoundTo = ",";
                keyLabel = ",";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_9) {
             profile = "GuiButtonProfile";
@@ -6112,10 +6156,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "9";
                keyBoundTo = ".";
                keyLabel = ".";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_10) {
             profile = "GuiButtonProfile";
@@ -6139,10 +6183,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "10";
                keyBoundTo = "/";
                keyLabel = "/";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_12) {
             profile = "GuiButtonProfile";
@@ -6166,10 +6210,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "12";
                keyBoundTo = "enter";
                keyLabel = "Enter";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key1_13) {
             profile = "GuiButtonProfile";
@@ -6193,10 +6237,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "1";
                keyboardColumn = "13";
                keyBoundTo = "backspace";
                keyLabel = "Backspace";
-               keyboardRow = "1";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -6232,10 +6276,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "2";
                keyboardColumn = "13";
                keyBoundTo = "\\";
                keyLabel = "\\";
-               keyboardRow = "2";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_1) {
             profile = "GuiButtonProfile";
@@ -6259,10 +6303,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "1";
                keyBoundTo = "a";
                keyLabel = "A";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_2) {
             profile = "GuiButtonProfile";
@@ -6286,10 +6330,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "2";
                keyBoundTo = "s";
                keyLabel = "S";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key3_3) {
             profile = "GuiButtonProfile";
@@ -6313,10 +6357,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "3";
                keyboardColumn = "3";
                keyBoundTo = "d";
                keyLabel = "D";
-               keyboardRow = "3";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_11) {
             profile = "GuiButtonProfile";
@@ -6340,10 +6384,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "11";
                keyBoundTo = "rshift";
                keyLabel = "Shift";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key5_0) {
             profile = "GuiButtonProfile";
@@ -6367,10 +6411,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "5";
                keyboardColumn = "0";
                keyBoundTo = "lcontrol";
                keyLabel = "Ctrl";
-               keyboardRow = "5";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key5_2) {
             profile = "GuiButtonProfile";
@@ -6394,10 +6438,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "5";
                keyboardColumn = "2";
                keyBoundTo = "lalt";
                keyLabel = "Alt";
-               keyboardRow = "5";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key5_4) {
             profile = "GuiButtonProfile";
@@ -6421,10 +6465,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "5";
                keyboardColumn = "4";
                keyBoundTo = "ralt";
                keyLabel = "Alt";
-               keyboardRow = "5";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_0) {
             profile = "GuiButtonProfile";
@@ -6448,10 +6492,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "0";
                keyBoundTo = "lshift";
                keyLabel = "Shift";
-               keyboardRow = "4";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key4_1) {
             profile = "GuiButtonProfile";
@@ -6475,10 +6519,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "4";
                keyboardColumn = "1";
                keyBoundTo = "z";
                keyLabel = "Z";
-               keyboardRow = "4";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -6513,8 +6557,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 0 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad0_3) {
             profile = "GuiButtonProfile";
@@ -6538,10 +6582,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad0";
                keyboardColumn = "3";
                keyBoundTo = "NUMPADMINUS";
                keyLabel = "-";
-               keyboardRow = "NumPad0";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -6577,10 +6621,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "0";
                keyboardColumn = "4";
                keyBoundTo = "f4";
                keyLabel = "F4";
-               keyboardRow = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key0_6) {
             profile = "GuiButtonProfile";
@@ -6604,10 +6648,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "0";
                keyboardColumn = "6";
                keyBoundTo = "f6";
                keyLabel = "F6";
-               keyboardRow = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key0_7) {
             profile = "GuiButtonProfile";
@@ -6631,10 +6675,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "0";
                keyboardColumn = "7";
                keyBoundTo = "f7";
                keyLabel = "F7";
-               keyboardRow = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key0_8) {
             profile = "GuiButtonProfile";
@@ -6658,10 +6702,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "0";
                keyboardColumn = "8";
                keyBoundTo = "f8";
                keyLabel = "F8";
-               keyboardRow = "0";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -6721,10 +6765,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad1";
                keyboardColumn = "0";
                keyBoundTo = "NUMPAD7";
                keyLabel = "7";
-               keyboardRow = "NumPad1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad1_1) {
             profile = "GuiButtonProfile";
@@ -6748,10 +6792,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad1";
                keyboardColumn = "1";
                keyBoundTo = "NUMPAD8";
                keyLabel = "8";
-               keyboardRow = "NumPad1";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad1_2) {
             profile = "GuiButtonProfile";
@@ -6775,10 +6819,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "NumPad1";
                keyboardColumn = "2";
                keyBoundTo = "NUMPAD9";
                keyLabel = "9";
-               keyboardRow = "NumPad1";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -6885,8 +6929,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -6922,10 +6966,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "5";
                keyboardColumn = "7";
                keyBoundTo = "rcontrol";
                keyLabel = "Ctrl";
-               keyboardRow = "5";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key0_2) {
             profile = "GuiButtonProfile";
@@ -6949,10 +6993,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "0";
                keyboardColumn = "2";
                keyBoundTo = "f2";
                keyLabel = "F2";
-               keyboardRow = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_Key0_5) {
             profile = "GuiButtonProfile";
@@ -6976,10 +7020,10 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
+               keyboardRow = "0";
                keyboardColumn = "5";
                keyBoundTo = "f5";
                keyLabel = "F5";
-               keyboardRow = "0";
          };
       };
       new GuiSwatchCtrl() {
@@ -7157,24 +7201,24 @@ new GuiControl(InstrumentsDlg) {
                columns = "0 10 20 33";
                fitParentWidth = "1";
                clipColumnText = "0";
-                  rowFileName6 = "2e. Random Notes";
-                  rowFileName17 = "7. The Help Panel";
-                  rowFileName14 = "5. The Keybinds Panel";
-                  rowFileName11 = "4. The Songs Panel";
-                  rowFileName8 = "3a. Instrument Notes";
-                  rowFileName7 = "3. The Piano Panel";
-                  rowFileName3 = "2b. Delays & Tempo";
                   rowFileName15 = "5a. Instrument Mode";
-                  rowFileName12 = "4a. Song Phrases";
-                  rowFileName5 = "2d. Pitching";
                   rowFileName4 = "2c. Repeats";
+                  rowFileName11 = "4. The Songs Panel";
+                  rowFileName5 = "2d. Pitching";
+                  rowFileName7 = "3. The Piano Panel";
                   rowFileName0 = "1. About";
-                  rowFileName9 = "3b. Delays & Rests";
-                  rowFileName16 = "6. The Files Panel";
-                  rowFileName13 = "4b. Song Order";
-                  rowFileName2 = "2a. Rests";
+                  rowFileName8 = "3a. Instrument Notes";
                   rowFileName1 = "2. Notation - Basics";
+                  rowFileName6 = "2e. Random Notes";
+                  rowFileName2 = "2a. Rests";
+                  rowFileName14 = "5. The Keybinds Panel";
                   rowFileName10 = "3c. Phrase Textbox";
+                  rowFileName17 = "7. The Help Panel";
+                  rowFileName16 = "6. The Files Panel";
+                  rowFileName3 = "2b. Delays & Tempo";
+                  rowFileName9 = "3b. Delays & Rests";
+                  rowFileName12 = "4a. Song Phrases";
+                  rowFileName13 = "4b. Song Order";
             };
          };
          new GuiScrollCtrl(InstrumentsDlg_HelpTextScroll) {
