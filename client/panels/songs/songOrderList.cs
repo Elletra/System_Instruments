@@ -173,9 +173,9 @@ function InstrumentsClient::updateSongOrderList(%this) {
   }
 }
 
-// ------------------------------
-//  Playing and previewing songs
-// ------------------------------
+// ----------------------------------
+//  Song conversion to and from text
+// ----------------------------------
 
 function InstrumentsClient::songToText(%this) {
   %song = "";
@@ -214,6 +214,17 @@ function InstrumentsClient::textToSong(%this, %text) {
     InstrumentsClient.setSongOrderPhrase(%index, %i);
   }
 }
+
+function InstrumentsClient::copySongOrder(%this) {
+  setClipboard(InstrumentsClient.songToText());
+
+  InstrumentsDlg_CopySongOrder.disable();
+  InstrumentsDlg_CopySongOrder.schedule(500, enable);
+}
+
+// ------------------------------
+//  Playing and previewing songs
+// ------------------------------
 
 function InstrumentsClient::playSong(%this, %preview) {
   if (InstrumentsDlg_SongOrderList.rowCount() <= 0) {
