@@ -50,8 +50,8 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
 
   if (%overwritingFile) {
 
-    // If we're saving to server
-
+    // If we're saving to server, we need to check if client has permission on the serverto overwrite files
+    // Otherwise, if it were on the client's local system, you don't need to check for permissions (obviously)
     if (%client !$= "") {
       %hasPermission = InstrumentsServer.checkDeletingPermissions(%client, 0);
 
@@ -71,9 +71,8 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
 
     if (!%overwrite) {
 
-      // If we're saving to local
-
       if (%client $= "") {
+        // If we're saving to local
         %yes = "Instruments.saveFile(\"" @ %type @ "\", \"" @ %filename @ "\", \"" @ %phraseOrSong @ "\", \"\", 1);";
         Instruments.messageBoxYesNo("File Exists", "File already exists!  Overwrite?", %yes);
         return;
