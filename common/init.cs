@@ -36,6 +36,10 @@ if (!isObject(Instruments)) {
     const["NUM_KEY_COLUMNS"] = 14;
     const["DISALLOWED_KEYS"] = "escape\tf1\tf10\tf11\tf12\tNUMLOCK\tNUMPADMULT\t`\t~\tCAPSLOCK\tSCROLLLOCK" TAB
                                 "insert\thome\tpageup\tdelete\tend\tpagedown";
+
+    const["INSTRUMENT_LIST_CHUNK_SIZE"] = 6;
+    const["FILE_LIST_CHUNK_SIZE"] = 6;
+    const["MAX_PACKET_LENGTH"] = 170;  // The actual limit is 250 chars, but let's play it safe
   };
 }
 
@@ -56,6 +60,38 @@ function Instruments::isKeyAllowed(%this, %key) {
   }
 
   return true;
+}
+
+// The built-in `fileCopy` function doesn't work for .zip files
+function Instruments::copyFile(%this, %source, %destination) {
+  if (!isFile(%source)) {
+    return false;
+  }
+
+  %read = new FileObject();
+  %success = %read.openForRead(%source);
+
+  %write = new FileObject();
+  %success = %success && %write.openForWrite(%destination);
+
+  if (%success) {
+    while (!%read.isEoF()) {
+      %line = %read.readLine();
+      %write.writeLine(%line);
+    }
+  }
+
+  %read.close();
+  %read.delete();
+  
+  %write.close();
+  %write.delete();
+
+  if (!%success) {
+    return false;
+  }
+
+  return isFile(%destination);
 }
 
 function Instruments::copySampleFiles(%this, %type) {
@@ -79,24 +115,31 @@ function Instruments::copySampleFiles(%this, %type) {
   createPath("config/client/" @ %folderPath);
   createPath("config/server/" @ %folderPath);
 
+  %success = true;
 
   for (%file = findFirstFile(%path); %file !$= ""; %file = findNextFile(%path)) {
     %clientPath = "config/client/" @ %folderPath @ fileName(%file);
     %serverPath = "config/server/" @ %folderPath @ fileName(%file);
 
     if (!isFile(%clientPath)) {
-      fileCopy(%file, %clientPath);
+      if (!Instruments.copyFile(%file, %clientPath)) {
+        %success = false;
+      }
     }
 
     if (!isFile(%serverPath)) {
-      fileCopy(%file, %serverPath);
+      if (!Instruments.copyFile(%file, %serverPath)) {
+        %success = false;
+      }
     }
   }
 
-  $Pref::Instruments::SampleFilesCopied = true;
+  if (%success) {
+    $Pref::Instruments::CopiedSampleFiles = true;
+  }
 }
 
-if (!$Pref::Instruments::SampleFilesCopied) {
+if (!$Pref::Instruments::CopiedSampleFiles) {
   Instruments.copySampleFiles("bindset");
   Instruments.copySampleFiles("phrase");
   Instruments.copySampleFiles("song");
