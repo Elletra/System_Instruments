@@ -184,6 +184,8 @@ function InstrumentsFileManager::clearPhrases(%this) {
     %name = %this.getPhraseName(%i);
     %this.deletePhrase(%name);
   }
+
+  %this._phraseCount = 0;
 }
 
 function InstrumentsFileManager::clearSongs(%this) {
@@ -193,6 +195,8 @@ function InstrumentsFileManager::clearSongs(%this) {
     %name = %this.getSongName(%i);
     %this.deleteSong(%name);
   }
+
+  %this._songCount = 0;
 }
 
 function InstrumentsFileManager::clearBindsets(%this) {
@@ -202,6 +206,8 @@ function InstrumentsFileManager::clearBindsets(%this) {
     %name = %this.getBindsetName(%i);
     %this.deleteBindset(%name);
   }
+
+  %this._bindsetCount = 0;
 }
 
 function InstrumentsFileManager::clearFiles(%this) {
