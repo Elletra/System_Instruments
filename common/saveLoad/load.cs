@@ -64,11 +64,6 @@ function Instruments::loadFile(%this, %type, %filename, %client) {
       // File was saved when the instruments mod did not even keep track of its version number
       // It probably will not work
       if (getFieldCount(%line) <= 1) {
-        // %title = "ERROR: Could not load file";
-        // %body = "This file was saved using an extremely old version of the instruments mod and" SPC 
-        //         "will probably not work properly.";
-
-        // Instruments.messageBoxOK(%title, %body, %client);
         %failure = "This file was saved using an extremely old version of the instruments mod and" SPC 
                    "will probably not work properly.";
         break;
@@ -77,11 +72,6 @@ function Instruments::loadFile(%this, %type, %filename, %client) {
         %notation = getField(%line, 1);
 
         if (%notation !$= $Instruments::NotationVersion) {
-          // %title = "ERROR: Could not load file";
-          // %body = "This file was saved using a different version of the instruments notation and" SPC 
-          //         "will probably not work properly.";
-
-          // Instruments.messageBoxOK(%title, %body, %client);
           %failure = "This file was saved using a different version of the instruments notation and" SPC 
                      "will probably not work properly.";
           break;
