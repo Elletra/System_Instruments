@@ -15,7 +15,7 @@ new GuiControl(InstrumentsEditTextDlg) {
       horizSizing = "right";
       vertSizing = "bottom";
       position = "150 94";
-      extent = "359 91";
+      extent = "410 92";
       minExtent = "8 2";
       enabled = "1";
       visible = "1";
@@ -37,7 +37,7 @@ new GuiControl(InstrumentsEditTextDlg) {
          profile = "GuiDefaultProfile";
          horizSizing = "right";
          vertSizing = "bottom";
-         position = "76 37";
+         position = "76 36";
          extent = "205 28";
          minExtent = "8 2";
          enabled = "1";
@@ -55,8 +55,6 @@ new GuiControl(InstrumentsEditTextDlg) {
             enabled = "1";
             visible = "1";
             clipToParent = "1";
-            variable = "";
-            command = "";
             maxLength = "255";
             historySize = "0";
             password = "0";
@@ -64,19 +62,18 @@ new GuiControl(InstrumentsEditTextDlg) {
             sinkAllKeyEvents = "0";
          };
       };
-      new GuiBitmapButtonCtrl(InstrumentsEditTextDlg_Button) {
+      new GuiBitmapButtonCtrl(InstrumentsEditTextDlg_Copy) {
          profile = "BlockButtonProfile";
          horizSizing = "right";
          vertSizing = "bottom";
-         position = "287 36";
-         extent = "56 29";
+         position = "286 36";
+         extent = "52 29";
          minExtent = "8 2";
          enabled = "1";
          visible = "1";
          clipToParent = "1";
-         command = "";
-         accelerator = "enter";
-         text = "Done";
+         command = "InstrumentsClient.copyEditText();";
+         text = "Copy";
          groupNum = "-1";
          buttonType = "PushButton";
          bitmap = "base/client/ui/button2";
@@ -85,13 +82,13 @@ new GuiControl(InstrumentsEditTextDlg) {
          alignTop = "0";
          overflowImage = "0";
          mKeepCached = "0";
-         mColor = "255 255 0 255";
+         mColor = "255 255 255 255";
       };
       new GuiMLTextCtrl(InstrumentsEditTextDlg_Label) {
          profile = "GuiMLTextProfile";
          horizSizing = "right";
          vertSizing = "bottom";
-         position = "14 41";
+         position = "14 40";
          extent = "58 18";
          minExtent = "8 2";
          enabled = "1";
@@ -109,14 +106,35 @@ new GuiControl(InstrumentsEditTextDlg) {
          profile = "GuiTextProfile";
          horizSizing = "center";
          vertSizing = "bottom";
-         position = "57 68";
-         extent = "203 18";
+         position = "201 68";
+         extent = "8 18";
          minExtent = "8 2";
          enabled = "1";
          visible = "1";
          clipToParent = "1";
-         text = "";
          maxLength = "255";
+      };
+      new GuiBitmapButtonCtrl(InstrumentsEditTextDlg_Button) {
+         profile = "BlockButtonProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "340 36";
+         extent = "60 29";
+         minExtent = "8 2";
+         enabled = "1";
+         visible = "1";
+         clipToParent = "1";
+         accelerator = "enter";
+         text = "Done";
+         groupNum = "-1";
+         buttonType = "PushButton";
+         bitmap = "base/client/ui/button2";
+         lockAspectRatio = "0";
+         alignLeft = "0";
+         alignTop = "0";
+         overflowImage = "0";
+         mKeepCached = "0";
+         mColor = "255 255 0 255";
       };
    };
 };
