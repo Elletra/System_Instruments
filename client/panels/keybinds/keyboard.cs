@@ -62,8 +62,8 @@ function InstrumentsClient::clickKeyboardKey(%this, %key, %control, %rightClick)
   }
 }
 
-function InstrumentsClient::clearAllKeys(%this, %serverCmd) {
-  if (%serverCmd) {
+function InstrumentsClient::clearAllKeys(%this, %useServerCmd) {
+  if (%useServerCmd) {
     commandToServer('Instruments_clearAllKeys');
   }
 

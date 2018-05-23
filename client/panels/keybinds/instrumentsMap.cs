@@ -83,7 +83,7 @@ function InstrumentsClient::configureKeyboard(%this) {
   InstrumentsMap.bind(%toggleDevice, %toggleAction, "InstrumentsDlg_Toggle");
 }
 
-function InstrumentsClient::bindToKey(%this, %phraseOrNote, %key, %showMessage, %serverCmd) {
+function InstrumentsClient::bindToKey(%this, %phraseOrNote, %key, %showMessage, %useServerCmd) {
   if (_strEmpty(%key)) { 
     return;
   }
@@ -208,7 +208,7 @@ function InstrumentsClient::bindToKey(%this, %phraseOrNote, %key, %showMessage, 
     }
   }
 
-  if (%serverCmd) {
+  if (%useServerCmd) {
     commandToServer('Instruments_BindToKey', %key, %phraseOrNote);
   }
   
@@ -238,17 +238,17 @@ function InstrumentsClient::rebindKeyControl(%this, %control) {
   InstrumentsClient.bindToKey(%control.phraseBoundTo, %control.keyBoundTo, 0, 0);
 }
 
-function InstrumentsClient::bindToAllKeys(%this, %phraseOrNote, %serverCmd) {
+function InstrumentsClient::bindToAllKeys(%this, %phraseOrNote, %useServerCmd) {
   for (%row = 0; %row < Instruments.const["NUM_KEY_ROWS"]; %row++) {
     for (%col = 0; %col < Instruments.const["NUM_KEY_COLUMNS"]; %col++) {
       %control = "InstrumentsDlg_Key" @ %row @ "_" @ %col;
-      InstrumentsClient.bindToKey(%phraseOrNote, %control.keyBoundTo, 0, %serverCmd);
+      InstrumentsClient.bindToKey(%phraseOrNote, %control.keyBoundTo, 0, %useServerCmd);
  
       %control = "InstrumentsDlg_KeyNumPad" @ %row @ "_" @ %col;
-      InstrumentsClient.bindToKey(%phraseOrNote, %control.keyBoundTo, 0, %serverCmd);
+      InstrumentsClient.bindToKey(%phraseOrNote, %control.keyBoundTo, 0, %useServerCmd);
  
       %control = "InstrumentsDlg_KeyArrow" @ %row @ "_" @ %col;
-      InstrumentsClient.bindToKey(%phraseOrNote, %control.keyBoundTo, 0, %serverCmd);
+      InstrumentsClient.bindToKey(%phraseOrNote, %control.keyBoundTo, 0, %useServerCmd);
     }
   }
 }
