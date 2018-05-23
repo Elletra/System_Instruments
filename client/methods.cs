@@ -45,6 +45,40 @@ function InstrumentsDlg::onWake(%this) {
   InstrumentsClient.populateHelpCategoriesList();
 }
 
+// Underscore because apparently there's already some mod-defined centerX method
+function GuiControl::_centerX(%this, %offset) {
+  if (!isObject(%parent = %this.getGroup())) {
+    return;
+  }
+
+  if (%offset $= "") {
+    %offset = 0;
+  }
+
+  %parentWidth = getWord(%parent.getExtent(), 0) / 2;
+  %width = getWord(%this.getExtent(), 0) / 2;
+  %y = getWord(%this.getPosition(), 1);
+
+  %this.position = (mAbs(%parentWidth - %width) + %offset) SPC %y;
+}
+
+// Underscore because apparently there's already some mod-defined centerY method
+function GuiControl::_centerY(%this, %offset) {
+  if (!isObject(%parent = %this.getGroup())) {
+    return;
+  }
+
+  if (%offset $= "") {
+    %offset = 0;
+  }
+
+  %parentHeight = getWord(%parent.getExtent(), 1) / 2;
+  %height = getWord(%this.getExtent(), 1) / 2;
+  %x = getWord(%this.getPosition(), 0);
+
+  %this.position = %x SPC (%offset + mAbs(%parentHeight - %height));
+}
+
 function GuiBitmapButtonCtrl::enable(%this) {
   if (%this.enabled && %this.enabledColor $= "") { 
     return;
