@@ -28,31 +28,46 @@ function InstrumentsClient::openSaveDialog(%this, %type, %localOrServer) {
     return;
   }
 
-  %where = "to Local";
-
-  if (%localOrServer $= "server") {
-    %where = "to Server";
+  // <3
+  if (%type $= "bindset" && InstrumentsClient.binds.bindCount < 3) {
+    Instruments.messageBoxOK("Error", "Not enough binds to save!");
+    return;
   }
 
-  InstrumentsEditTextDlg_Button.command = %command;
-  InstrumentsEditTextDlg_Button.setText("Save");
-  InstrumentsEditTextDlg_Window.setText("Save" SPC capitalizeFirstLetter(%type) SPC %where);
+  %authorName = $Instruments::GUI::LoadedAuthorName[%type];
 
-  %title = "Save" SPC capitalizeFirstLetter(%type) SPC %where;
-  %label = "Filename";
-  %editVar = "$Instruments::GUI::Filename";
-  %editCmd = "";
-  %btnText = "Save";
-  %btnCmd = "InstrumentsClient.saveFile(\"" @ %type @ "\", \"" @ %localOrServer @ "\");";
-  %footer = "(A-Z, 0-9, spaces, dashes, and underscores only)";
+  if (%authorName $= "") {
+    %authorName = $Pref::Player::NetName;
+  }
 
-  InstrumentsEditTextDlg_TextEdit.setValue("");
-  InstrumentsClient.openEditTextDialog(%title, %label, %editVar, %editCmd, %btnText, %btnCmd, %footer);
+  %authorBL_ID = $Instruments::GUI::LoadedAuthorBL_ID[%type];
+
+  if (%authorBL_ID $= "") {
+    %authorBL_ID = getNumKeyID();
+  }
+
+  $Instruments::GUI::FileType = %type;
+  $Instruments::GUI::FileLocalOrServer = %localOrServer;
+
+  InstrumentsSaveDlg_Filename.setValue("");
+  InstrumentsSaveDlg_AuthorName.setValue(%authorName);
+  InstrumentsSaveDlg_AuthorBL_ID.setValue(%authorBL_ID);
+
+  Canvas.pushDialog(InstrumentsSaveDlg);
 }
 
-function InstrumentsClient::saveFile(%this, %type, %localOrServer) {
-  %filename = InstrumentsEditTextDlg_TextEdit.getValue();
+function InstrumentsClient::clickSaveButton(%this) {
+  %filename = InstrumentsSaveDlg_Filename.getValue();
+  %authorName = InstrumentsSaveDlg_AuthorName.getValue();
+  %authorBL_ID = InstrumentsSaveDlg_AuthorBL_ID.getValue();
+  %author = %authorName TAB %authorBL_ID;
 
+  Canvas.popDialog(InstrumentsSaveDlg);
+
+  InstrumentsClient.saveFile($Instruments::GUI::FileType, $Instruments::GUI::FileLocalOrServer, %filename, %author);
+}
+
+function InstrumentsClient::saveFile(%this, %type, %localOrServer, %filename, %author) {
   if (!Instruments.validateFilename(%filename, "", 1)) {
     return;
   }
@@ -66,11 +81,15 @@ function InstrumentsClient::saveFile(%this, %type, %localOrServer) {
     %phraseOrSong = _cleanPhrase(InstrumentsClient.songToText());
   }
 
+  if (%author $= "") {
+    %author = $Pref::Player::NetName TAB getNumKeyID();
+  }
+
   if (%localOrServer $= "local") {
-    Instruments.saveFile(%type, %filename, %phraseOrSong, "", 0);
+    Instruments.saveFile(%type, %filename, %phraseOrSong, "", 0, %author);
   }
   else if (%localOrServer $= "server") {
-    commandToServer('Instruments_SaveFile', %type, %filename, %phraseOrSong, 0);
+    commandToServer('Instruments_SaveFile', %type, %filename, %phraseOrSong, 0, %author);
   }
 
   Canvas.popDialog(InstrumentsEditTextDlg);

@@ -11,7 +11,7 @@
 // etc.
 
 
-function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, %overwrite) {
+function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, %overwrite, %authorToWrite) {
   if (%type !$= "phrase" && %type !$= "song" && %type !$= "bindset") { 
     return; 
   }
@@ -21,6 +21,19 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
 
   if (!Instruments.validateFilename(%filename, %client, 1)) { 
     return; 
+  }
+
+  if (%authorToWrite $= "") {
+    if (%client $= "") {
+      %authorToWrite = $Pref::Player::NetName TAB getNumKeyID();
+    }
+    else {
+      %authorToWrite = %client.getPlayerName() TAB %client.getBLID();
+    }
+  }
+
+  if (!Instruments.validateFileAuthor(%authorToWrite, %client, 1)) {
+    return;
   }
 
   if (%client $= "") {
@@ -92,6 +105,7 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
         %yes = 'saveBindsetOverwrite';
       }
 
+      %client.instrumentFileAuthor = %authorToWrite;
       %client.instrumentFileName = %filename;
 
       %author = Instruments.getFileAuthor(%type, %filename, %localOrServer);
@@ -120,13 +134,7 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
   %file = new FileObject();
   %file.openForWrite(%path);
   %file.writeLine($Instruments::Version TAB $Instruments::NotationVersion);
-
-  if (%client $= "") {
-    %file.writeLine($Pref::Player::NetName TAB getNumKeyID());
-  }
-  else {
-    %file.writeLine(%client.getPlayerName() TAB %client.getBLID());
-  }
+  %file.writeLine(%authorToWrite);
 
   if (%type !$= "bindset") {
     %file.writeLine(%phraseOrSong);

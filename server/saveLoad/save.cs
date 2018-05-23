@@ -1,4 +1,4 @@
-function serverCmdInstruments_SaveFile(%client, %type, %filename, %phraseOrSong, %overwrite) {
+function serverCmdInstruments_SaveFile(%client, %type, %filename, %phraseOrSong, %overwrite, %author) {
   if (!%client.hasInstrumentsClient) {
     return;
   }
@@ -33,7 +33,7 @@ function serverCmdInstruments_SaveFile(%client, %type, %filename, %phraseOrSong,
     }
 
     if (%client.instrumentBinds.bindCount < 3) {
-      Instruments.messageBoxOK("Error", "You need at least 3 keys bound to something before you can save.", %client);
+      Instruments.messageBoxOK("Error", "You need at least 3 keybinds before you can save.", %client);
       return;
     }
   }
@@ -46,24 +46,28 @@ function serverCmdInstruments_SaveFile(%client, %type, %filename, %phraseOrSong,
     return;
   }
 
-  Instruments.saveFile(%type, %filename, %phraseOrSong, %client, %overwrite);
+  Instruments.saveFile(%type, %filename, %phraseOrSong, %client, %overwrite, %author);
 }
 
 function serverCmdSaveSongOverwrite(%client) {
+  %author = %client.instrumentFileAuthor;
   %filename = %client.instrumentFileName;
   %song = %client.instrumentSong;
   
-  serverCmdInstruments_SaveFile(%client, "song", %filename, %song, 1);
+  serverCmdInstruments_SaveFile(%client, "song", %filename, %song, 1, %author);
 }
 
 function serverCmdSavePhraseOverwrite(%client) {
+  %author = %client.instrumentFileAuthor;
   %filename = %client.instrumentFileName;
   %phrase = %client.instrumentPhrase;
 
-  serverCmdInstruments_SaveFile(%client, "phrase", %filename, %phrase, 1);
+  serverCmdInstruments_SaveFile(%client, "phrase", %filename, %phrase, 1, %author);
 }
 
 function serverCmdSaveBindsetOverwrite(%client) {
+  %author = %client.instrumentFileAuthor;
   %filename = %client.instrumentFileName;
-  serverCmdInstruments_SaveFile(%client, "bindset", %filename, "", 1);
+  
+  serverCmdInstruments_SaveFile(%client, "bindset", %filename, "", 1, %author);
 }

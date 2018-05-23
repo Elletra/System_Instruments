@@ -11,6 +11,10 @@ if (!isObject(InstrumentsEditTextDlg)) {
   exec("./InstrumentsEditTextDlg.gui");
 }
 
+if (!isObject(InstrumentsSaveDlg)) {
+  exec("./InstrumentsSaveDlg.gui");
+}
+
 if (!isObject(InstrumentsKeybindDlg)) {
   exec("./InstrumentsKeybindDlg.gui");
 }

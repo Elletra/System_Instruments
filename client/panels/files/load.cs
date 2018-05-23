@@ -32,12 +32,17 @@ function InstrumentsClient::loadFile(%this, %type, %filename, %localOrServer) {
   }
 }
 
-function InstrumentsClient::onFileLoadStart(%this, %type, %filename, %serverCmd) {
+function InstrumentsClient::setLoadedAuthor(%this, %type, %author, %bl_id) {
+  $Instruments::GUI::LoadedAuthorName[%type] = %author;
+  $Instruments::GUI::LoadedAuthorBL_ID[%type] = %bl_id;
+}
+
+function InstrumentsClient::onFileLoadStart(%this, %type, %filename, %useServerCmd) {
   if (%type $= "song") {
-    InstrumentsClient.clearAllSongPhrases();
+    InstrumentsClient.clearAllSongPhrases(%useServerCmd);
   }
   else if (%type $= "bindset") {
-    InstrumentsClient.clearAllKeys(%serverCmd);
+    InstrumentsClient.clearAllKeys(%useServerCmd);
   }
 }
 
@@ -56,6 +61,7 @@ function InstrumentsClient::onPhraseLoaded(%this, %phrase, %filename, %author, %
        %body = %body @ " (BL_ID: " @ %bl_id @ ")";
     }
 
+    InstrumentsClient.setLoadedAuthor("phrase", %author, %bl_id);
     InstrumentsClient.updateSaveButtons();
     Instruments.messageBoxOK("Phrase Loaded", %body);
   }
@@ -80,6 +86,7 @@ function InstrumentsClient::onSongLoaded(%this, %song, %filename, %author, %bl_i
        %body = %body @ " (BL_ID: " @ %bl_id @ ")";
     }
     
+    InstrumentsClient.setLoadedAuthor("song", %author, %bl_id);
     InstrumentsClient.updateSongOrderList();
     Instruments.messageBoxOK("Song Loaded", %body);
   }
@@ -90,7 +97,7 @@ function InstrumentsClient::onSongLoaded(%this, %song, %filename, %author, %bl_i
   $Instruments::Client::isLoading = false;
 }
 
-function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %serverCmd) {
+function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %useServerCmd) {
   if (!$Instruments::Client::isLoading) {
     return;
   }
@@ -99,7 +106,7 @@ function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %serverCmd)
     return;
   }
 
-  if (%serverCmd) {
+  if (%useServerCmd) {
     commandToServer('setSongPhrase', %index, %phrase, 1);
   }
 
@@ -119,6 +126,7 @@ function InstrumentsClient::onBindsetLoaded(%this, %filename, %author, %bl_id, %
        %body = %body @ " (BL_ID: " @ %bl_id @ ")";
     }
 
+    InstrumentsClient.setLoadedAuthor("bindset", %author, %bl_id);
     InstrumentsClient.updateSaveButtons();
     Instruments.messageBoxOK("Bindset Loaded", %body);
   }
@@ -129,13 +137,13 @@ function InstrumentsClient::onBindsetLoaded(%this, %filename, %author, %bl_id, %
   $Instruments::Client::isLoading = false;
 }
 
-function InstrumentsClient::onBindsetData(%this, %key, %phraseOrNote, %serverCmd) {
+function InstrumentsClient::onBindsetData(%this, %key, %phraseOrNote, %useServerCmd) {
   if (!$Instruments::Client::isLoading) {
     return;
   }
 
   %control = InstrumentsMap.keyControl[%key];
-  InstrumentsClient.bindToKey(%phraseOrNote, %key, 0, %serverCmd);
+  InstrumentsClient.bindToKey(%phraseOrNote, %key, 0, %useServerCmd);
 }
 
 function clientCmdInstruments_onFileLoadStart(%type, %filename) {
