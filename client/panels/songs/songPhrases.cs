@@ -13,10 +13,6 @@ function clientCmdUpdateSongPhrase(%index, %phrase) {
 }
 
 function InstrumentsClient::clickSetSongPhrase(%this, %phrase) {
-  if (%phrase $= "") {
-    %phrase = InstrumentsClient.getPhrase();
-  }
-
   %index = InstrumentsDlg_SongPhraseList.getSelectedId();
   commandToServer('setSongPhrase', %index, %phrase, 1);
 }
@@ -32,7 +28,7 @@ function InstrumentsClient::clickEditSongPhrase(%this) {
   %editVar = "$Instruments::GUI::SongPhrase";
   %editCmd = "";
   %btnText = "Done";
-  %btnCmd = "InstrumentsClient.clickSetSongPhrase($Instruments::GUI::SongPhrase);";
+  %btnCmd = "InstrumentsClient.clickSetSongPhrase(InstrumentsEditTextDlg_TextEdit.getValue());";
   %footer = "";
 
   InstrumentsClient.openEditTextDialog(%title, %label, %editVar, %editCmd, %btnText, %btnCmd, %footer);
@@ -67,14 +63,16 @@ function InstrumentsClient::clearSongPhrase(%this, %index) {
   InstrumentsClient.setSongPhrase(%index, "");
 }
 
-function InstrumentsClient::clearAllSongPhrases(%this) {
-  commandToServer('Instruments_clearAllSongPhrases');
+function InstrumentsClient::clearAllSongPhrases(%this, %useServerCmd) {
+  if (%useServerCmd) {
+    commandToServer('Instruments_clearAllSongPhrases');
+  }
+  
   InstrumentsClient.clearSong();
   
   for (%i = 0; %i < 20; %i++) {
     InstrumentsClient.clearSongPhrase(%i);
   }
 
-  $Instruments::GUI::LoadedSongAuthorName = "";
-  $Instruments::GUI::LoadedSongAuthorBL_ID = "";
+  InstrumentsClient.setLoadedAuthor("song", "", "");
 }
