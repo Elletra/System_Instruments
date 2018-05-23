@@ -53,7 +53,7 @@ function InstrumentsClient::openRenameDialog(%this, %type, %localOrServer) {
 
   %title = "Rename" SPC capitalizeFirstLetter(%type);
   %label = "Filename";
-  %editVar = "$Instruments::GUI::Filename";
+  %editVar = "";
   %editCmd = "";
   %btnText = "Rename";
   %btnCmd = "InstrumentsClient.renameFile(\"" @ %type @ "\", \"" @ %localOrServer @ "\");";
