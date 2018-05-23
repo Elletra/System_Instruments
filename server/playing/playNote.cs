@@ -50,6 +50,19 @@ function InstrumentsServer::playRandomNote(%this, %obj, %instrument) {
   InstrumentsServer.playNote(%obj, "?", %instrument);
 }
 
+function Instruments_Play3D(%obj, %sound, %position) {
+  %count = ClientGroup.getCount();
+
+  for (%i = 0; %i < %count; %i++) {
+    %client = ClientGroup.getObject(%i);
+
+    if (!%client.mutedInstruments[%obj]) {
+      %client.play3D(%sound, %position);
+    }
+  }
+}
+
+// thx shock
 function InstrumentsServer::playPitchedSound(%this, %obj, %sound, %pitch, %position) {
   %oldTimescale = getTimescale();
   setTimescale(%pitch);
@@ -72,7 +85,7 @@ function InstrumentsServer::playPitchedSound(%this, %obj, %sound, %pitch, %posit
     %obj.playSound(%sound);
   }
   else {
-    serverPlay3D(%sound, %position);
+    Instruments_Play3D(%obj, %sound, %position);
   }
 
   setTimescale(%oldTimescale);
@@ -140,6 +153,7 @@ function InstrumentsServer::playNote(%this, %obj, %note, %instrument) {
     if (%colonPos != -1) {
       %pitch = getSubStr(%note, %colonPos + 1, strLen(%note));
       %note = getSubStr(%note, 0, %colonPos);
+      %customPitch = true;
     }
 
     // Random note
@@ -173,8 +187,13 @@ function InstrumentsServer::playNote(%this, %obj, %note, %instrument) {
       %sound = InstrumentsServer.getNoteSound(%instrument, %note);
     }
 
+
     if (!isObject(%sound)) {
-      %bottomPrint = %bottomPrint @ "\c7" @ %note;
+      if (%customPitch) {
+        %pitchPrint = ":" @ %pitch;
+      }
+
+      %bottomPrint = %bottomPrint @ "\c7" @ %note @ %pitchPrint;
     }
     else {
       if (%pitch $= "") {
@@ -206,7 +225,11 @@ function InstrumentsServer::playNote(%this, %obj, %note, %instrument) {
         InstrumentsServer.playPitchedSound(%obj, %sound, %pitch, %pos);
       }
 
-      %bottomPrint = %bottomPrint @ "\c2" @ %note;
+      if (%customPitch) {
+        %pitchPrint = "\c4:" @ %pitch;
+      }
+
+      %bottomPrint = %bottomPrint @ "\c2" @ %note @ %pitchPrint;
     }
 
     if (%chordCount > 1 && %c < %chordCount - 1) {
