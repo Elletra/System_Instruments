@@ -1,4 +1,12 @@
 function Instruments::validateFilename(%this, %filename, %client, %showMessage) {
+  if (strLen(%filename) > Instruments.const["MAX_FILENAME_LENGTH"]) {
+    if (%showMessage) {
+      Instruments.messageBoxOK("Invalid Filename", "The filename is too long!", %client);
+    }
+
+    return false;
+  }
+
   if (_strEmpty(%filename)) {
     if (%showMessage) {
       Instruments.messageBoxOK("No Filename", "Please enter a filename.", %client);
@@ -11,6 +19,46 @@ function Instruments::validateFilename(%this, %filename, %client, %showMessage) 
     if (%showMessage) {
       Instruments.messageBoxOK("Invalid Filename", 
         "Invalid filename.\n\nOnly A-Z, 0-9, spaces, dashes, and underscores are allowed.", %client);
+    }
+
+    return false;
+  }
+
+  return true;
+}
+
+function Instruments::validateFileAuthor(%this, %author, %client, %showMessage) {
+  %name = getField(%author, 0);
+  %bl_id = getField(%author, 1);
+
+  if (_strEmpty(%name)) {
+    if (%showMessage) {
+      Instruments.messageBoxOK("Invalid Author", "Missing author name!", %client);
+    }
+
+    return false;
+  }
+
+  if (_strEmpty(%bl_id)) {
+    if (%showMessage) {
+      Instruments.messageBoxOK("Invalid Author", "Missing author BL_ID!", %client);
+    }
+
+    return false;
+  }
+
+  // This is Blockland's name length limit
+  if (strLen(%name) > 16) {
+    if (%showMessage) {
+      Instruments.messageBoxOK("Invalid Author", "Author name is too long!  (Max 16 characters)", %client);
+    }
+
+    return false;
+  }
+
+  if (strLen(%bl_id) > 8) {
+    if (%showMessage) {
+      Instruments.messageBoxOK("Invalid Author", "Author BL_ID is too high!", %client);
     }
 
     return false;

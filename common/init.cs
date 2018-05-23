@@ -37,6 +37,7 @@ if (!isObject(Instruments)) {
     const["DISALLOWED_KEYS"] = "escape\tf1\tf10\tf11\tf12\tNUMLOCK\tNUMPADMULT\t`\t~\tCAPSLOCK\tSCROLLLOCK" TAB
                                 "insert\thome\tpageup\tdelete\tend\tpagedown";
 
+    const["MAX_FILENAME_LENGTH"] = 32;
     const["INSTRUMENT_LIST_CHUNK_SIZE"] = 6;
     const["FILE_LIST_CHUNK_SIZE"] = 6;
     const["MAX_PACKET_LENGTH"] = 170;  // The actual limit is 250 chars, but let's play it safe
