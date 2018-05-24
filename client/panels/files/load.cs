@@ -22,7 +22,7 @@ function InstrumentsClient::loadFile(%this, %type, %filename, %localOrServer) {
   %filename = _cleanFilename(%filename);
   %phraseOrSong = "";
 
-  $Instruments::Client::isLoading = true;
+  $Instruments::GUI::isLoading = true;
 
   if (%localOrServer $= "local") {
     Instruments.loadFile(%type, %filename);
@@ -38,6 +38,10 @@ function InstrumentsClient::setLoadedAuthor(%this, %type, %author, %bl_id) {
 }
 
 function InstrumentsClient::onFileLoadStart(%this, %type, %filename, %useServerCmd) {
+  if (!$Instruments::GUI::isLoading) {
+    return;
+  }
+
   if (%type $= "song") {
     InstrumentsClient.clearAllSongPhrases(%useServerCmd);
   }
@@ -47,7 +51,7 @@ function InstrumentsClient::onFileLoadStart(%this, %type, %filename, %useServerC
 }
 
 function InstrumentsClient::onPhraseLoaded(%this, %phrase, %filename, %author, %bl_id, %unusedArg, %failure) {
-  if (!$Instruments::Client::isLoading) {
+  if (!$Instruments::GUI::isLoading) {
     return;
   }
 
@@ -69,11 +73,11 @@ function InstrumentsClient::onPhraseLoaded(%this, %phrase, %filename, %author, %
     Instruments.messageBoxOK("Error Loading File", %failure);
   }
 
-  $Instruments::Client::isLoading = false;
+  $Instruments::GUI::isLoading = false;
 }
 
 function InstrumentsClient::onSongLoaded(%this, %song, %filename, %author, %bl_id, %unusedArg, %failure) {
-  if (!$Instruments::Client::isLoading) {
+  if (!$Instruments::GUI::isLoading) {
     return;
   }
 
@@ -94,11 +98,11 @@ function InstrumentsClient::onSongLoaded(%this, %song, %filename, %author, %bl_i
     Instruments.messageBoxOK("Error Loading File", %failure);
   }
 
-  $Instruments::Client::isLoading = false;
+  $Instruments::GUI::isLoading = false;
 }
 
 function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %useServerCmd) {
-  if (!$Instruments::Client::isLoading) {
+  if (!$Instruments::GUI::isLoading) {
     return;
   }
 
@@ -115,7 +119,7 @@ function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %useServerC
 }
 
 function InstrumentsClient::onBindsetLoaded(%this, %filename, %author, %bl_id, %unusedArg, %failure) {
-  if (!$Instruments::Client::isLoading) {
+  if (!$Instruments::GUI::isLoading) {
     return;
   }
 
@@ -134,11 +138,11 @@ function InstrumentsClient::onBindsetLoaded(%this, %filename, %author, %bl_id, %
     Instruments.messageBoxOK("Error Loading File", %failure);
   }
 
-  $Instruments::Client::isLoading = false;
+  $Instruments::GUI::isLoading = false;
 }
 
 function InstrumentsClient::onBindsetData(%this, %key, %phraseOrNote, %useServerCmd) {
-  if (!$Instruments::Client::isLoading) {
+  if (!$Instruments::GUI::isLoading) {
     return;
   }
 
