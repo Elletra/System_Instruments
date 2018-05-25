@@ -44,17 +44,3 @@ function InstrumentsClient::copyEditText(%this) {
 function InstrumentsClient::canPlayLive(%this) {
   return $Instruments::GUI::Instrument $= $Instruments::Client::Instrument;
 }
-
-function InstrumentsClient::applyPreference(%this, %pref) {
-  %value = $Pref::Client::Instruments["::" @ %pref];
-
-  if (%pref $= "DisableMoveMap") {
-    InstrumentsClient.configureKeyboard();
-  }
-  else if (%pref $= "ColoredKeys") {
-    InstrumentsClient.rebindAllKeys();
-  }
-  else if (%pref $= "ChangeKeyLabels") {
-    InstrumentsClient.rebindAllKeys();
-  }
-}
