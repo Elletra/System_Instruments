@@ -73,32 +73,60 @@ function serverCmdInstruments_CanIUse(%client, %type, %showMessage) {
     return;
   }
 
+  %found = false;
+
   if (%type $= "all") {
     %showMessage = false;
   }
 
   if (%type $= "songs" || %type $= "all") {
+    %found = true;
     %canUse = InstrumentsServer.checkSongPermissions(%client, %showMessage);
+
     commandToClient(%client, 'Instruments_CanIUse', "songs", %canUse);
   }
   
   if (%type $= "bindsets" || %type $= "all") {
+    %found = true;
     %canUse = InstrumentsServer.checkBindsetPermissions(%client, %showMessage);
+
     commandToClient(%client, 'Instruments_CanIUse', "bindsets", %canUse);
   }
   
   if (%type $= "saving" || %type $= "all") {
+    %found = true;
     %canUse = InstrumentsServer.checkSavingPermissions(%client, %showMessage);
+
     commandToClient(%client, 'Instruments_CanIUse', "saving", %canUse);
   }
   
   if (%type $= "loading" || %type $= "all") {
+    %found = true;
     %canUse = InstrumentsServer.checkLoadingPermissions(%client, %showMessage);
+
     commandToClient(%client, 'Instruments_CanIUse', "loading", %canUse);
   }
   
   if (%type $= "deleting" || %type $= "all") {
+    %found = true;
     %canUse = InstrumentsServer.checkDeletingPermissions(%client, %showMessage);
+
     commandToClient(%client, 'Instruments_CanIUse', "deleting", %canUse);
+  }
+
+  if (%type $= "muting" || %type $= "all") {
+    %found = true;
+    %canUse = %client.hasSpawnedOnce;
+
+    commandToClient(%client, 'Instruments_CanIUse', "muting", %canUse);
+  }
+
+  if (%type $= "customAuthor" || %type $= "all") {
+    %found = true;
+    commandToClient(%client, 'Instruments_CanIUse', "customAuthor", true);
+  }
+
+  if (!%found) {
+    commandToClient(%client, 'Instruments_CanIUse', %type, false);
   }
 }
