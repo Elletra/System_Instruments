@@ -86,7 +86,9 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
 
       if (%client $= "") {
         // If we're saving to local
-        %yes = "Instruments.saveFile(\"" @ %type @ "\", \"" @ %filename @ "\", \"" @ %phraseOrSong @ "\", \"\", 1);";
+        %yes = "Instruments.saveFile(\"" @ %type @ "\", \"" @ %filename @ "\", \"" @ %phraseOrSong @ 
+          "\", \"\", 1, \"" @ %authorToWrite @ "\");";
+          
         Instruments.messageBoxYesNo("File Exists", "File already exists!  Overwrite?", %yes);
         return;
       }
