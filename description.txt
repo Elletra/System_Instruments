@@ -1,4 +1,4 @@
 Title: Playable Instruments
 Author: Electrk (12949)
 
-Adds a modular system for playable instruments.
+Adds a modular system and a GUI for playable instruments.
