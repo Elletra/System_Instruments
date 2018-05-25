@@ -46,6 +46,15 @@ function InstrumentsClient::openSaveDialog(%this, %type, %localOrServer) {
     %authorBL_ID = getNumKeyID();
   }
 
+  if (!$Instruments::Client::CanUseCustomAuthor) {
+    if (%localOrServer $= "local") {
+      InstrumentsSaveDlg_Window.extent = "376 146";
+    }
+    else {
+      InstrumentsSaveDlg_Window.extent = "376 96";
+    }
+  }
+
   $Instruments::GUI::FileType = %type;
   $Instruments::GUI::FileLocalOrServer = %localOrServer;
 

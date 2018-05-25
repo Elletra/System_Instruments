@@ -93,12 +93,12 @@ new GuiControl(InstrumentsSaveDlg) {
          selectable = "1";
          autoResize = "1";
       };
-      new GuiMLTextCtrl() {
+      new GuiMLTextCtrl(InstrumentsSaveDlg_AuthorLabel) {
          profile = "GuiMLTextProfile";
          horizSizing = "right";
          vertSizing = "bottom";
          position = "14 107";
-         extent = "82 18";
+         extent = "46 18";
          minExtent = "8 2";
          enabled = "1";
          visible = "1";
@@ -111,7 +111,7 @@ new GuiControl(InstrumentsSaveDlg) {
          selectable = "1";
          autoResize = "1";
       };
-      new GuiMLTextCtrl() {
+      new GuiMLTextCtrl(InstrumentsSaveDlg_AuthorBL_IDLabel) {
          profile = "GuiMLTextProfile";
          horizSizing = "right";
          vertSizing = "bottom";
@@ -129,7 +129,7 @@ new GuiControl(InstrumentsSaveDlg) {
          selectable = "1";
          autoResize = "1";
       };
-      new GuiSwatchCtrl() {
+      new GuiSwatchCtrl(InstrumentsSaveDlg_AuthorNameContainer) {
          profile = "GuiDefaultProfile";
          horizSizing = "right";
          vertSizing = "bottom";
@@ -158,7 +158,7 @@ new GuiControl(InstrumentsSaveDlg) {
             sinkAllKeyEvents = "0";
          };
       };
-      new GuiSwatchCtrl() {
+      new GuiSwatchCtrl(InstrumentsSaveDlg_AuthorBL_IDContainer) {
          profile = "GuiDefaultProfile";
          horizSizing = "right";
          vertSizing = "bottom";
