@@ -11,6 +11,7 @@ exec("./playing/setSongPhrase.cs");
 exec("./playing/playSong.cs");
 exec("./playing/stopPlaying.cs");
 exec("./playing/binding.cs");
+exec("./playing/muting.cs");
 
 // Saving and loading files
 exec("./saveLoad/fileList.cs");

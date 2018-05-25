@@ -12,13 +12,18 @@ package System_Instruments__client {
     $Instruments::Client::ServerVersion = "";
     $Instruments::Client::ServerNotationVersion = "";
 
-    InstrumentsClient.clearInstruments();
-    InstrumentsClient.clearAllKeys();
+    InstrumentsClient.schedule(100, clearInstruments);
+    InstrumentsClient.schedule(100, clearAllKeys);
 
-    InstrumentsClient.clearPhrase();
-    InstrumentsClient.clearSong();
+    InstrumentsClient.schedule(100, clearPhrase);
+    InstrumentsClient.schedule(100, clearAllSongPhrases, 0);
 
-    InstrumentsClient.bindToAllKeys("", 0);
+    InstrumentsClient.schedule(100, bindToAllKeys, "", 0);
+
+    InstrumentsDlg_PlayerList.clear();
+
+    $Instruments::Client::CanUseMuting = false;
+    HUD_InstrumentsNoteIcon.visible = false;
   }
 
   function PlayGui::createToolHUD(%this) {
@@ -42,6 +47,16 @@ package System_Instruments__client {
       %y = %resY - (%w * 1.5);
       HUD_InstrumentsNoteIcon.resize(%resX * 0.01, %y, %w, %h);
     }
+  }
+
+  function secureClientCmd_ClientJoin(%clientName, %clientID, %bl_id, %score, %isAI, %isAdmin, %isSuperAdmin, %trust, %inYourMiniGame) {
+    Parent::secureClientCmd_ClientJoin(%clientName, %clientID, %bl_id, %score, %isAI, %isAdmin, %isSuperAdmin, %trust, %inYourMiniGame);
+    InstrumentsClient.addToPlayerList(%clientName, %clientID, %bl_id);
+  }
+
+  function secureClientCmd_ClientDrop(%clientName, %clientID) {
+    Parent::secureClientCmd_ClientDrop(%clientName, %clientID);
+    InstrumentsClient.removeFromPlayerList(%clientID);
   }
 };
 activatePackage(System_Instruments__client);

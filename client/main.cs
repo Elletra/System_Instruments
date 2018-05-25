@@ -47,6 +47,9 @@ exec("./panels/files/save.cs");
 exec("./panels/files/load.cs");
 exec("./panels/files/delete.cs");
 
+// For the "Settings" section of the GUI
+exec("./panels/settings/settings.cs");
+
 // For the "Help" section of the GUI
 exec("./panels/help/helpCategories.cs");
 

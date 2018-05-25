@@ -50,13 +50,19 @@ function InstrumentsServer::playRandomNote(%this, %obj, %instrument) {
   InstrumentsServer.playNote(%obj, "?", %instrument);
 }
 
-function Instruments_Play3D(%obj, %sound, %position) {
+function Instruments_Play3D(%source, %sound, %position) {
+  %sourceClient = %source.client;
+
+  if (%sourceClient $= "") {
+    %sourceClient = 0;
+  }
+
   %count = ClientGroup.getCount();
 
   for (%i = 0; %i < %count; %i++) {
     %client = ClientGroup.getObject(%i);
 
-    if (!%client.mutedInstruments[%obj]) {
+    if (!$Instruments::Server::Muted_[%client, %sourceClient]) {
       %client.play3D(%sound, %position);
     }
   }

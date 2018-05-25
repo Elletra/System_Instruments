@@ -119,7 +119,48 @@ function clientCmdInstruments_GetVersion(%version, %notationVersion) {
     schedule(250, 0, MessageBoxOK, "Incompatible Versions", %body);
   }
 
+  // Disable certain 1.1.x features if server version is too old
+  if (%serverMajorVersion == 1 && %serverMinorVersion < 1) {
+    $Instruments::Client::CanUseMuting = false;
+    $Instruments::Client::CanUseCustomAuthor = false;
+
+    InstrumentsDlg_MutePlayer.disable();
+    InstrumentsDlg_UnmutePlayer.disable();
+    InstrumentsDlg_MuteAllPlayers.disable();
+    InstrumentsDlg_UnmuteAllPlayers.disable();
+
+    InstrumentsDlg_SortPlayersByMuted.disable();
+    InstrumentsDlg_SortPlayersByName.disable();
+    InstrumentsDlg_SortPlayersByBL_ID.disable();
+
+    InstrumentsDlg_MuteByDefault.enabled = false;
+    InstrumentsDlg_MuteNotAvailable.visible = true;
+    InstrumentsDlg_MuteNotAvailableOverlay.visible = true;
+
+    InstrumentsSaveDlg_Window.extent = "376 96";
+  }
+  else {
+    InstrumentsDlg_MutePlayer.enable();
+    InstrumentsDlg_UnmutePlayer.enable();
+    InstrumentsDlg_MuteAllPlayers.enable();
+    InstrumentsDlg_UnmuteAllPlayers.enable();
+
+    InstrumentsDlg_SortPlayersByMuted.enable();
+    InstrumentsDlg_SortPlayersByName.enable();
+    InstrumentsDlg_SortPlayersByBL_ID.enable();
+
+    InstrumentsDlg_MuteByDefault.enabled = true;
+    InstrumentsDlg_MuteNotAvailable.visible = false;
+    InstrumentsDlg_MuteNotAvailableOverlay.visible = false;
+
+    InstrumentsSaveDlg_Window.extent = "376 146";
+  }
+
   commandToServer('Instruments_GetVersion', $Instruments::Version, $Instruments::NotationVersion);
+
+  if ($Pref::Client::Instruments::MuteByDefault) {
+    InstrumentsClient.schedule(100, muteAllPlayers, true);
+  }
 }
 
 function clientCmdInstruments_CanIUse(%type, %canUse) {
@@ -164,10 +205,19 @@ function clientCmdInstruments_CanIUse(%type, %canUse) {
   }
   else if (%type $= "loading") {
     $Instruments::Client::CanUseLoading = %canUse;
-    
   }
   else if (%type $= "deleting") {
     $Instruments::Client::CanUseDeleting = %canUse;
+  }
+  else if (%type $= "muting") {
+    $Instruments::Client::CanUseMuting = %canUse;
+  }
+  else if (%type $= "customAuthor") {
+    $Instruments::Client::CanUseCustomAuthor = %canUse;
+
+    if (%canUse) {
+      InstrumentsSaveDlg_Window.extent = "376 146";
+    }
   }
 
   // This is ugly sry

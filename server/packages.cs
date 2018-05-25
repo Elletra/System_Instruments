@@ -24,6 +24,9 @@ package System_Instruments__server {
       %client.instrumentBinds.delete();
     }
 
+    InstrumentsServer.unmuteAllPlayers(%client);
+    deleteVariables("$Instruments::Server::Muted_*_" @ %client);
+
     Parent::onDrop(%client, %reason);
   }
 
