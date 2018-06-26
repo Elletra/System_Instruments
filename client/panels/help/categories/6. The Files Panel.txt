@@ -27,7 +27,7 @@ The left side is for manipulating files on the current server.  Please note that
 The right side is for manipulating files on your local machine and has no such restrictions.
 
 
-To browse a folder, double-click on it.  To go back to the main folder, double-click the <font:Arial Bold:16>..<font:Arial:16>
+To browse a folder, double-click on it.  To go back to the main folder, double-click on  <font:Arial Bold:16><< Back<font:Arial:16>
 
 <bitmap:Add-Ons/System_Instruments/client/images/tutorial/filesPanel01.png>
 
