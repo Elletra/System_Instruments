@@ -1,4 +1,4 @@
-$Instruments::Version = "1.1.0";
+$Instruments::Version = "1.1.1";
 $Instruments::NotationVersion = "3";
 
 exec("./classes/InstrumentData.cs");
@@ -168,3 +168,5 @@ function Instruments::init(%this) {
 }
 
 Instruments.init();
+
+exec("./stats.cs");
