@@ -7065,8 +7065,8 @@ new GuiControl(InstrumentsDlg) {
          position = "13 57";
          extent = "612 334";
          minExtent = "8 2";
-         enabled = "0";
-         visible = "1";
+         enabled = "1";
+         visible = "0";
          clipToParent = "1";
 
          new GuiSwatchCtrl(InstrumentsDlg_PlayerListContainerBG) {
@@ -7418,8 +7418,8 @@ new GuiControl(InstrumentsDlg) {
          position = "12 56";
          extent = "612 334";
          minExtent = "8 2";
-         enabled = "0";
-         visible = "0";
+         enabled = "1";
+         visible = "1";
          clipToParent = "1";
 
          new GuiScrollCtrl(InstrumentsDlg_HelpCategoriesScroll) {
