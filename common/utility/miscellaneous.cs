@@ -67,6 +67,14 @@ function _strEmpty(%string) {
   return stripTrailingSpaces(%string) $= "";
 }
 
+function _addQuotes(%str) {
+  return "\"" @ %str @ "\"";
+}
+
+function _keyValuePair(%key, %value, %trailingChar) {
+  return _addQuotes(%key) @ ": " @ _addQuotes(%value) @ %trailingChar;
+}
+
 // ---------------------------------------
 
 // I lied -- it's not 100% non-instrument specific
