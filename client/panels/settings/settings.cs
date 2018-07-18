@@ -11,7 +11,10 @@ function InstrumentsClient::applyPreference(%this, %pref) {
     InstrumentsClient.rebindAllKeys();
   }
   else if (%pref $= "MuteByDefault") {
-    // do something
+    // do nothing
+  }
+  else if (%pref $= "OpenGuiOnEquip") {
+    // do nothing
   }
 }
 
