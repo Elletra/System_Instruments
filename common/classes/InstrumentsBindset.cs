@@ -19,7 +19,7 @@ function InstrumentsBindset::addBind(%this, %key, %phrase) {
     return;
   }
 
-  if (%this.currIndex > 83) {
+  if (%this.currIndex >= Instruments.const["MAX_BINDS"]) {
     return;
   }
 
