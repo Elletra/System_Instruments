@@ -143,16 +143,20 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
   }
 
   if (%type $= "song") {
-    for (%i = 0; %i < $Pref::Server::Instruments::MaxSongPhrases; %i++) {
+
+    if (%localOrServer $= "local") {
+      %maxSongPhrases = $Instruments::Client::ServerPref::MaxSongPhrases;
+    }
+    else {
+      %maxSongPhrases = $Pref::Server::Instruments::MaxSongPhrases;
+    }
+
+    for (%i = 0; %i < %maxSongPhrases; %i++) {
       if (%client $= "") {
         %phrase = getField(InstrumentsDlg_SongPhraseList.getRowText(%i), 1);
       }
       else {
         %phrase = %client.songPhrase[%i];
-      }
-
-      if (_strEmpty(%phrase)) { 
-        break; 
       }
 
       %file.writeLine(%phrase);
