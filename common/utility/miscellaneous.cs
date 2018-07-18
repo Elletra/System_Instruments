@@ -41,6 +41,9 @@ function capitalizeFirstLetter(%string) {
   return strUpr(getSubStr(%string, 0, 1)) @ getSubStr(%string, 1, strLen(%string));
 }
 
+// keepChars() - The opposite of stripChars -- you specify which characters you want to keep,
+// and it removes the rest
+
 function keepChars(%string, %chars) {
   %exclude = stripChars(%string, %chars);
   return stripChars(%string, %exclude);
