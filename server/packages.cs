@@ -6,9 +6,14 @@ package System_Instruments__server {
   }
 
   function GameConnection::autoAdminCheck(%this) {
-    Parent::autoAdminCheck(%this);
+    %parent = Parent::autoAdminCheck(%this);
+
     commandToClient(%this, 'Instruments_GetVersion', $Instruments::Version, $Instruments::NotationVersion);
+    commandToClient(%this, 'Instruments_UpdatePref', "MaxSongPhrases", $Pref::Server::Instruments::MaxSongPhrases);
+
     InstrumentsServer.schedule(1, sendInstrumentList, %this);
+
+    return %parent;
   }
 
   function GameConnection::onDeath(%client, %killerPlayer, %killerClient, %damageType, %damageLocation) {
@@ -33,17 +38,20 @@ package System_Instruments__server {
   function WeaponImage::onMount(%this, %obj, %slot) {
     Parent::onMount(%this, %obj, %slot);
 
-    if (%this.instrumentType !$= "") {
+    if (%this.instrumentType $= "" && %obj.instrument !$= "") {
+      %obj.setInstrument("");
+    }
+    else if (%this.instrumentType !$= "") {
       %obj.setInstrument(%this.instrumentType);
     }
   }
 
-  function WeaponImage::onUnmount(%this, %obj, %slot) {
-    Parent::onUnmount(%this, %obj, %slot);
-
-    if (%obj.instrument !$= "") {
-      %obj.setInstrument("");
+  function ServerCmdUnUseTool(%client) {
+    if (isObject(%player = %client.player)) {
+      %player.setInstrument("");
     }
+
+    Parent::ServerCmdUnUseTool(%client);
   }
 };
 activatePackage(System_Instruments__server);
