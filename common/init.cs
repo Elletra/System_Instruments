@@ -9,6 +9,7 @@ if ($Pref::Instruments::SampleFilesCopied $= "") {
   $Pref::Instruments::SampleFilesCopied = false;
 }
 
+
 if (!isObject(Instruments)) {
 
   // Shared between client and server
@@ -30,10 +31,12 @@ if (!isObject(Instruments)) {
     const["LOWEST_TEMPO"] = mFloor(60000 / 5000);
     const["DEFAULT_TEMPO"] = 120;
     const["MAX_PHRASE_LENGTH"] = 255;
-    const["MAX_SONG_PHRASES"] = 20;
     const["SONG_ORDER_LIMIT"] = 120;
+    const["MAX_SONG_PHRASES"] = 50;
+    const["MIN_SONG_PHRASES"] = 20;
     const["NUM_KEY_ROWS"] = 6;
     const["NUM_KEY_COLUMNS"] = 14;
+    const["MAX_BINDS"] = 84;
     const["DISALLOWED_KEYS"] = "escape\tf1\tf10\tf11\tf12\tNUMLOCK\tNUMPADMULT\t`\t~\tCAPSLOCK\tSCROLLLOCK" TAB
                                 "insert\thome\tpageup\tdelete\tend\tpagedown";
 
@@ -41,6 +44,11 @@ if (!isObject(Instruments)) {
     const["INSTRUMENT_LIST_CHUNK_SIZE"] = 6;
     const["FILE_LIST_CHUNK_SIZE"] = 6;
     const["MAX_PACKET_LENGTH"] = 170;  // The actual limit is 250 chars, but let's play it safe
+
+
+    // Old constants before an update changed them or made them more flexible
+    
+    const["OLD_MAX_SONG_PHRASES"] = 20;
   };
 }
 
@@ -148,6 +156,24 @@ if (!$Pref::Instruments::CopiedSampleFiles) {
 
 
 function Instruments::init(%this) {
+  %type = -1;
+
+  // I don't know if I'm going to use even half of these -- adding just in case I need them later
+
+  $Instruments::Types::Warning["General"]     = %type++;
+  $Instruments::Types::Warning["Loading"]     = %type++;
+  $Instruments::Types::Warning["Saving"]      = %type++;
+  $Instruments::Types::Warning["Deleting"]    = %type++;
+  $Instruments::Types::Warning["Renaming"]    = %type++;
+  $Instruments::Types::Warning["Playing"]     = %type++;
+  $Instruments::Types::Warning["Phrase"]      = %type++;
+  $Instruments::Types::Warning["SongPhrase"]  = %type++;
+  $Instruments::Types::Warning["Song"]        = %type++;
+  $Instruments::Types::Warning["Bindset"]     = %type++;
+  $Instruments::Types::Warning["Permissions"] = %type++;
+  $Instruments::Types::Warning["Instrument"]  = %type++;
+
+
   // Magic numbers
   // Don't change these
   %notePitches = "1\t1.06\t1.12\t1.19\t0.945\t1\t1.06\t1.12\t1.19\t1.2625\t0.8925\t0.945";

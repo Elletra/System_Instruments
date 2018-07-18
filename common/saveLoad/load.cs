@@ -53,9 +53,23 @@ function Instruments::loadFile(%this, %type, %filename, %client) {
   %failure = "";
 
   while (!%file.isEoF()) {
-    // Hard-coded to prevent people from cheating the song phrase limit (20) and bind limit (84)
-    if (%songPhraseCount >= 20 || %bindCount >= 84) { 
+    // Hard-coded to prevent people from cheating the bind limit
+    if (%bindCount >= Instruments.const["MAX_BINDS"]) { 
       break; 
+    }
+
+    // Client-side check to prevent people from cheating the server song phrase limit
+    if (%localOrServer $= "local" && %songPhraseCount >= $Instruments::Client::ServerPref::MaxSongPhrases) {
+      %warning = "Song was only partially loaded because it exceeds the maximum number of server song phrases!";
+      $Instruments::Client::Warning["Loading"] = %warning;
+      break;
+    }
+
+    // Server-side check to prevent people from cheating the server song phrase limit
+    if (%localOrServer $= "server" && %songPhraseCount >= $Pref::Server::Instruments::MaxSongPhrases) {
+      %warning = "Song was only partially loaded because it exceeds the maximum number of server song phrases!";
+      commandToClient(%client, 'Instruments_Warning', "Loading", %warning);
+      break;
     }
 
     %line = %file.readLine();

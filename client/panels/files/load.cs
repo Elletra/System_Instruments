@@ -1,3 +1,4 @@
+
 function InstrumentsClient::clickLoadFile(%this, %localOrServer) {
   %type = $Instruments::GUI::FileListMode;
 
@@ -50,8 +51,11 @@ function InstrumentsClient::onFileLoadStart(%this, %type, %filename, %useServerC
   }
 }
 
+// None of this is DRY at all but I don't care enough to fix it
+
 function InstrumentsClient::onPhraseLoaded(%this, %phrase, %filename, %author, %bl_id, %unusedArg, %failure) {
   if (!$Instruments::GUI::isLoading) {
+    $Instruments::Client::Warning["Loading"] = "";
     return;
   }
 
@@ -59,46 +63,79 @@ function InstrumentsClient::onPhraseLoaded(%this, %phrase, %filename, %author, %
     %phrase = _cleanPhrase(%phrase);
     InstrumentsClient.setPhrase(%phrase);
 
-    %body = "Successfully loaded " @ %filename @ " by " @ %author;
+
+    if ($Instruments::Client::Warning["Loading"] $= "") {
+      %header = "Phrase Loaded Successfully";
+      %body = "Successfully loaded " @ %filename @ " by " @ %author;
+    }
+    else {
+      %header = "[!] Phrase Loaded";
+      %body = "Loaded " @ %filename @ " by " @ %author;
+    }
 
     if (%bl_id >= 0 && %bl_id != 888888 && %bl_id != 999999) {
        %body = %body @ " (BL_ID: " @ %bl_id @ ")";
     }
 
+    if ($Instruments::Client::Warning["Loading"] !$= "") {
+      %body = %body @ "\n\n<font:Arial Bold:14><color:FF0000>WARNING: " @ 
+                      "<font:Arial:14>" @ $Instruments::Client::Warning["Loading"];
+    }
+
     InstrumentsClient.setLoadedAuthor("phrase", %author, %bl_id);
     InstrumentsClient.updateSaveButtons();
-    Instruments.messageBoxOK("Phrase Loaded", %body);
+
+    Instruments.messageBoxOK(%header, %body);
   }
   else {
     Instruments.messageBoxOK("Error Loading File", %failure);
   }
 
   $Instruments::GUI::isLoading = false;
+  $Instruments::Client::Warning["Loading"] = "";
 }
+
+// Good attitude to have, I know
 
 function InstrumentsClient::onSongLoaded(%this, %song, %filename, %author, %bl_id, %unusedArg, %failure) {
   if (!$Instruments::GUI::isLoading) {
+    $Instruments::Client::Warning["Loading"] = "";
     return;
   }
 
   if (%failure $= "") {
     InstrumentsClient.textToSong(%song);
 
-    %body = "Successfully loaded " @ %filename @ " by " @ %author;
+
+    if ($Instruments::Client::Warning["Loading"] $= "") {
+      %header = "Song Loaded Successfully";
+      %body = "Successfully loaded " @ %filename @ " by " @ %author;
+    }
+    else {
+      %header = "[!] Song Loaded";
+      %body = "Loaded " @ %filename @ " by " @ %author;
+    }
 
     if (%bl_id >= 0 && %bl_id != 888888 && %bl_id != 999999) {
        %body = %body @ " (BL_ID: " @ %bl_id @ ")";
     }
-    
+
+    if ($Instruments::Client::Warning["Loading"] !$= "") {
+      %body = %body @ "\n\n<font:Arial Bold:14><color:FF0000>WARNING: " @ 
+                      "<font:Arial:14>" @ $Instruments::Client::Warning["Loading"];
+    }
+
     InstrumentsClient.setLoadedAuthor("song", %author, %bl_id);
     InstrumentsClient.updateSongOrderList();
-    Instruments.messageBoxOK("Song Loaded", %body);
+
+    Instruments.messageBoxOK(%header, %body);
   }
   else {
     Instruments.messageBoxOK("Error Loading File", %failure);
   }
 
   $Instruments::GUI::isLoading = false;
+  $Instruments::Client::Warning["Loading"] = "";
 }
 
 function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %useServerCmd) {
@@ -106,7 +143,7 @@ function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %useServerC
     return;
   }
 
-  if (%index < 0 || %index > 19) {
+  if (%index < 0 || %index >= $Instruments::Client::ServerPref::MaxSongPhrases) {
     return;
   }
 
@@ -120,25 +157,40 @@ function InstrumentsClient::onSongPhraseData(%this, %index, %phrase, %useServerC
 
 function InstrumentsClient::onBindsetLoaded(%this, %filename, %author, %bl_id, %unusedArg, %failure) {
   if (!$Instruments::GUI::isLoading) {
+    $Instruments::Client::Warning["Loading"] = "";
     return;
   }
 
   if (%failure $= "") {
-    %body = "Successfully loaded " @ %filename @ " by " @ %author;
+    if ($Instruments::Client::Warning["Loading"] $= "") {
+      %header = "Bindset Loaded Successfully";
+      %body = "Successfully loaded " @ %filename @ " by " @ %author;
+    }
+    else {
+      %header = "[!] Bindset Loaded";
+      %body = "Loaded " @ %filename @ " by " @ %author;
+    }
 
     if (%bl_id >= 0 && %bl_id != 888888 && %bl_id != 999999) {
        %body = %body @ " (BL_ID: " @ %bl_id @ ")";
     }
 
+    if ($Instruments::Client::Warning["Loading"] !$= "") {
+      %body = %body @ "\n\n<font:Arial Bold:14><color:FF0000>WARNING: " @ 
+                      "<font:Arial:14>" @ $Instruments::Client::Warning["Loading"];
+    }
+
     InstrumentsClient.setLoadedAuthor("bindset", %author, %bl_id);
     InstrumentsClient.updateSaveButtons();
-    Instruments.messageBoxOK("Bindset Loaded", %body);
+
+    Instruments.messageBoxOK(%header, %body);
   }
   else {
     Instruments.messageBoxOK("Error Loading File", %failure);
   }
 
   $Instruments::GUI::isLoading = false;
+  $Instruments::Client::Warning["Loading"] = "";
 }
 
 function InstrumentsClient::onBindsetData(%this, %key, %phraseOrNote, %useServerCmd) {
