@@ -1,5 +1,5 @@
 function clientCmdUpdateSongPhrase(%index, %phrase) {
-  if (%index < 0 || %index > 19) {
+  if (%index < 0 || %index >= $Instruments::Client::ServerPref::MaxSongPhrases) {
     return;
   }
 
@@ -41,11 +41,22 @@ function InstrumentsClient::selectSongPhrase(%this) {
 function InstrumentsClient::addSongPhrase(%this, %phrase) {
   %count = InstrumentsDlg_SongPhraseList.rowCount();
 
-  if (%count >= 20) {
+  if (%count >= $Instruments::Client::ServerPref::MaxSongPhrases) {
     return;
   }
 
   InstrumentsDlg_SongPhraseList.addRow(%count, (%count + 1) @ "." TAB %phrase);
+}
+
+function InstrumentsClient::removeSongPhrase(%this, %index) {
+  %count = InstrumentsDlg_SongPhraseList.rowCount();
+
+  if (%index < 0 || %index >= %count) {
+    return;
+  }
+
+  InstrumentsDlg_SongPhraseList.removeRow(%index);
+  InstrumentsClient.updateSongOrderList();
 }
 
 function InstrumentsClient::setSongPhrase(%this, %index, %phrase) {
@@ -70,7 +81,7 @@ function InstrumentsClient::clearAllSongPhrases(%this, %useServerCmd) {
   
   InstrumentsClient.clearSong();
   
-  for (%i = 0; %i < 20; %i++) {
+  for (%i = 0; %i < $Instruments::Client::ServerPref::MaxSongPhrases; %i++) {
     InstrumentsClient.clearSongPhrase(%i);
   }
 

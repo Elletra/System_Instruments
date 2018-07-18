@@ -24,6 +24,9 @@ package System_Instruments__client {
 
     $Instruments::Client::CanUseMuting = false;
     HUD_InstrumentsNoteIcon.visible = false;
+
+    deleteVariables("$Instruments::Client::ServerPref*");
+    deleteVariables("$Instruments::Client::Warning*");
   }
 
   function PlayGui::createToolHUD(%this) {
@@ -57,6 +60,16 @@ package System_Instruments__client {
   function secureClientCmd_ClientDrop(%clientName, %clientID) {
     Parent::secureClientCmd_ClientDrop(%clientName, %clientID);
     InstrumentsClient.removeFromPlayerList(%clientID);
+  }
+
+  function handleYourSpawn(%msgType, %msgString) {
+    Parent::handleYourSpawn(%msgType, %msgString);
+
+    // If we haven't received the MaxSongPhrases pref by the time we've spawned, just set it to the old one
+
+    if ($Instruments::Client::ServerPref::MaxSongPhrases $= "") {
+      $Instruments::Client::ServerPref::MaxSongPhrases = Instruments.const["OLD_MAX_SONG_PHRASES"];
+    }
   }
 };
 activatePackage(System_Instruments__client);

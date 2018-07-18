@@ -143,7 +143,7 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
   }
 
   if (%type $= "song") {
-    for (%i = 0; %i < 20; %i++) {
+    for (%i = 0; %i < $Pref::Server::Instruments::MaxSongPhrases; %i++) {
       if (%client $= "") {
         %phrase = getField(InstrumentsDlg_SongPhraseList.getRowText(%i), 1);
       }
@@ -164,7 +164,7 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
     for (%i = 0; %i < %bindCount; %i++) {
       
       // Hard-coded
-      if (%i >= 84) {
+      if (%i >= Instruments.const["MAX_BINDS"]) {
         break;
       }
 

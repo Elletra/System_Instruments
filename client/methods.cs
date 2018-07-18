@@ -11,7 +11,7 @@ function InstrumentsDlg::onWake(%this) {
   InstrumentsClient.selectInstrument();
 
   if (InstrumentsDlg_SongPhraseList.rowCount() <= 0) {
-    for (%i = 0; %i < 20; %i++) {
+    for (%i = 0; %i < $Instruments::Client::ServerPref::MaxSongPhrases; %i++) {
       InstrumentsDlg_SongPhraseList.addRow(%i, (%i + 1) @ "." TAB "");
     }
   }

@@ -19,7 +19,7 @@ function InstrumentsClient::addPhraseToSong(%this, %phraseID) {
     %phraseID = InstrumentsDlg_SongPhraseList.getSelectedRow();
   }
 
-  if (%phraseID < 0 || %phraseID >= 20) {
+  if (%phraseID < 0 || %phraseID >= $Instruments::Client::ServerPref::MaxSongPhrases) {
     return;
   }
 
@@ -44,7 +44,7 @@ function InstrumentsClient::setSongOrderPhrase(%this, %songPhraseRow, %songOrder
     %songPhraseRow = InstrumentsDlg_SongPhraseList.getSelectedRow();
   }
 
-  if (%songPhraseRow < 0 || %songPhraseRow >= 20) {
+  if (%songPhraseRow < 0 || %songPhraseRow >= $Instruments::Client::ServerPref::MaxSongPhrases) {
     return;
   }
 

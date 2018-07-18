@@ -53,13 +53,29 @@ function clientCmdStopPlayingInstrument() {
 }
 
 function clientCmdSetInstrument(%instrument) {
-  $Instruments::Client::Instrument = %instrument;
+  %pickingUp = _strEmpty($Instruments::Client::Instrument) && !_strEmpty(%instrument);
 
+  $Instruments::Client::Instrument = %instrument;
   %id = InstrumentsDlg_InstrumentList.findText(%instrument);
 
   if (%id >= 0) {
     $Instruments::Client::SelectInstrumentServerCmd = false;
     InstrumentsDlg_InstrumentList.setSelected(%id);
+  }
+
+  %serverVersion = strReplace($Instruments::Client::ServerVersion, ".", "\t");
+
+  %serverMajorVersion = getField(%serverVersion, 0);
+  %serverMinorVersion = getField(%serverVersion, 1);
+
+  // Don't open the GUI if the server version is too old
+
+  if (%serverMajorVersion == 1 && %serverMinorVersion < 2) {
+    return;
+  }
+
+  if (%pickingUp && $Pref::Client::Instruments::OpenGuiOnEquip && !InstrumentsDlg.isAwake()) {
+    InstrumentsDlg_Toggle(true);
   }
 }
 
@@ -119,41 +135,53 @@ function clientCmdInstruments_GetVersion(%version, %notationVersion) {
     schedule(250, 0, MessageBoxOK, "Incompatible Versions", %body);
   }
 
-  // Disable certain 1.1.x features if server version is too old
-  if (%serverMajorVersion == 1 && %serverMinorVersion < 1) {
-    $Instruments::Client::CanUseMuting = false;
-    $Instruments::Client::CanUseCustomAuthor = false;
 
-    InstrumentsDlg_MutePlayer.disable();
-    InstrumentsDlg_UnmutePlayer.disable();
-    InstrumentsDlg_MuteAllPlayers.disable();
-    InstrumentsDlg_UnmuteAllPlayers.disable();
+  // Disable/change certain features/settings if server version is too old
 
-    InstrumentsDlg_SortPlayersByMuted.disable();
-    InstrumentsDlg_SortPlayersByName.disable();
-    InstrumentsDlg_SortPlayersByBL_ID.disable();
+  if (%serverMajorVersion == 1) {
+    if (%serverMinorVersion < 2) {
+      InstrumentsDlg_Preference_OpenGuiOnEquip.enabled = false;
+      $Instruments::Client::ServerPref::MaxSongPhrases = Instruments.const["OLD_MAX_SONG_PHRASES"];
+    }
+    else {
+      InstrumentsDlg_Preference_OpenGuiOnEquip.enabled = true;
+    }
 
-    InstrumentsDlg_MuteByDefault.enabled = false;
-    InstrumentsDlg_MuteNotAvailable.visible = true;
-    InstrumentsDlg_MuteNotAvailableOverlay.visible = true;
+    if (%serverMinorVersion < 1) {
+      $Instruments::Client::CanUseMuting = false;
+      $Instruments::Client::CanUseCustomAuthor = false;
 
-    InstrumentsSaveDlg_Window.extent = "376 96";
-  }
-  else {
-    InstrumentsDlg_MutePlayer.enable();
-    InstrumentsDlg_UnmutePlayer.enable();
-    InstrumentsDlg_MuteAllPlayers.enable();
-    InstrumentsDlg_UnmuteAllPlayers.enable();
+      InstrumentsDlg_MutePlayer.disable();
+      InstrumentsDlg_UnmutePlayer.disable();
+      InstrumentsDlg_MuteAllPlayers.disable();
+      InstrumentsDlg_UnmuteAllPlayers.disable();
 
-    InstrumentsDlg_SortPlayersByMuted.enable();
-    InstrumentsDlg_SortPlayersByName.enable();
-    InstrumentsDlg_SortPlayersByBL_ID.enable();
+      InstrumentsDlg_SortPlayersByMuted.disable();
+      InstrumentsDlg_SortPlayersByName.disable();
+      InstrumentsDlg_SortPlayersByBL_ID.disable();
 
-    InstrumentsDlg_MuteByDefault.enabled = true;
-    InstrumentsDlg_MuteNotAvailable.visible = false;
-    InstrumentsDlg_MuteNotAvailableOverlay.visible = false;
+      InstrumentsDlg_MuteByDefault.enabled = false;
+      InstrumentsDlg_MuteNotAvailable.visible = true;
+      InstrumentsDlg_MuteNotAvailableOverlay.visible = true;
 
-    InstrumentsSaveDlg_Window.extent = "376 146";
+      InstrumentsSaveDlg_Window.extent = "376 96";
+    }
+    else {
+      InstrumentsDlg_MutePlayer.enable();
+      InstrumentsDlg_UnmutePlayer.enable();
+      InstrumentsDlg_MuteAllPlayers.enable();
+      InstrumentsDlg_UnmuteAllPlayers.enable();
+
+      InstrumentsDlg_SortPlayersByMuted.enable();
+      InstrumentsDlg_SortPlayersByName.enable();
+      InstrumentsDlg_SortPlayersByBL_ID.enable();
+
+      InstrumentsDlg_MuteByDefault.enabled = true;
+      InstrumentsDlg_MuteNotAvailable.visible = false;
+      InstrumentsDlg_MuteNotAvailableOverlay.visible = false;
+
+      InstrumentsSaveDlg_Window.extent = "376 146";
+    }
   }
 
   commandToServer('Instruments_GetVersion', $Instruments::Version, $Instruments::NotationVersion);
@@ -201,7 +229,6 @@ function clientCmdInstruments_CanIUse(%type, %canUse) {
   }
   else if (%type $= "saving") {
     $Instruments::Client::CanUseSaving = %canUse;
-    
   }
   else if (%type $= "loading") {
     $Instruments::Client::CanUseLoading = %canUse;
@@ -234,4 +261,54 @@ function clientCmdInstruments_CanIUse(%type, %canUse) {
   if ($Instruments::GUI::FileListMode $= "root") {
     InstrumentsClient.refreshFileLists(%this);
   }
+}
+
+function clientCmdInstruments_UpdatePref(%pref, %newValue) {
+  %currentValue = $Instruments::Client::ServerPref["::" @ %pref];
+
+  if (%pref $= "MaxSongPhrases") {
+    if (%currentValue $= "") {
+      %currentValue = 0;
+    }
+
+    if (%currentValue < %newValue) {
+
+      for (%i = %currentValue; %i < %newValue; %i++) {
+
+        // If the rowCount on the GUI somehow doesn't match the current value of the
+        // "MaxSongPhrases" pref, let's not fuck it up any further by adding more rows
+
+        if (InstrumentsDlg_SongPhraseList.rowCount() <= %i) {
+          InstrumentsDlg_SongPhraseList.addRow(%i, (%i + 1) @ "." TAB "");
+        }
+      }
+    }
+    else if (%currentValue > %newValue) {
+      %body = "The maximum number of song phrases has been reduced to " @ %newValue @ "! \n\n" @
+              "This may have affected your song.";
+
+      Instruments.messageBoxOK("Warning", %body);
+    }
+
+    // Now let's shave off any excess rows
+
+    %rowCount = InstrumentsDlg_SongPhraseList.rowCount();
+
+    while (%rowCount > %newValue) {
+      InstrumentsDlg_SongPhraseList.removeRow(%rowCount - 1);
+      %rowCount = InstrumentsDlg_SongPhraseList.rowCount();
+    }
+
+    InstrumentsClient.updateSongOrderList();
+  }
+
+  $Instruments::Client::ServerPref["::" @ %pref] = %newValue;
+}
+
+function clientCmdInstruments_Warning(%type, %message) {
+  if ($Instruments::Types::Warning[%type] $= "") {
+    return;
+  }
+
+  $Instruments::Client::Warning[%type] = %message;
 }

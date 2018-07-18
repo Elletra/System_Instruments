@@ -7,6 +7,16 @@ function serverCmdSetSongPhrase(%client, %index, %phrase, %usingGui) {
     return; 
   }
 
+  if ($Pref::Server::Instruments::MaxSongPhrases > Instruments.const["MAX_SONG_PHRASES"]) {
+    $Pref::Server::Instruments::MaxSongPhrases = Instruments.const["MAX_SONG_PHRASES"];
+  }
+
+  if ($Pref::Server::Instruments::MaxSongPhrases < Instruments.const["MIN_SONG_PHRASES"]) {
+    $Pref::Server::Instruments::MaxSongPhrases = Instruments.const["MIN_SONG_PHRASES"];
+  }
+
+  %songPhraseCap = $Pref::Server::Instruments::MaxSongPhrases - 1;
+
   if (!_isInt(%index)) {
     if (%usingGui) {
       Instruments.messageBoxOK("Developer Error", 
@@ -15,10 +25,10 @@ function serverCmdSetSongPhrase(%client, %index, %phrase, %usingGui) {
         "(along with a short explanation of what you did) to Electrk (BL_ID: 12949)", %client);
 
       return;
-    }
-    
+    }  
+
     messageClient(%client, '', "\n\c6Usage:");
-    messageClient(%client, '', "\c3/setSongPhrase phraseNumber(0-19) phrase");
+    messageClient(%client, '', "\c3/setSongPhrase phraseNumber(0-" @ %songPhraseCap @ ") phrase");
     return;
   }
 
@@ -29,29 +39,32 @@ function serverCmdSetSongPhrase(%client, %index, %phrase, %usingGui) {
     }
 
     messageClient(%client, '', "\n\c6Usage:");
-    messageClient(%client, '', "\c3/setSongPhrase phraseNumber(0-19) phrase");
+    messageClient(%client, '', "\c3/setSongPhrase phraseNumber(0-" @ %songPhraseCap @ ") phrase");
+
     return;
   }
 
   if (strLen(%phrase) > Instruments.const["MAX_PHRASE_LENGTH"]) {
-    messageClient(%client, '', "\c6Maximum phrase length is \c3" @ Instruments.const["MAX_PHRASE_LENGTH"] @ " characters");
+    messageClient(%client, '', "\c6Maximum phrase length is \c3" @ 
+      Instruments.const["MAX_PHRASE_LENGTH"] @ " characters");
+
     return;
   }
   
-  if (%index < 0 || %index > 19) {
-    messageClient(%client, '', "\c6Valid phrase numbers: \c30-19");
+  if (%index < 0 || %index > %songPhraseCap) {
+    messageClient(%client, '', "\c6Valid phrase numbers: \c30-" @ %songPhraseCap);
     return;
   }
 
   if (strPos(%index, ".") != -1) {
-    messageClient(%client, '', "\c6Valid phrase numbers: \c30-19");
+    messageClient(%client, '', "\c6Valid phrase numbers: \c30-" @ %songPhraseCap);
     messageClient(%client, '', "\c6Whole numbers only (why did you even try this)");
     return;
   } 
 
   // Believe it or not, this actually worked
   if (striPos(%index, "e") != -1) {
-    messageClient(%client, '', "\c6Valid phrase numbers: \c30-19");
+    messageClient(%client, '', "\c6Valid phrase numbers: \c30-" @ %songPhraseCap);
     messageClient(%client, '', "\c6Regular notation only (what is wrong with you)");
     return;
   } 
@@ -74,7 +87,7 @@ function serverCmdInstruments_clearAllSongPhrases(%client) {
     return; 
   }
 
-  for (%i = 0; %i < 20; %i++) {
+  for (%i = 0; %i < Instruments.const["MAX_SONG_PHRASES"]; %i++) {
     %client.songPhrase[%i] = "";
   }
 }

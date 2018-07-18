@@ -47,6 +47,10 @@ function InstrumentsServer::init(%this) {
     $Pref::Server::Instruments::DeletingTimeout = 1;
   }
 
+  if ($Pref::Server::Instruments::MaxSongPhrases $= "") {
+    $Pref::Server::Instruments::MaxSongPhrases = 32;
+  }
+
   if (isFunction(RTB_registerPref)) {
     %category = "Playable Instruments";
     %addon = "System_Instruments";
@@ -78,9 +82,46 @@ function InstrumentsServer::init(%this) {
 
     RTB_registerPref("File deleting timeout", %category, "$Pref::Server::Instruments::DeletingTimeout", 
       "int 1 30", %addon, 1, 0, 0);
+
+
+    RTB_registerPref("Maximum number of song phrases", %category, "$Pref::Server::Instruments::MaxSongPhrases", 
+      "int " @ Instruments.const["MIN_SONG_PHRASES"] SPC Instruments.const["MAX_SONG_PHRASES"], %addon, 32, 0, 0,
+      "InstrumentsServer_updateMaxSongPhrases");
   }
 
   InstrumentsServer.loadInstrumentNotes();
+}
+
+function InstrumentsServer_updateMaxSongPhrases(%oldPref, %newPref) {
+  %maxSongPhrases = Instruments.const["MAX_SONG_PHRASES"];
+
+  if (%newPref > %maxSongPhrases) {
+    %newPref = %maxSongPhrases;
+    $Pref::Server::Instruments::MaxSongPhrases = %maxSongPhrases;
+  }
+
+  %minSongPhrases = Instruments.const["MIN_SONG_PHRASES"];
+
+  if (%newPref < %minSongPhrases) {
+    %newPref = %minSongPhrases;
+    $Pref::Server::Instruments::MaxSongPhrases = %minSongPhrases;
+  }
+
+  if (%oldPref $= %newPref) {
+    return;
+  }
+
+  %count = ClientGroup.getCount();
+
+  for (%i = 0; %i < %count; %i++) {
+    %client = ClientGroup.getObject(%i);
+
+    for (%j = %newPref; %j < %maxSongPhrases; %j++) {
+      %client.songPhrase[%j] = "";
+    }
+
+    commandToClient(%client, 'Instruments_UpdatePref', "MaxSongPhrases", %newPref);
+  }
 }
 
 function InstrumentsServer::loadInstrumentNotes(%this) {
