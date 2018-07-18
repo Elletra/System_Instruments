@@ -2026,7 +2026,7 @@ new GuiControl(InstrumentsDlg) {
             position = "147 179";
             extent = "65 18";
             minExtent = "8 2";
-            enabled = "1";
+            enabled = "0";
             visible = "1";
             clipToParent = "1";
             variable = "$Instruments::GUI::PlayLive";
@@ -2184,12 +2184,12 @@ new GuiControl(InstrumentsDlg) {
             clipToParent = "1";
             text = "No piano notes are available";
             maxLength = "255";
+               maxChars = "-1";
+               selectable = "1";
                autoResize = "1";
                lineSpacing = "2";
                allowColorChars = "0";
                maxBitmapHeight = "-1";
-               maxChars = "-1";
-               selectable = "1";
          };
          new GuiPopUpMenuCtrl(InstrumentsDlg_InstrumentList) {
             profile = "GuiPopUpMenuProfile";
@@ -2468,8 +2468,8 @@ new GuiControl(InstrumentsDlg) {
                profile = "PlayerListProfile";
                horizSizing = "right";
                vertSizing = "bottom";
-               position = "1 1";
-               extent = "147 400";
+               position = "1 -211";
+               extent = "147 640";
                minExtent = "8 2";
                enabled = "1";
                visible = "1";
@@ -2516,7 +2516,6 @@ new GuiControl(InstrumentsDlg) {
                columns = "0 34";
                fitParentWidth = "1";
                clipColumnText = "1";
-                  previouslySelected = "3";
             };
          };
          new GuiMLTextCtrl() {
@@ -2576,8 +2575,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
-               wrap = "0";
                enabledColor = "255 255 255 255";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_SetPhrase) {
             profile = "BlockButtonProfile";
@@ -2600,8 +2599,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
-               wrap = "0";
                enabledColor = "255 255 255 255";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_SetSongPhrase) {
             profile = "BlockButtonProfile";
@@ -2624,8 +2623,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_EditSongPhrase) {
             profile = "BlockButtonProfile";
@@ -2809,8 +2808,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_PlaySong) {
             profile = "BlockButtonProfile";
@@ -2833,8 +2832,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "0.392157 1.000000 0.392157 1.000000";
+               wrap = "0";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -2887,8 +2886,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
-               wrap = "0";
                enabledColor = "255 255 255 255";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_PasteSongOrder) {
             profile = "BlockButtonProfile";
@@ -2911,8 +2910,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 255 255";
-               wrap = "0";
                enabledColor = "255 255 255 255";
+               wrap = "0";
          };
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_SettingsTab) {
@@ -2981,8 +2980,8 @@ new GuiControl(InstrumentsDlg) {
          overflowImage = "0";
          mKeepCached = "0";
          mColor = "255 255 255 255";
-            wrap = "0";
             enabledColor = "1.000000 1.000000 1.000000 1.000000";
+            wrap = "0";
       };
       new GuiControl(InstrumentsDlg_FilesPanel) {
          profile = "GuiDefaultProfile";
@@ -3018,7 +3017,7 @@ new GuiControl(InstrumentsDlg) {
                horizSizing = "right";
                vertSizing = "bottom";
                position = "1 1";
-               extent = "162 2";
+               extent = "162 60";
                minExtent = "8 2";
                enabled = "1";
                visible = "1";
@@ -3029,7 +3028,8 @@ new GuiControl(InstrumentsDlg) {
                columns = "0";
                fitParentWidth = "1";
                clipColumnText = "1";
-                  lastSelected = "3";
+                  lastClickTime = "157455";
+                  lastSelected = "2";
             };
          };
          new GuiScrollCtrl(InstrumentsDlg_LocalFilesContainer) {
@@ -3055,7 +3055,7 @@ new GuiControl(InstrumentsDlg) {
                horizSizing = "right";
                vertSizing = "bottom";
                position = "1 1";
-               extent = "162 2";
+               extent = "162 60";
                minExtent = "8 2";
                enabled = "1";
                visible = "1";
@@ -3126,8 +3126,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_LoadServerFile) {
             profile = "BlockButtonProfile";
@@ -3150,8 +3150,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_RenameServerFile) {
             profile = "BlockButtonProfile";
@@ -3174,8 +3174,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_DeleteServerFile) {
             profile = "BlockButtonProfile";
@@ -3198,8 +3198,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 0.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_SaveLocalFile) {
             profile = "BlockButtonProfile";
@@ -3222,8 +3222,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_LoadLocalFile) {
             profile = "BlockButtonProfile";
@@ -3246,8 +3246,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_RenameLocalFile) {
             profile = "BlockButtonProfile";
@@ -3270,8 +3270,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_DeleteLocalFile) {
             profile = "BlockButtonProfile";
@@ -3294,8 +3294,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 0.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_DownloadFile) {
             profile = "BlockButtonProfile";
@@ -3318,8 +3318,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 1.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_UploadFile) {
             profile = "BlockButtonProfile";
@@ -3342,8 +3342,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 1.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_RefreshServerFiles) {
             profile = "GuiDefaultProfile";
@@ -3353,7 +3353,7 @@ new GuiControl(InstrumentsDlg) {
             extent = "14 14";
             minExtent = "8 2";
             enabled = "1";
-            visible = "1";
+            visible = "0";
             clipToParent = "1";
             command = "InstrumentsClient.refreshFileLists();";
             text = " ";
@@ -3375,7 +3375,7 @@ new GuiControl(InstrumentsDlg) {
             extent = "14 14";
             minExtent = "8 2";
             enabled = "1";
-            visible = "1";
+            visible = "0";
             clipToParent = "1";
             command = "InstrumentsClient.refreshFileLists();";
             text = " ";
@@ -3411,8 +3411,8 @@ new GuiControl(InstrumentsDlg) {
          overflowImage = "0";
          mKeepCached = "0";
          mColor = "255 255 0 255";
-            wrap = "0";
             enabledColor = "1.000000 1.000000 0.000000 1.000000";
+            wrap = "0";
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_Play) {
          profile = "BlockButtonProfile";
@@ -3421,7 +3421,7 @@ new GuiControl(InstrumentsDlg) {
          position = "536 434";
          extent = "68 30";
          minExtent = "8 2";
-         enabled = "1";
+         enabled = "0";
          visible = "1";
          clipToParent = "1";
          command = "InstrumentsClient.clickPlayPhrase();";
@@ -3435,9 +3435,9 @@ new GuiControl(InstrumentsDlg) {
          alignTop = "0";
          overflowImage = "0";
          mKeepCached = "0";
-         mColor = "100 255 100 255";
-            wrap = "0";
+         mColor = "128 128 128 255";
             enabledColor = "0.392157 1.000000 0.392157 1.000000";
+            wrap = "0";
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_SongsTab) {
          profile = "BlockButtonProfile";
@@ -6559,8 +6559,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "255 255 0 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiBitmapButtonCtrl(InstrumentsDlg_KeyNumPad0_3) {
             profile = "GuiButtonProfile";
@@ -6931,8 +6931,8 @@ new GuiControl(InstrumentsDlg) {
             overflowImage = "0";
             mKeepCached = "0";
             mColor = "128 128 128 255";
-               wrap = "0";
                enabledColor = "1.000000 1.000000 0.000000 1.000000";
+               wrap = "0";
          };
          new GuiSwatchCtrl() {
             profile = "GuiDefaultProfile";
@@ -7236,7 +7236,7 @@ new GuiControl(InstrumentsDlg) {
                horizSizing = "right";
                vertSizing = "bottom";
                position = "1 1";
-               extent = "192 2";
+               extent = "196 16";
                minExtent = "8 2";
                enabled = "1";
                visible = "1";
@@ -7388,6 +7388,22 @@ new GuiControl(InstrumentsDlg) {
             selectable = "1";
             autoResize = "1";
          };
+         new GuiCheckBoxCtrl(InstrumentsDlg_Preference_OpenGuiOnEquip) {
+            profile = "GuiCheckBoxProfile";
+            horizSizing = "right";
+            vertSizing = "bottom";
+            position = "17 122";
+            extent = "240 16";
+            minExtent = "8 2";
+            enabled = "1";
+            visible = "1";
+            clipToParent = "1";
+            variable = "$Pref::Client::Instruments::OpenGuiOnEquip";
+            command = "InstrumentsClient.applyPreference(\"OpenGuiOnEquip\");";
+            text = "Open the GUI when equipping an instrument";
+            groupNum = "-1";
+            buttonType = "ToggleButton";
+         };
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_HelpTab) {
          profile = "BlockButtonProfile";
@@ -7456,23 +7472,23 @@ new GuiControl(InstrumentsDlg) {
                columns = "0 10 20 33";
                fitParentWidth = "1";
                clipColumnText = "0";
-                  rowFileName7 = "3. The Piano Panel";
-                  rowFileName12 = "4a. Song Phrases";
-                  rowFileName17 = "7. The Help Panel";
-                  rowFileName0 = "1. About";
-                  rowFileName8 = "3a. Instrument Notes";
-                  rowFileName14 = "5. The Keybinds Panel";
-                  rowFileName2 = "2a. Rests";
-                  rowFileName16 = "6. The Files Panel";
-                  rowFileName4 = "2c. Repeats";
-                  rowFileName15 = "5a. Instrument Mode";
-                  rowFileName9 = "3b. Delays & Rests";
-                  rowFileName13 = "4b. Song Order";
-                  rowFileName11 = "4. The Songs Panel";
-                  rowFileName5 = "2d. Pitching";
                   rowFileName1 = "2. Notation - Basics";
+                  rowFileName13 = "4b. Song Order";
+                  rowFileName4 = "2c. Repeats";
+                  rowFileName14 = "5. The Keybinds Panel";
+                  rowFileName17 = "7. The Help Panel";
                   rowFileName6 = "2e. Random Notes";
+                  rowFileName11 = "4. The Songs Panel";
+                  rowFileName15 = "5a. Instrument Mode";
+                  rowFileName2 = "2a. Rests";
+                  rowFileName0 = "1. About";
+                  rowFileName7 = "3. The Piano Panel";
                   rowFileName3 = "2b. Delays & Tempo";
+                  rowFileName5 = "2d. Pitching";
+                  rowFileName9 = "3b. Delays & Rests";
+                  rowFileName16 = "6. The Files Panel";
+                  rowFileName8 = "3a. Instrument Notes";
+                  rowFileName12 = "4a. Song Phrases";
                   rowFileName10 = "3c. Phrase Textbox";
             };
          };
@@ -7499,7 +7515,7 @@ new GuiControl(InstrumentsDlg) {
                horizSizing = "right";
                vertSizing = "bottom";
                position = "1 1";
-               extent = "440 509";
+               extent = "440 875";
                minExtent = "8 2";
                enabled = "1";
                visible = "1";

@@ -77,6 +77,14 @@ if ($Pref::Client::Instruments::ChangeKeyLabels $= "") {
   $Pref::Client::Instruments::ChangeKeyLabels = true;
 }
 
+if ($Pref::Client::Instruments::MuteByDefault $= "") {
+  $Pref::Client::Instruments::MuteByDefault = false;
+}
+
+if ($Pref::Client::Instruments::OpenGuiOnEquip $= "") {
+  $Pref::Client::Instruments::OpenGuiOnEquip = true;
+}
+
 function InstrumentsDlg_Toggle(%down) {
   if (%down) {
     if (!InstrumentsDlg.isAwake()) {
