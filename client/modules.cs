@@ -108,31 +108,27 @@ function clientCmdInstruments_GetVersion(%version, %notationVersion) {
 
   if (%clientMajorVersion == %serverMajorVersion) {
     if (%versionCompare == 2 && %clientMinorVersion !$= %serverMinorVersion) {
-      %body = "<font:Arial Bold:18><color:FF0000>WARNING!<font:Arial:14><color:000000>" @
-                "\n\nThis server is running a newer version (" @ %version @ ") of the instruments mod." @
-                "\nThings might not work properly." @
-                "\n\n(Your version: " @ $Instruments::Version @ ")";
+      %body = "\c3WARNING: \c6This server is running a newer version \c2(" @ 
+                %version @ ") \c6of the instruments mod than you \c0(" @ 
+                $Instruments::Version @ ")\c6.  Things might not work properly.";
 
-      schedule(250, 0, MessageBoxOK, "Newer Server Version Detected", %body);
+      schedule(250, 0, newChatHud_AddLine, %body);
     }
     else if (%versionCompare == 1 && %clientMinorVersion !$= %serverMinorVersion) {
-      %body = "<font:Arial Bold:18><color:FF0000>WARNING!<font:Arial:14><color:000000>" @
-                "\n\nThis server is running an older version (" @ %version @ ") of the instruments mod." @
-                "\nThings might not work properly." @
-                "\n\n(Your version: " @ $Instruments::Version @ ")";
+      %body = "\c3WARNING: \c6This server is running an older version \c0(" @ 
+                %version @ ") \c6of the instruments mod than you \c2(" @ 
+                $Instruments::Version @ ")\c6.  Things might not work properly.";
 
-      schedule(250, 0, MessageBoxOK, "Older Server Version Detected", %body);
+      schedule(250, 0, newChatHud_AddLine, %body);
     }
   }
   else {
     $Instruments::Client::CanUseInstruments = false;
+      %body = "\c0WARNING: \c6This server is running a version \c4(" @ 
+                %version @ ") \c6of the instruments mod that is incompatible with yours \c4(" @ 
+                $Instruments::Version @ ")\c6.  You will not be able to use it on this server.";
 
-    %body = "<font:Arial Bold:18><color:FF0000>WARNING!<font:Arial:14><color:000000>" @
-              "\n\nThis server is running a version (" @ %version @ ") of the instruments mod that is " @
-              "incompatible with yours (" @ $Instruments::Version @ ")" @
-              "\n\nYou will not be able to use it on this server.";
-
-    schedule(250, 0, MessageBoxOK, "Incompatible Versions", %body);
+      schedule(250, 0, newChatHud_AddLine, %body);
   }
 
 
