@@ -9,7 +9,7 @@ package System_Instruments__server {
     %parent = Parent::autoAdminCheck(%this);
 
     commandToClient(%this, 'Instruments_GetVersion', $Instruments::Version, $Instruments::NotationVersion);
-    commandToClient(%this, 'Instruments_UpdatePref', "MaxSongPhrases", $Pref::Server::Instruments::MaxSongPhrases);
+    commandToClient(%this, 'Instruments_UpdatePref', "MaxSongPhrases", Instruments.const["MAX_SONG_PHRASES"]);
 
     InstrumentsServer.schedule(1, sendInstrumentList, %this);
 

@@ -266,6 +266,13 @@ function clientCmdInstruments_CanIUse(%type, %canUse) {
 function clientCmdInstruments_UpdatePref(%pref, %newValue) {
   %currentValue = $Instruments::Client::ServerPref["::" @ %pref];
 
+  %serverVersion = strReplace($Instruments::Client::ServerVersion, ".", "\t");
+  %serverMinorVersion = getField(%serverVersion, 1);
+
+  if (%serverMinorVersion >= 3) {
+    %newValue = Instruments.const["MAX_SONG_PHRASES"];
+  }
+
   if (%pref $= "MaxSongPhrases") {
     if (%currentValue $= "") {
       %currentValue = 0;
