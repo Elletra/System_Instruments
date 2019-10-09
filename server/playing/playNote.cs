@@ -75,17 +75,8 @@ function InstrumentsServer::playPitchedSound(%this, %obj, %sound, %pitch, %posit
 
   // Swollow says WebComPostServerUpdateLoop and pingMatchMakerLoop are needed,
   // or else eventually things get fucked up? idk
-
-
-
-  // But they lag the server so I commented them out so let's see if it breaks anything!
+  // But they lag the server so I removed them so let's see if it breaks anything!
   // What could possibly go wrong?????
-
-  //if (!$Server::LAN) {
-    //WebCom_PostServerUpdateLoop();
-  //}
-
-  //pingMatchMakerLoop();
 
   if (%position $= "") {
     %obj.playSound(%sound);
@@ -95,12 +86,6 @@ function InstrumentsServer::playPitchedSound(%this, %obj, %sound, %pitch, %posit
   }
 
   setTimescale(%oldTimescale);
-
-  //if (!$Server::LAN) {
-    //WebCom_PostServerUpdateLoop();
-  //}
-
-  //pingMatchMakerLoop();
 }
 
 // Main function

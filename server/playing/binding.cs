@@ -7,15 +7,9 @@ function serverCmdInstruments_BindToKey(%client, %key, %phraseOrNote) {
     return;
   }
 
-  // if (%client.lastInstrumentsBindTime !$= "" && getSimTime() - %client.lastInstrumentsBindTime < 20) {
-  //    return;
-  // }
-
   if (_strEmpty(%key)) {
     return;
   }
-
-  // %client.lastInstrumentsBindTime = getSimTime();
 
   if (!isObject(%client.instrumentBinds)) {
     %client.instrumentBinds = new ScriptObject() {

@@ -100,10 +100,3 @@ function InstrumentsDlg_Toggle(%down) {
     }
   }
 }
-
-// HAHAHAHAHAHAHAHA NEVERMIND TORQUE DOESN'T SUPPORT NON-QWERTY KEYBOARDS PROPERLY
-
-// if (getFileCount("config/client/instruments/keyboardLayouts/*") <= 0) {
-//   createPath("config/client/instruments/keyboardLayouts/");
-//   fileCopy("./keybinds/layouts/QWERTY.txt", "config/client/instruments/keyboardLayouts/QWERTY.txt");
-// }
