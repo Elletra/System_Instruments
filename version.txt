@@ -1,4 +1,4 @@
-version	1.3.0
+version	1.3.1
 channel	release
 repository	electrk.rocks/ElectrkMods/Blockland/repository.txt
 format	TML
