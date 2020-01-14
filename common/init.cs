@@ -194,5 +194,3 @@ function Instruments::init(%this) {
 }
 
 Instruments.init();
-
-exec("./stats.cs");
