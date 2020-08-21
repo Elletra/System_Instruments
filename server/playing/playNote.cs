@@ -144,7 +144,11 @@ function InstrumentsServer::playNote(%this, %obj, %note, %instrument) {
     if (%colonPos != -1) {
       %pitch = getSubStr(%note, %colonPos + 1, strLen(%note));
       %note = getSubStr(%note, 0, %colonPos);
-      %customPitch = true;
+      %customPitch = %pitch !$= "";
+
+      if (%pitch $= "") {
+        %pitch = 1;
+      }
     }
 
     // Random note
@@ -178,12 +182,11 @@ function InstrumentsServer::playNote(%this, %obj, %note, %instrument) {
       %sound = InstrumentsServer.getNoteSound(%instrument, %note);
     }
 
+    if (%customPitch) {
+      %pitchPrint = "\c4:" @ %pitch;
+    }
 
     if (!isObject(%sound)) {
-      if (%customPitch) {
-        %pitchPrint = ":" @ %pitch;
-      }
-
       %bottomPrint = %bottomPrint @ "\c7" @ %note @ %pitchPrint;
     }
     else {
@@ -214,10 +217,6 @@ function InstrumentsServer::playNote(%this, %obj, %note, %instrument) {
         %pos = vectorAdd(%obj.getPosition(), "0 0" SPC %zScale);
 
         InstrumentsServer.playPitchedSound(%obj, %sound, %pitch, %pos);
-      }
-
-      if (%customPitch) {
-        %pitchPrint = "\c4:" @ %pitch;
       }
 
       %bottomPrint = %bottomPrint @ "\c2" @ %note @ %pitchPrint;
