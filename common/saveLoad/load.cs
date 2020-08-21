@@ -66,7 +66,7 @@ function Instruments::loadFile(%this, %type, %filename, %client) {
     }
 
     // Server-side check to prevent people from cheating the server song phrase limit
-    if (%localOrServer $= "server" && %songPhraseCount >= $Pref::Server::Instruments::MaxSongPhrases) {
+    if (%localOrServer $= "server" && %songPhraseCount >= Instruments.const["MAX_SONG_PHRASES"]) {
       %warning = "Song was only partially loaded because it exceeds the maximum number of server song phrases!";
       commandToClient(%client, 'Instruments_Warning', "Loading", %warning);
       break;

@@ -7,15 +7,7 @@ function serverCmdSetSongPhrase(%client, %index, %phrase, %usingGui) {
     return; 
   }
 
-  if ($Pref::Server::Instruments::MaxSongPhrases > Instruments.const["MAX_SONG_PHRASES"]) {
-    $Pref::Server::Instruments::MaxSongPhrases = Instruments.const["MAX_SONG_PHRASES"];
-  }
-
-  if ($Pref::Server::Instruments::MaxSongPhrases < Instruments.const["MIN_SONG_PHRASES"]) {
-    $Pref::Server::Instruments::MaxSongPhrases = Instruments.const["MIN_SONG_PHRASES"];
-  }
-
-  %songPhraseCap = $Pref::Server::Instruments::MaxSongPhrases - 1;
+  %songPhraseCap = Instruments.const["MAX_SONG_PHRASES"] - 1;
 
   if (!_isInt(%index)) {
     if (%usingGui) {

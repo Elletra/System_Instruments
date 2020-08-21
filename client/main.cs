@@ -56,6 +56,6 @@ exec("./panels/help/helpCategories.cs");
 // Packages
 exec("./packages.cs");
 
-// -------------------------------
+// --------------------------------
 
 InstrumentsClient.loadKeyboardLayout("Add-Ons/System_Instruments/client/panels/keybinds/layouts/QWERTY.txt");

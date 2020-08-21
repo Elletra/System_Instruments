@@ -143,12 +143,11 @@ function Instruments::saveFile(%this, %type, %filename, %phraseOrSong, %client, 
   }
 
   if (%type $= "song") {
-
     if (%localOrServer $= "local") {
       %maxSongPhrases = $Instruments::Client::ServerPref::MaxSongPhrases;
     }
     else {
-      %maxSongPhrases = $Pref::Server::Instruments::MaxSongPhrases;
+      %maxSongPhrases = Instruments.const["MAX_SONG_PHRASES"];
     }
 
     for (%i = 0; %i < %maxSongPhrases; %i++) {
