@@ -93,10 +93,7 @@ function InstrumentsServer::loadInstrumentNotes(%this) {
     %addon = strReplace(getSubStr(%file, 8, striPos(%file, "/sounds/") - 8), "-", "DASH");
     %addon = strReplace(%addon, "'", "APOS");
 
-    // Checking to see if instrument is enabled
-    %enabled = $AddOn__[%addon];
-    
-    if (%enabled != 1) { 
+    if (isAddOnEnabled(%addon) != 1) {
       continue; 
     }
 
@@ -141,10 +138,7 @@ function InstrumentsServer::loadInstrumentNotes(%this) {
     %addon = strReplace(getSubStr(%file, 8, striPos(%file, "/server.cs") - 8), "-", "DASH");
     %addon = strReplace(%addon, "'", "APOS");
 
-    // Checking to see if instrument is enabled
-    %enabled = $AddOn__[%addon];
-    
-    if (%enabled != 1) { 
+    if (isAddOnEnabled(%addon) != 1) {
       continue; 
     }
 
@@ -166,6 +160,11 @@ function InstrumentsServer::loadInstrumentNotes(%this) {
         %creditsFile.delete();
         
         InstrumentsServer.newAddOn(%addon, %author);
+      }
+
+      // Hack for gamemodes
+      if ($AddOnLoaded__[%addon] == 1) {
+        exec("Add-Ons/" @ %addon @ "/server.cs");
       }
     }
   }

@@ -56,6 +56,10 @@ function stripAsciiControlChars(%string) {
   return stripChars(%string, %chars);
 }
 
+function isAddOnEnabled(%addon) {
+  return $AddOn__[%addon] == 1 || $AddOnLoaded__[%addon] == 1;
+}
+
 // ---------------------------------------
 
 // Just a quick and dirty technique to check if a value is -999999 <= n <= 999999
@@ -72,10 +76,6 @@ function _strEmpty(%string) {
 
 function _addQuotes(%str) {
   return "\"" @ %str @ "\"";
-}
-
-function _keyValuePair(%key, %value, %trailingChar) {
-  return _addQuotes(%key) @ ": " @ _addQuotes(%value) @ %trailingChar;
 }
 
 // ---------------------------------------
