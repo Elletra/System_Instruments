@@ -107,33 +107,38 @@ function clientCmdInstruments_GetVersion(%version, %notationVersion) {
   %serverMinorVersion = getField(%serverVersion, 1);
 
   if (%clientMajorVersion == %serverMajorVersion) {
-    if (%versionCompare == 2 && %clientMinorVersion !$= %serverMinorVersion) {
-      %body = "\c3WARNING: \c6This server is running a newer version \c2(" @ 
-                %version @ ") \c6of the instruments mod than you \c0(" @ 
-                $Instruments::Version @ ")\c6.  Things might not work properly.";
+    if ($Pref::Client::Instruments::VersionWarning) {
+      if (%versionCompare == 2 && %clientMinorVersion !$= %serverMinorVersion) {
+        %body = "\c3WARNING: \c6This server is running a newer version \c2(" @
+                  %version @ ") \c6of the instruments mod than you \c0(" @
+                  $Instruments::Version @ ")\c6.  Things might not work properly.";
 
-      schedule(250, 0, newChatHud_AddLine, %body);
-    }
-    else if (%versionCompare == 1 && %clientMinorVersion !$= %serverMinorVersion) {
-      %body = "\c3WARNING: \c6This server is running an older version \c0(" @ 
-                %version @ ") \c6of the instruments mod than you \c2(" @ 
-                $Instruments::Version @ ")\c6.  Things might not work properly.";
+        schedule(250, 0, newChatHud_AddLine, %body);
+      }
+      else if (%versionCompare == 1 && %clientMinorVersion !$= %serverMinorVersion) {
+        %body = "\c3WARNING: \c6This server is running an older version \c0(" @
+                  %version @ ") \c6of the instruments mod than you \c2(" @
+                  $Instruments::Version @ ")\c6.  Things might not work properly.";
 
-      schedule(250, 0, newChatHud_AddLine, %body);
+        schedule(250, 0, newChatHud_AddLine, %body);
+      }
     }
   }
   else {
     $Instruments::Client::CanUseInstruments = false;
-      %body = "\c0WARNING: \c6This server is running a version \c4(" @ 
-                %version @ ") \c6of the instruments mod that is incompatible with yours \c4(" @ 
+      %body = "\c0WARNING: \c6This server is running a version \c4(" @
+                %version @ ") \c6of the instruments mod that is incompatible with yours \c4(" @
                 $Instruments::Version @ ")\c6.  You will not be able to use it on this server.";
 
       schedule(250, 0, newChatHud_AddLine, %body);
   }
 
+  // The MaxSongPhrases preference was removed and locked at 50 in 1.3.0
+  if ((%serverMajorVersion == 1 && %serverMinorVersion >= 3) || %serverMajorVersion > 1) {
+    $Instruments::Client::ServerPref::MaxSongPhrases = Instruments.const["MAX_SONG_PHRASES"];
+  }
 
   // Disable/change certain features/settings if server version is too old
-
   if (%serverMajorVersion == 1) {
     if (%serverMinorVersion < 2) {
       InstrumentsDlg_Preference_OpenGuiOnEquip.enabled = false;
@@ -243,7 +248,6 @@ function clientCmdInstruments_CanIUse(%type, %canUse) {
     }
   }
 
-  // This is ugly sry
   if (!$Instruments::Client::CanUseSaving 
   && !$Instruments::Client::CanUseLoading 
   && !$Instruments::Client::CanUseDeleting) {

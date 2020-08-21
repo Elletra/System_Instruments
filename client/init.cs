@@ -65,6 +65,7 @@ if ($Instruments::GUI::Tempo $= "") {
 }
 
 // Default preferences
+
 if ($Pref::Client::Instruments::DisableMoveMap $= "") {
   $Pref::Client::Instruments::DisableMoveMap = true;
 }
@@ -83,6 +84,10 @@ if ($Pref::Client::Instruments::MuteByDefault $= "") {
 
 if ($Pref::Client::Instruments::OpenGuiOnEquip $= "") {
   $Pref::Client::Instruments::OpenGuiOnEquip = true;
+}
+
+if ($Pref::Client::Instruments::VersionWarning $= "") {
+  $Pref::Client::Instruments::VersionWarning = true;
 }
 
 function InstrumentsDlg_Toggle(%down) {

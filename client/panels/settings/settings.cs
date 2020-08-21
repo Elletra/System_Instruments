@@ -16,6 +16,9 @@ function InstrumentsClient::applyPreference(%this, %pref) {
   else if (%pref $= "OpenGuiOnEquip") {
     // do nothing
   }
+  else if (%pref $= "VersionWarning") {
+    // do nothing
+  }
 }
 
 function InstrumentsClient::addToPlayerList(%this, %clientName, %clientID, %bl_id) {

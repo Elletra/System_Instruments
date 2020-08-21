@@ -7404,6 +7404,22 @@ new GuiControl(InstrumentsDlg) {
             groupNum = "-1";
             buttonType = "ToggleButton";
          };
+         new GuiCheckBoxCtrl(InstrumentsDlg_Preference_VersionWarning) {
+            profile = "GuiCheckBoxProfile";
+            horizSizing = "right";
+            vertSizing = "bottom";
+            position = "17 144";
+            extent = "240 16";
+            minExtent = "8 2";
+            enabled = "1";
+            visible = "1";
+            clipToParent = "1";
+            variable = "$Pref::Client::Instruments::VersionWarning";
+            command = "InstrumentsClient.applyPreference(\"VersionWarning\");";
+            text = "Display warning when versions don't match";
+            groupNum = "-1";
+            buttonType = "ToggleButton";
+         };
       };
       new GuiBitmapButtonCtrl(InstrumentsDlg_HelpTab) {
          profile = "BlockButtonProfile";
