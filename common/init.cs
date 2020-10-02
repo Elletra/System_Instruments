@@ -1,4 +1,4 @@
-$Instruments::Version = "1.3.1";
+$Instruments::Version = "1.4.0";
 $Instruments::NotationVersion = "3";
 
 exec("./classes/InstrumentData.cs");
