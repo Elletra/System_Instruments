@@ -10,6 +10,7 @@ function SimObject::instrumentsPlayNote (%this, %parsedNote)
 
 	for (%i = 0; %i < %count; %i++)
 	{
+		// TODO: Modular system for instrument sounds, rather than this hardcoded method.
 		%note = strreplace(getWord(%parsedNote, %i), "#", "S");
 
 		%this.instrumentsPlaySound(%note @ "_Note_Sound");
