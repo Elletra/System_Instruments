@@ -47,9 +47,3 @@ function Instruments::getNoteDelay (%parsedNote, %baseDelay)
 	// The notation format only allows whole notes to eighth notes due to technical limitations.
 	return %baseDelay / mClamp(getField(%parsedNote, 1), 1, 8);
 }
-
-// Whether what we want to play is even a valid sound datablock.
-function Instruments::isValidSound (%sound)
-{
-	return isObject(%sound) && %sound.getClassName() $= "AudioProfile";
-}

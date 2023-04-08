@@ -32,7 +32,7 @@ function SimObject::onInstrumentsPlayNote (%this, %parsedNote)
 // All objects with a transform.
 function SceneObject::instrumentsPlaySound (%this, %sound)
 {
-	if (Instruments::isValidSound(%sound))
+	if (InstrumentsServer::isValidSound(%sound))
 	{
 		serverPlay3D(%sound, %this.getPosition());
 	}
@@ -40,7 +40,7 @@ function SceneObject::instrumentsPlaySound (%this, %sound)
 
 function GameConnection::instrumentsPlaySound (%this, %sound)
 {
-	if (Instruments::isValidSound(%sound))
+	if (InstrumentsServer::isValidSound(%sound))
 	{
 		%this.play2D(%sound);
 	}
@@ -50,4 +50,10 @@ function GameConnection::onInstrumentsPlayNote (%this, %parsedNote)
 {
 	// FIXME: This is just a temporary debug thing.
 	%this.bottomPrint(%parsedNote, 2, true);
+}
+
+// Whether what we want to play is even a valid sound datablock.
+function InstrumentsServer::isValidSound (%sound)
+{
+	return isObject(%sound) && %sound.getClassName() $= "AudioProfile";
 }
