@@ -1,4 +1,4 @@
-function SimObject::instrumentsPlayNote (%this, %parsedNote)
+function SimObject::instrPlayNote (%this, %parsedNote)
 {
 	if (%parsedNote $= "" || Instruments::isDirective(%parsedNote) || Instruments::isRest(%parsedNote))
 	{
@@ -19,18 +19,22 @@ function SimObject::instrumentsPlayNote (%this, %parsedNote)
 	%this.onInstrumentsPlayNote(%parsedNote);
 }
 
-function SimObject::instrumentsPlaySound (%this, %sound)
+function SimObject::instrPlaySound (%this, %sound)
 {
 	// To be overridden by subclasses.
 }
+
+// ------------------------------------------------
 
 function SimObject::onInstrumentsPlayNote (%this, %parsedNote)
 {
 	// To be overridden by subclasses.
 }
 
+// ------------------------------------------------
+
 // All objects with a transform.
-function SceneObject::instrumentsPlaySound (%this, %sound)
+function SceneObject::instrPlaySound (%this, %sound)
 {
 	if (InstrumentsServer::isValidSound(%sound))
 	{
@@ -38,7 +42,9 @@ function SceneObject::instrumentsPlaySound (%this, %sound)
 	}
 }
 
-function GameConnection::instrumentsPlaySound (%this, %sound)
+// ------------------------------------------------
+
+function GameConnection::instrPlaySound (%this, %sound)
 {
 	if (InstrumentsServer::isValidSound(%sound))
 	{
@@ -46,11 +52,15 @@ function GameConnection::instrumentsPlaySound (%this, %sound)
 	}
 }
 
+// ------------------------------------------------
+
 function GameConnection::onInstrumentsPlayNote (%this, %parsedNote)
 {
 	// FIXME: This is just a temporary debug thing.
 	%this.bottomPrint(%parsedNote, 2, true);
 }
+
+// ------------------------------------------------
 
 // Whether what we want to play is even a valid sound datablock.
 function InstrumentsServer::isValidSound (%sound)

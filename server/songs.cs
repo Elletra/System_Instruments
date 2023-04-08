@@ -1,4 +1,4 @@
-function SimObject::instrumentsSetSongPattern (%this, %index, %pattern)
+function SimObject::instrSetSongPattern (%this, %index, %pattern)
 {
 	if (!Instruments::isValidPatternIndex(%index) || strlen(%pattern) > $Instruments::Max::PatternLength)
 	{
@@ -10,9 +10,9 @@ function SimObject::instrumentsSetSongPattern (%this, %index, %pattern)
 	return true;
 }
 
-function SimObject::instrumentsPlaySong (%this, %song)
+function SimObject::instrPlaySong (%this, %song)
 {
-	%this.stopPlayingInstrument();
+	%this.instrStopPlaying();
 
 	%length = strlen(%song);
 
@@ -24,11 +24,11 @@ function SimObject::instrumentsPlaySong (%this, %song)
 	%this.instrSong = %song;
 	%this.instrSongIndex = -1;
 
-	%this.instrumentsPlayNextPattern();
+	%this.instrPlayNextPattern();
 }
 
 // If %delay is blank, it will be set to the default tempo.
-function SimObject::instrumentsPlayNextPattern (%this, %delay)
+function SimObject::instrPlayNextPattern (%this, %delay)
 {
 	%this.instrSongIndex++;
 
@@ -56,8 +56,10 @@ function SimObject::instrumentsPlayNextPattern (%this, %delay)
 		%pattern = "";
 	}
 
-	%this.instrumentsPlayPattern(%pattern, 0, %delay);
+	%this.instrPlayPattern(%pattern, 0, %delay);
 }
+
+// ------------------------------------------------
 
 function SimObject::onInstrumentsSongStart (%this)
 {
@@ -69,22 +71,14 @@ function SimObject::onInstrumentsSongEnd (%this)
 	%this.instrIsPlayingSong = false;
 }
 
-function SimObject::isPlayingInstrument (%this)
+// ------------------------------------------------
+
+function SimObject::instrIsPlaying (%this)
 {
 	return %this.instrIsPlayingPattern || %this.instrIsPlayingSong;
 }
 
-function SimObject::isPlayingSong (%this)
-{
-	return %this.instrIsPlayingSong;
-}
-
-function SimObject::isPlayingPattern (%this)
-{
-	return %this.instrIsPlayingPattern;
-}
-
-function SimObject::stopPlayingInstrument (%this)
+function SimObject::instrStopPlaying (%this)
 {
 	cancel(%this.instrSongSchedule);
 	cancel(%this.instrPatternSchedule);
