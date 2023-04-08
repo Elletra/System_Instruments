@@ -30,3 +30,29 @@ $Instruments::Max::PatternLength = 255;
 $Instruments::Max::SongLength = 255;
 
 // ------------------------------------------------
+
+// A hack to fix inheritance because it completely breaks unless the super class relationship is
+// established first. (See here: https://forum.blockland.us/index.php?topic=290879.0)
+//
+// This happens because TorqueScript is a horrible language!
+function Instruments::fixInheritanceHack ()
+{
+	new ScriptGroup (InstrumentsServer)
+	{
+		superClass = InstrumentDatabase;
+		class = InstrumentServerDatabase;
+	}.delete();
+
+	new ScriptObject ()
+	{
+		superClass = InstrumentData;
+		class = InstrumentServerData;
+	}.delete();
+
+	$Instruments::InheritanceFixed = true;
+}
+
+if (!$Instruments::InheritanceFixed)
+{
+	Instruments::fixInheritanceHack();
+}

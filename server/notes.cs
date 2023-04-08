@@ -10,10 +10,14 @@ function SimObject::instrPlayNote (%this, %parsedNote)
 
 	for (%i = 0; %i < %count; %i++)
 	{
-		// TODO: Modular system for instrument sounds, rather than this hardcoded method.
-		%note = strreplace(getWord(%parsedNote, %i), "#", "S");
+		%instrument = %this.instrInstrument;
 
-		%this.instrumentsPlaySound(%note @ "_Note_Sound");
+		if (%instrument !$= "")
+		{
+			%sound = InstrumentsServer.getNoteSound(%instrument, getWord(%parsedNote, %i));
+
+			%this.instrPlaySound(%sound);
+		}
 	}
 
 	%this.onInstrumentsPlayNote(%parsedNote);
@@ -66,4 +70,14 @@ function GameConnection::onInstrumentsPlayNote (%this, %parsedNote)
 function InstrumentsServer::isValidSound (%sound)
 {
 	return isObject(%sound) && %sound.getClassName() $= "AudioProfile";
+}
+
+function InstrumentsServer::isValidInstrumentName (%name)
+{
+	return stripChars(%name, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789") $= "";
+}
+
+function InstrumentsServer::isValidNoteName (%name)
+{
+	return stripChars(%name, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#") $= "";
 }
