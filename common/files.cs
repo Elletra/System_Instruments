@@ -14,38 +14,80 @@
 
 // ------------------------------------------------
 
-function InstrumentsFileIO::startWrite (%fileName, %type, %isServer)
+// ------------------------------------------------
+// !!! Constants -- DO NOT change these !!!
+// ------------------------------------------------
+
+$Instruments::FileType::Invalid = -1;
+$Instruments::FileType::Pattern = 0;
+$Instruments::FileType::Song = 1;
+
+$Instruments::FileMode::Read = 0;
+$Instruments::FileMode::Write = 1;
+
+// ------------------------------------------------
+
+function InstrumentsFileIO::start (%fileName, %mode, %type, %isServer)
 {
 	if (!InstrumentsFileIO::isValidFileName(%fileName))
 	{
-		error("openForWrite() - Invalid file name '", %fileName, "'");
+		error("Invalid file name '", %fileName, "'");
+		return 0;
+	}
+
+	if (!InstrumentsFileIO::isValidMode(%mode))
+	{
+		error("Invalid file mode '", %type, "'");
 		return 0;
 	}
 
 	if (!InstrumentsFileIO::isValidType(%type))
 	{
-		error("openForWrite() - Invalid file type '", %type, "'");
+		error("Invalid file type '", %type, "'");
 		return 0;
 	}
 
-	%file = new FileObject()
+	%file = new FileObject ()
 	{
 		instrFileType = %type;
-		instrIsServer = %isServer;
+		instrIsServerFile = %isServer;
 	};
 
-	%file.openForWrite(InstrumentsFileIO::getFilePath(%fileName, %type, %isServer));
+	%path = InstrumentsFileIO::getFilePath(%fileName, %type, %isServer);
+	%success = false;
+
+	if (%mode $= $Instruments::FileMode::Read)
+	{
+		%success = %file.openForRead(%path);
+	}
+	else if (%mode $= $Instruments::FileMode::Write)
+	{
+		%success = %file.openForWrite(%path);
+	}
+
+	if (!%success)
+	{
+		%file.delete();
+		%file = 0;
+	}
 
 	return %file;
 }
 
-function InstrumentsFileIO::endWrite (%file)
+function InstrumentsFileIO::end (%file)
 {
 	if (isObject(%file))
 	{
 		%file.close();
 		%file.delete();
 	}
+}
+
+// ------------------------------------------------
+
+function InstrumentsFileIO::startWrite (%fileName, %type, %isServer)
+{
+	return InstrumentsFileIO::start(%fileName, $Instruments::FileMode::Write, %type, %isServer);
 }
 
 function InstrumentsFileIO::writeHeader (%file, %instrument, %credits, %uploader)
@@ -109,7 +151,7 @@ function InstrumentsFileIO::writePatternFile (%fileName, %pattern, %isServer, %i
 
 	InstrumentsFileIO::writeHeader(%file, %instrument, %credits, %uploader);
 	InstrumentsFileIO::writePattern(%file, %pattern);
-	InstrumentsFileIO::endWrite(%file);
+	InstrumentsFileIO::end(%file);
 
 	return true;
 }
@@ -125,7 +167,7 @@ function InstrumentsFileIO::writeSongFile (%fileName, %song, %patterns, %isServe
 
 	InstrumentsFileIO::writeHeader(%file, %instrument, %credits, %uploader);
 	InstrumentsFileIO::writeSong(%file, %song, %patterns);
-	InstrumentsFileIO::endWrite(%file);
+	InstrumentsFileIO::end(%file);
 
 	return true;
 }
@@ -155,6 +197,11 @@ function InstrumentsFileIO::getTypeString (%type)
 	}
 }
 
+function InstrumentsFileIO::isValidMode (%mode)
+{
+	return %mode $= $Instruments::FileMode::Read || %mode $= $Instruments::FileMode::Write;
+}
+
 function InstrumentsFileIO::isValidType (%type)
 {
 	return %type $= $Instruments::FileType::Pattern || %type $= $Instruments::FileType::Song;
@@ -167,7 +214,7 @@ function InstrumentsFileIO::isValidFileName (%fileName)
 		return false;
 	}
 
-	if (strlen (%filename) >= 255)
+	if (strlen(%filename) >= 255)
 	{
 		return false;
 	}

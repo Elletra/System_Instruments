@@ -30,10 +30,6 @@ $Instruments::Max::SongPatterns = 50;
 $Instruments::Max::PatternLength = 255;
 $Instruments::Max::SongLength = 255;
 
-$Instruments::FileType::Invalid = -1;
-$Instruments::FileType::Pattern = 0;
-$Instruments::FileType::Song = 1;
-
 // ------------------------------------------------
 
 // A hack to fix inheritance because it completely breaks unless the super class relationship is
