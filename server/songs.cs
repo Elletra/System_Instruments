@@ -52,23 +52,11 @@ function SimObject::instrPlayNextPattern (%this, %delay)
 	else
 	{
 		// We don't want the song to end just because there's an invalid index, but we also don't
-		// want to play it.
+		// want to play a pattern with an invalid index.
 		%pattern = "";
 	}
 
 	%this.instrPlayPattern(%pattern, 0, %delay);
-}
-
-// ------------------------------------------------
-
-function SimObject::onInstrumentsSongStart (%this)
-{
-	%this.instrIsPlayingSong = true;
-}
-
-function SimObject::onInstrumentsSongEnd (%this)
-{
-	%this.instrIsPlayingSong = false;
 }
 
 // ------------------------------------------------
@@ -85,4 +73,16 @@ function SimObject::instrStopPlaying (%this)
 
 	%this.instrIsPlayingSong = false;
 	%this.instrIsPlayingPattern = false;
+}
+
+// ------------------------------------------------
+
+function SimObject::onInstrumentsSongStart (%this)
+{
+	%this.instrIsPlayingSong = true;
+}
+
+function SimObject::onInstrumentsSongEnd (%this)
+{
+	%this.instrIsPlayingSong = false;
 }

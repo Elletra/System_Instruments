@@ -27,13 +27,6 @@ function InstrumentServerDatabase::onRemove (%this)
 
 // ------------------------------------------------
 
-function InstrumentServerDatabase::createEntry (%this, %name)
-{
-	return InstrumentServerData::create(%name);
-}
-
-// ------------------------------------------------
-
 function InstrumentServerDatabase::getNoteSound (%this, %instrument, %note)
 {
 	if (!%this.hasInstrument(%instrument))
@@ -44,6 +37,11 @@ function InstrumentServerDatabase::getNoteSound (%this, %instrument, %note)
 	%data = %this.getInstrument(%instrument);
 
 	return %data.hasNote(%note) ? %data.getNoteSound(%note) : 0;
+}
+
+function InstrumentServerDatabase::createEntry (%this, %name)
+{
+	return InstrumentServerData::create(%name);
 }
 
 // ------------------------------------------------

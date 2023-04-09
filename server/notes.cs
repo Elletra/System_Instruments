@@ -28,8 +28,6 @@ function SimObject::instrPlaySound (%this, %sound)
 	// To be overridden by subclasses.
 }
 
-// ------------------------------------------------
-
 function SimObject::onInstrumentsPlayNote (%this, %parsedNote)
 {
 	// To be overridden by subclasses.
@@ -55,8 +53,6 @@ function GameConnection::instrPlaySound (%this, %sound)
 		%this.play2D(%sound);
 	}
 }
-
-// ------------------------------------------------
 
 function GameConnection::onInstrumentsPlayNote (%this, %parsedNote)
 {
