@@ -6,7 +6,7 @@ exec("./songs.cs");
 exec("./database.cs");
 exec("./misc.cs");
 
-exec("./packaged.cs");
+exec("./package.cs");
 
 if (!isObject(InstrumentsServer))
 {

@@ -5,4 +5,4 @@ exec("./songs.cs");
 exec("./database.cs");
 exec("./files.cs");
 
-exec("./packaged.cs");
+exec("./package.cs");
