@@ -2,7 +2,7 @@
 // The instrument database is an object that contains data on instruments such as note names,
 // sound datablocks (server only, see "server/database.cs"), etc.
 //
-// This is the base super class that client- and server-specific databases will inherit from.
+// This is the base super class that client- and server-specific databases inherit from.
 // ------------------------------------------------
 
 // ------------------------------------------------
@@ -19,7 +19,7 @@ function InstrumentDatabase::create (%name)
 
 function InstrumentDatabase::onAdd (%this)
 {
-	// Implementation to allow other scripts to package it.
+	// Implementation to allow other scripts to package the function.
 }
 
 function InstrumentDatabase::onRemove (%this)
@@ -38,7 +38,7 @@ function InstrumentDatabase::addInstrument (%this, %name)
 
 	if (!InstrumentsServer::isValidInstrumentName(%name))
 	{
-		error("addInstrument() - Invalid instrument name: ", %name);
+		error("addInstrument() - Invalid instrument name '", %name, "'");
 		return 0;
 	}
 
@@ -75,43 +75,6 @@ function InstrumentDatabase::createEntry (%this, %name)
 
 // ------------------------------------------------
 
-// Clear name mapping before clearing database.
-function InstrumentDatabase::clear (%this)
-{
-	%count = %this.getCount();
-
-	for (%i = 0; %i < %count; %i++)
-	{
-		%this.instrData[%this.getObject(%i).instrName] = "";
-	}
-
-	Parent::clear();
-}
-
-// Clear name mapping before deleting everything.
-function InstrumentDatabase::deleteAll (%this)
-{
-	%count = %this.getCount();
-
-	for (%i = 0; %i < %count; %i++)
-	{
-		%this.instrData[%this.getObject(%i).instrName] = "";
-	}
-
-	Parent::deleteAll(%this);
-}
-
-// We don't want anyone removing instruments from databases, so we override the `remove()` method
-// inherited from `ScriptGroup`.
-//
-// I really don't like doing this, but it's necessary.
-function InstrumentDatabase::remove ()
-{
-	error("InstrumentDatabase::remove() - Cannot remove specific instruments from database");
-}
-
-// ------------------------------------------------
-
 function InstrumentData::create (%name)
 {
 	return new ScriptObject ()
@@ -130,7 +93,7 @@ function InstrumentData::onAdd (%this)
 
 function InstrumentData::onRemove (%this)
 {
-	// Implementation to allow other scripts to package it.
+	// Implementation to allow other scripts to package the function.
 }
 
 // ------------------------------------------------
