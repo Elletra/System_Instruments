@@ -16,9 +16,9 @@
 
 function InstrumentsFileIO::startWrite (%fileName, %type, %isServer)
 {
-	if (trim(%fileName) $= "")
+	if (!InstrumentsFileIO::isValidFileName(%fileName))
 	{
-		error("openForWrite() - Blank file name");
+		error("openForWrite() - Invalid file name '", %fileName, "'");
 		return 0;
 	}
 
@@ -158,4 +158,30 @@ function InstrumentsFileIO::getTypeString (%type)
 function InstrumentsFileIO::isValidType (%type)
 {
 	return %type $= $Instruments::FileType::Pattern || %type $= $Instruments::FileType::Song;
+}
+
+function InstrumentsFileIO::isValidFileName (%fileName)
+{
+	if (strlen(%filename) <= 0)
+	{
+		return false;
+	}
+
+	if (strlen (%filename) >= 255)
+	{
+		return false;
+	}
+
+	%chars = "\\ / : ; * ? \" < > | \r \n \x7F \xA0";
+	%count = getWordCount(%chars);
+
+	for (%i = 0; %i < %count; %i++)
+	{
+		if (strpos(%fileName, getWord(%chars, %i)) != -1)
+		{
+			return false;
+		}
+	}
+
+	return stripMLControlChars(%fileName) $= %fileName;
 }
