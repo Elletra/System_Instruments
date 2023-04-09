@@ -1,0 +1,1 @@
+exec("./common/main.cs");
