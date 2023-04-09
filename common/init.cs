@@ -4,6 +4,7 @@
 
 $Instruments::Version = "2.0.0";
 $Instruments::NotationVersion = 4;
+$Instruments::FileVersion = 2;
 
 // I generally don't like arbitrary limitations, so I set this to the lowest possible value.
 $Instruments::Min::Tempo = 1;
@@ -28,6 +29,10 @@ $Instruments::Max::SongPatterns = 50;
 // serverCmd arguments have a length limit of 255 characters.
 $Instruments::Max::PatternLength = 255;
 $Instruments::Max::SongLength = 255;
+
+$Instruments::FileType::Invalid = -1;
+$Instruments::FileType::Pattern = 0;
+$Instruments::FileType::Song = 1;
 
 // ------------------------------------------------
 
