@@ -4,6 +4,9 @@
 
 $Instruments::Version = "2.0.0";
 $Instruments::NotationVersion = 4;
+
+// There was no `FileVersion` variable in the 1.x.x versions of instruments, but this add-on does
+// use a different file format from the 1.x.x versions, so we started at 2 for the 2.0.0 release.
 $Instruments::FileVersion = 2;
 
 // I generally don't like arbitrary limitations, so I set this to the lowest possible value.
@@ -26,9 +29,29 @@ $Instruments::Default::Tempo = 120;
 // This just feels like a good limit.
 $Instruments::Max::SongPatterns = 50;
 
-// serverCmd arguments have a length limit of 255 characters.
+// The reason for these is that serverCmd arguments have a length limit of 255 characters.
 $Instruments::Max::PatternLength = 255;
 $Instruments::Max::SongLength = 255;
+
+// ------------------------------------------------
+
+$Instruments::ErrorCodeCount = -1;
+
+// No error.
+$Instruments::Error::None = $Instruments::ErrorCodeCount++;
+// The file did not start with "BLM".
+$Instruments::Error::FileSignature = $Instruments::ErrorCodeCount++;
+// Invalid file type (pattern, song, bindset, etc.).
+$Instruments::Error::FileType = $Instruments::ErrorCodeCount++;
+// Unsupported file version.
+$Instruments::Error::FileVersion = $Instruments::ErrorCodeCount++;
+// Unsupported notation version.
+$Instruments::Error::NotationVersion = $Instruments::ErrorCodeCount++;
+
+// ------------------------------------------------
+
+$Instruments::FileType::Pattern = 0;
+$Instruments::FileType::Song = 1;
 
 // ------------------------------------------------
 
