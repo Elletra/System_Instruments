@@ -80,7 +80,13 @@ function FileObject::instrReadSong (%this)
 
 	%this.instrFileSetSong(%this.readLine());
 
+	// Blank out any existing song patterns.
 	for (%i = 0; %i < $Instruments::Max::SongPatterns; %i++)
+	{
+		%this.instrFileSetSongPattern(%i, "");
+	}
+
+	for (%i = 0; %i < $Instruments::Max::SongPatterns && !%this.isEOF(); %i++)
 	{
 		%this.instrFileSetSongPattern(%i, %this.readLine());
 	}
