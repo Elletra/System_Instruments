@@ -67,8 +67,7 @@ function InstrumentsFileIO::isValidType (%type)
 	return %type $= $Instruments::FileType::Pattern || %type $= $Instruments::FileType::Song;
 }
 
-// This function is more what this add-on supports for file names, not necessarily Windows-specific
-// limitations, though those are also accounted for.
+// This function is what the add-on supports for file names (which includes Windows limitations).
 function InstrumentsFileIO::isValidFileName (%fileName)
 {
 	if (strlen(%filename) <= 0)
