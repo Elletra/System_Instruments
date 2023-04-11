@@ -9,7 +9,7 @@
 
 function InstrumentDatabase::create (%name)
 {
-	return new ScriptGroup (%name)
+	return new ScriptObject (%name)
 	{
 		superClass = InstrumentDatabase;
 	};
@@ -19,12 +19,12 @@ function InstrumentDatabase::create (%name)
 
 function InstrumentDatabase::onAdd (%this)
 {
-	// Implementation to allow other scripts to package the function.
+	%this.instrCount = 0;
 }
 
 function InstrumentDatabase::onRemove (%this)
 {
-	%this.deleteAll();
+	%this.clear();
 }
 
 // ------------------------------------------------
@@ -43,28 +43,48 @@ function InstrumentDatabase::addInstrument (%this, %name)
 	}
 
 	%entry = %this.createEntry(%name);
+	%index = %this.instrCount;
 
-	// Map name to instrument data for quicker lookups.
 	%this.instrData[%name] = %entry;
-
-	%this.add(%entry);
+	%this.instrName[%index] = %name;
+	%this.instrIndex[%name] = %index;
+	%this.instrCount++;
 
 	return %entry;
 }
 
 function InstrumentDatabase::getInstrument (%this, %name)
 {
-	if (!%this.hasInstrument(%name))
-	{
-		return 0;
-	}
-
-	return %this.instrData[%name];
+	return %this.hasInstrument(%name) ? %this.instrData[%name] : 0;
 }
 
 function InstrumentDatabase::hasInstrument (%this, %name)
 {
 	return %this.instrData[%name] !$= "";
+}
+
+function InstrumentDatabase::getCount (%this)
+{
+	return %this.instrCount;
+}
+
+function InstrumentDatabase::clear (%this)
+{
+	%count = %this.getCount();
+
+	for (%i = 0; %i < %count; %i++)
+	{
+		%name = %this.instrName[%i];
+		%data = %this.instrData[%name];
+
+		%this.instrData[%name] = "";
+		%this.instrName[%i] = "";
+		%this.instrIndex[%name] = "";
+
+		%data.delete();
+	}
+
+	%this.instrCount = 0;
 }
 
 // To allow subclasses to override and use custom classes (see "server/database.cs").

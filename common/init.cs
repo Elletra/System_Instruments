@@ -61,7 +61,7 @@ $Instruments::FileType::Song = 1;
 // This happens because TorqueScript is a horrible language!
 function Instruments::fixInheritanceHack ()
 {
-	new ScriptGroup (InstrumentsServer)
+	new ScriptObject (InstrumentsServer)
 	{
 		superClass = InstrumentDatabase;
 		class = InstrumentServerDatabase;

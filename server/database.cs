@@ -6,7 +6,7 @@
 
 function InstrumentServerDatabase::create (%name)
 {
-	return new ScriptGroup (%name)
+	return new ScriptObject (%name)
 	{
 		superClass = InstrumentDatabase;
 		class = InstrumentServerDatabase;
@@ -39,20 +39,20 @@ function InstrumentServerDatabase::getNoteSound (%this, %instrument, %note)
 	return %data.hasNote(%note) ? %data.getNoteSound(%note) : 0;
 }
 
-function InstrumentServerDatabase::createEntry (%this, %name)
+function InstrumentServerDatabase::createEntry (%this, %instrumentName)
 {
-	return InstrumentServerData::create(%name);
+	return InstrumentServerData::create(%instrumentName);
 }
 
 // ------------------------------------------------
 
-function InstrumentServerData::create (%name)
+function InstrumentServerData::create (%instrumentName)
 {
 	return new ScriptObject ()
 	{
 		superClass = InstrumentData;
 		class = InstrumentServerData;
-		instrName = %name;
+		instrName = %instrumentName;
 	};
 }
 
