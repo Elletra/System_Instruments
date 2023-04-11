@@ -156,6 +156,5 @@ function InstrumentData::getNoteIndex (%this, %name)
 
 function InstrumentData::getCount (%this)
 {
-	// Coerce to integer.
-	return mFloatLength(%this.instrNoteCount, 0);
+	return %this.instrNoteCount;
 }
