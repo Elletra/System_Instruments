@@ -71,7 +71,12 @@ function Instruments_Play3D(%source, %sound, %position) {
 // thx shock
 function InstrumentsServer::playPitchedSound(%this, %obj, %sound, %pitch, %position) {
   %oldTimescale = getTimescale();
-  setTimescale(%pitch);
+
+  if ($Version <= 20) {
+    commandToAll('timescale', %pitch);
+  } else {
+    setTimescale(%pitch);
+  }
 
   // Swollow says WebComPostServerUpdateLoop and pingMatchMakerLoop are needed,
   // or else eventually things get fucked up? idk
@@ -85,7 +90,11 @@ function InstrumentsServer::playPitchedSound(%this, %obj, %sound, %pitch, %posit
     Instruments_Play3D(%obj, %sound, %position);
   }
 
-  setTimescale(%oldTimescale);
+  if ($Version <= 20) {
+    commandToAll('timescale', %oldTimescale);
+  } else {
+    setTimescale(%oldTimescale);
+  }
 }
 
 // Main function
@@ -241,4 +250,9 @@ function InstrumentsServer::playNote(%this, %obj, %note, %instrument) {
       %client.bottomPrint(%bottomPrint, 1, true);
     }
   }
+}
+
+// Special code for Blockland Rebuilt
+if (isFunction("isBlocklandRebuilt") && isBlocklandRebuilt()) {
+  exec("./playNoteRebuilt.cs");
 }
