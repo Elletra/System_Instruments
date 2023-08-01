@@ -39,6 +39,26 @@ $Instruments::ErrorCodeCount = -1;
 
 // No error.
 $Instruments::Error::None = $Instruments::ErrorCodeCount++;
+// Object does not exist.
+$Instruments::Error::ObjectDoesNotExist = $Instruments::ErrorCodeCount++;
+// Value contains invalid characters.
+$Instruments::Error::InvalidChars = $Instruments::ErrorCodeCount++;
+// Pattern is too short.
+$Instruments::Error::PatternMin = $Instruments::ErrorCodeCount++;
+// Pattern is too long.
+$Instruments::Error::PatternMax = $Instruments::ErrorCodeCount++;
+// Song is too short.
+$Instruments::Error::SongMin = $Instruments::ErrorCodeCount++;
+// Song is too long.
+$Instruments::Error::SongMax = $Instruments::ErrorCodeCount++;
+// Not enough song patterns in a song (0).
+$Instruments::Error::SongPatternMin = $Instruments::ErrorCodeCount++;
+// Too many song patterns in a song.
+$Instruments::Error::SongPatternMax = $Instruments::ErrorCodeCount++;
+// Failed to open file for read/write.
+$Instruments::Error::FileOpen = $Instruments::ErrorCodeCount++;
+// Invalid file name.
+$Instruments::Error::FileName = $Instruments::ErrorCodeCount++;
 // The file did not start with "BLM".
 $Instruments::Error::FileSignature = $Instruments::ErrorCodeCount++;
 // Invalid file type (pattern, song, bindset, etc.).

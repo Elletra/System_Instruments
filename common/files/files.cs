@@ -7,12 +7,11 @@ exec("./write.cs");
 // Functions shared by read and write functions.
 // ------------------------------------------------
 
-function FileObject::instrFileSetHeader (%this, %fileVer, %notVer, %type, %instrument, %credits, %uploader)
+function FileObject::instrFileSetHeader (%this, %fileVersion, %notationVersion, %type, %credits, %uploader)
 {
-	%this.instrFileVersion = %fileVer;
-	%this.instrFileNotationVersion = %notVer;
+	%this.instrFileVersion = %fileVersion;
+	%this.instrFileNotationVersion = %notationVersion;
 	%this.instrFileType = %type;
-	%this.instrFileInstrument = %instrument;
 	%this.instrFileCredits = %credits;
 	%this.instrFileUploader = %uploader;
 }
@@ -56,7 +55,7 @@ function InstrumentsFileIO::getTypeString (%type)
 			return "song";
 
 		default:
-			return "invalid";
+			return "invalidType";
 	}
 }
 
@@ -67,7 +66,7 @@ function InstrumentsFileIO::isValidType (%type)
 	return %type $= $Instruments::FileType::Pattern || %type $= $Instruments::FileType::Song;
 }
 
-// This function is what the add-on supports for file names (which includes Windows limitations).
+// This add-on has a few more file name restrictions than what Windows supports.
 function InstrumentsFileIO::isValidFileName (%fileName)
 {
 	if (strlen(%filename) <= 0)
