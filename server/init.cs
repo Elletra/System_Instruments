@@ -119,6 +119,9 @@ function InstrumentsServer::loadInstrumentNotes(%this) {
         description = "AudioClosest3D";
         fileName = %file;
         preload = true;
+        // Blockland Rebuilt-specific field that allows clients to mute instruments if they have
+        // "Play Music" unchecked.
+        isMusic = true;
       };
 
       if (!isObject(%obj = nameToID("genericInstrumentSound"))) { 
