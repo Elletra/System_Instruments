@@ -12,8 +12,8 @@ function FileObject::instrFileSetHeader (%this, %fileVersion, %notationVersion, 
 	%this.instrFileVersion = %fileVersion;
 	%this.instrFileNotationVersion = %notationVersion;
 	%this.instrFileType = %type;
-	%this.instrFileCredits = %credits;
-	%this.instrFileUploader = %uploader;
+	%this.instrFileCredits = getSubStr(%credits, 0, $Instruments::Max::CreditsLength);
+	%this.instrFileUploader = getSubStr(%uploader, 0, $Instruments::Max::UploaderLength);
 }
 
 function FileObject::instrFileSetPattern (%this, %pattern)

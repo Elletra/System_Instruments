@@ -32,6 +32,8 @@ $Instruments::Max::SongPatterns = 50;
 // The reason for these is that serverCmd arguments have a length limit of 255 characters.
 $Instruments::Max::PatternLength = 255;
 $Instruments::Max::SongLength = 255;
+$Instruments::Max::CreditsLength = 255;
+$Instruments::Max::UploaderLength = 255;
 
 // ------------------------------------------------
 
