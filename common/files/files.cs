@@ -79,7 +79,7 @@ function InstrumentsFileIO::isValidFileName (%fileName)
 		return false;
 	}
 
-	%chars = "\\ / : ; * ? \" < > | \r \n \x7F \xA0";
+	%chars = "\\ / : ; * ? \" < > | \x7F \xA0";
 	%count = getWordCount(%chars);
 
 	for (%i = 0; %i < %count; %i++)
