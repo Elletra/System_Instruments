@@ -1,6 +1,6 @@
 // Extension: .blm (*B*lock*l*and *M*usic file)
 // Format:
-//   BLM <file version> <notation version> <type: 0 for pattern, 1 for song> <recommended instrument>
+//   BLM <file version> <notation version> <type: 0 for pattern, 1 for song>
 //   <credits>
 //   <uploader name>TAB<uploader bl_id>
 //   <pattern if pattern, song if song>
@@ -13,7 +13,7 @@
 
 //* TODO: Add support for reading/converting old notation versions. *//
 
-function FileObject::instrReadHeader (%this, %expectedFileType)
+function FileObject::instrFileRead (%this, %expectedFileType)
 {
 	%data = %this.readLine();
 	%signature = getWord(%data, 0);
@@ -25,7 +25,7 @@ function FileObject::instrReadHeader (%this, %expectedFileType)
 
 	%fileVersion = getWord(%data, 1);
 
-	// File versions earlier than 2 aren't currently supported, nor are versions newer than this.
+	// File versions earlier than 2 aren't currently supported, nor are versions newer than ours.
 	if (%fileVersion < 2 || %fileVersion > $Instruments::FileVersion)
 	{
 		return $Instruments::Error::FileVersion TAB %fileVersion;
@@ -33,7 +33,7 @@ function FileObject::instrReadHeader (%this, %expectedFileType)
 
 	%notationVersion = getWord(%data, 2);
 
-	// Notation versions earlier than 4 aren't currently supported, nor are versions newer than this.
+	// Notation versions earlier than 4 aren't currently supported, nor are versions newer than ours.
 	if (%notationVersion < 4 || %notationVersion > $Instruments::NotationVersion)
 	{
 		return $Instruments::Error::NotationVersion TAB %notationVersion;
@@ -46,49 +46,32 @@ function FileObject::instrReadHeader (%this, %expectedFileType)
 		return $Instruments::Error::FileType TAB %type;
 	}
 
-	%instrument = getWord(%data, 4);
 	%credits = %this.readLine();
 	%uploader = %this.readLine();
 
-	%this.instrFileSetHeader(%fileVersion, %notationVersion, %type, %instrument, %credits, %uploader);
+	%this.instrFileSetHeader(%fileVersion, %notationVersion, %type, %credits, %uploader);
 
-	return $Instruments::Error::None;
-}
-
-function FileObject::instrReadPattern (%this)
-{
-	%result = %this.instrReadHeader($Instruments::FileType::Pattern);
-
-	if (getField(%result, 0) !$= $Instruments::Error::None)
+	switch (%type)
 	{
-		return %result;
-	}
+		case $Instruments::FileType::Pattern:
+			%this.instrFileSetPattern(%this.readLine());
 
-	%this.instrFileSetPattern(%this.readLine());
+		case $Instruments::FileType::Song:
+			%this.instrFileSetSong(%this.readLine());
 
-	return $Instruments::Error::None;
-}
+			// Blank out any existing song patterns.
+			for (%i = 0; %i < $Instruments::Max::SongPatterns; %i++)
+			{
+				%this.instrFileSetSongPattern(%i, "");
+			}
 
-function FileObject::instrReadSong (%this)
-{
-	%result = %this.instrReadHeader($Instruments::FileType::Song);
+			for (%i = 0; %i < $Instruments::Max::SongPatterns && !%this.isEOF(); %i++)
+			{
+				%this.instrFileSetSongPattern(%i, %this.readLine());
+			}
 
-	if (getField(%result, 0) !$= $Instruments::Error::None)
-	{
-		return %result;
-	}
-
-	%this.instrFileSetSong(%this.readLine());
-
-	// Blank out any existing song patterns.
-	for (%i = 0; %i < $Instruments::Max::SongPatterns; %i++)
-	{
-		%this.instrFileSetSongPattern(%i, "");
-	}
-
-	for (%i = 0; %i < $Instruments::Max::SongPatterns && !%this.isEOF(); %i++)
-	{
-		%this.instrFileSetSongPattern(%i, %this.readLine());
+		default:
+			return $Instruments::Error::FileType TAB %expectedFileType;
 	}
 
 	return $Instruments::Error::None;
