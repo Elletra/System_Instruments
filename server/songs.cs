@@ -16,15 +16,13 @@ function SimObject::instrPlaySong (%this, %song)
 
 	%length = strlen(%song);
 
-	if (%length <= 0 || %length > $Instruments::Max::SongLength)
+	if (%length > 0 && %length <= $Instruments::Max::SongLength)
 	{
-		return;
+		%this.instrSong = %song;
+		%this.instrSongIndex = -1;
+
+		%this.instrPlayNextPattern();
 	}
-
-	%this.instrSong = %song;
-	%this.instrSongIndex = -1;
-
-	%this.instrPlayNextPattern();
 }
 
 // If %delay is blank, it will be set to the default tempo.
@@ -43,20 +41,10 @@ function SimObject::instrPlayNextPattern (%this, %delay)
 		return;
 	}
 
-	%patternIndex = getWord(%this.instrSong, %this.instrSongIndex);
+	%index = getWord(%this.instrSong, %this.instrSongIndex);
 
-	if (Instruments::isValidPatternIndex(%patternIndex))
-	{
-		%pattern = %this.instrSongPattern[%patternIndex];
-	}
-	else
-	{
-		// We don't want the song to end just because there's an invalid index, but we also don't
-		// want to play a pattern with an invalid index.
-		%pattern = "";
-	}
-
-	%this.instrPlayPattern(%pattern, 0, %delay);
+	%this.instrPlayPattern(Instruments::isValidPatternIndex(%index)
+		? %this.instrSongPattern[%index] : "", 0, %delay);
 }
 
 // ------------------------------------------------
