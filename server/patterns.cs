@@ -1,5 +1,5 @@
 // Generally, if you want to call this function, you'll want to leave %index and %delay blank.
-function SimObject::instrPlayPattern (%this, %pattern, %index, %delay)
+function SimObject::instrPlayPattern(%this, %pattern, %index, %delay)
 {
 	cancel(%this.instrSongSchedule);
 	cancel(%this.instrPatternSchedule);
@@ -59,12 +59,12 @@ function SimObject::instrPlayPattern (%this, %pattern, %index, %delay)
 
 // ------------------------------------------------
 
-function SimObject::onInstrumentsPatternStart (%this)
+function SimObject::onInstrumentsPatternStart(%this)
 {
 	%this.instrIsPlayingPattern = true;
 }
 
-function SimObject::onInstrumentsPatternEnd (%this, %delay)
+function SimObject::onInstrumentsPatternEnd(%this, %delay)
 {
 	%this.instrIsPlayingPattern = false;
 

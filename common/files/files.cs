@@ -7,7 +7,7 @@ exec("./write.cs");
 // Functions shared by read and write functions.
 // ------------------------------------------------
 
-function FileObject::instrFileSetHeader (%this, %fileVersion, %notationVersion, %type, %credits, %uploader)
+function FileObject::instrFileSetHeader(%this, %fileVersion, %notationVersion, %type, %credits, %uploader)
 {
 	%this.instrFileVersion = %fileVersion;
 	%this.instrFileNotationVersion = %notationVersion;
@@ -16,17 +16,17 @@ function FileObject::instrFileSetHeader (%this, %fileVersion, %notationVersion, 
 	%this.instrFileUploader = getSubStr(%uploader, 0, $Instruments::Max::UploaderLength);
 }
 
-function FileObject::instrFileSetPattern (%this, %pattern)
+function FileObject::instrFileSetPattern(%this, %pattern)
 {
 	%this.instrFilePattern = getSubStr(%pattern, 0, $Instruments::Max::PatternLength);
 }
 
-function FileObject::instrFileSetSong (%this, %song)
+function FileObject::instrFileSetSong(%this, %song)
 {
 	%this.instrFileSong = getSubStr(%song, 0, $Instruments::Max::SongLength);
 }
 
-function FileObject::instrFileSetSongPattern (%this, %index, %pattern)
+function FileObject::instrFileSetSongPattern(%this, %index, %pattern)
 {
 	if (Instruments::isValidPatternIndex(%index))
 	{
@@ -36,7 +36,7 @@ function FileObject::instrFileSetSongPattern (%this, %index, %pattern)
 
 // ------------------------------------------------
 
-function InstrumentsFileIO::getFilePath (%fileName, %type, %isServer)
+function InstrumentsFileIO::getFilePath(%fileName, %type, %isServer)
 {
 	%folder = %isServer ? "server" : "client";
 	%typeString = InstrumentsFileIO::getTypeString(%type);
@@ -44,7 +44,7 @@ function InstrumentsFileIO::getFilePath (%fileName, %type, %isServer)
 	return "config/" @ %folder @ "/instruments/" @ %typeString @ "s/" @ %fileName @ ".blm";
 }
 
-function InstrumentsFileIO::getTypeString (%type)
+function InstrumentsFileIO::getTypeString(%type)
 {
 	switch$ (%type)
 	{
@@ -61,13 +61,13 @@ function InstrumentsFileIO::getTypeString (%type)
 
 // ------------------------------------------------
 
-function InstrumentsFileIO::isValidType (%type)
+function InstrumentsFileIO::isValidType(%type)
 {
 	return %type $= $Instruments::FileType::Pattern || %type $= $Instruments::FileType::Song;
 }
 
 // This add-on has a few more file name restrictions than what Windows supports.
-function InstrumentsFileIO::isValidFileName (%fileName)
+function InstrumentsFileIO::isValidFileName(%fileName)
 {
 	if (strlen(%filename) <= 0)
 	{

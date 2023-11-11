@@ -1,4 +1,4 @@
-function FileObject::instrFileWrite (%this)
+function FileObject::instrFileWrite(%this)
 {
 	%fileType = %this.instrFileType;
 
@@ -39,7 +39,7 @@ function FileObject::instrFileWrite (%this)
 
 // ------------------------------------------------
 
-function InstrumentsFileIO::savePattern (%fileName, %isServer, %pattern, %credits, %uploader)
+function InstrumentsFileIO::savePattern(%fileName, %isServer, %pattern, %credits, %uploader)
 {
 	if (!InstrumentsFileIO::isValidFileName(%fileName))
 	{
@@ -78,7 +78,7 @@ function InstrumentsFileIO::savePattern (%fileName, %isServer, %pattern, %credit
 	return $Instruments::Error::None;
 }
 
-function InstrumentsFileIO::saveSong (%fileName, %isServer, %song, %patterns, %credits, %uploader)
+function InstrumentsFileIO::saveSong(%fileName, %isServer, %song, %patterns, %credits, %uploader)
 {
 	if (!InstrumentsFileIO::isValidFileName(%fileName))
 	{

@@ -4,9 +4,9 @@
 
 // ------------------------------------------------
 
-function InstrumentServerDatabase::create (%name)
+function InstrumentServerDatabase::create(%name)
 {
-	return new ScriptObject (%name)
+	return new ScriptObject(%name)
 	{
 		superClass = InstrumentDatabase;
 		class = InstrumentServerDatabase;
@@ -15,19 +15,19 @@ function InstrumentServerDatabase::create (%name)
 
 // ------------------------------------------------
 
-function InstrumentServerDatabase::onAdd (%this)
+function InstrumentServerDatabase::onAdd(%this)
 {
 	Parent::onAdd(%this);
 }
 
-function InstrumentServerDatabase::onRemove (%this)
+function InstrumentServerDatabase::onRemove(%this)
 {
 	Parent::onRemove(%this);
 }
 
 // ------------------------------------------------
 
-function InstrumentServerDatabase::getNoteSound (%this, %instrument, %note)
+function InstrumentServerDatabase::getNoteSound(%this, %instrument, %note)
 {
 	if (!%this.hasInstrument(%instrument))
 	{
@@ -39,16 +39,16 @@ function InstrumentServerDatabase::getNoteSound (%this, %instrument, %note)
 	return %data.hasNote(%note) ? %data.getNoteSound(%note) : 0;
 }
 
-function InstrumentServerDatabase::createEntry (%this, %instrumentName)
+function InstrumentServerDatabase::createEntry(%this, %instrumentName)
 {
 	return InstrumentServerData::create(%instrumentName);
 }
 
 // ------------------------------------------------
 
-function InstrumentServerData::create (%instrumentName)
+function InstrumentServerData::create(%instrumentName)
 {
-	return new ScriptObject ()
+	return new ScriptObject()
 	{
 		superClass = InstrumentData;
 		class = InstrumentServerData;
@@ -58,19 +58,19 @@ function InstrumentServerData::create (%instrumentName)
 
 // ------------------------------------------------
 
-function InstrumentServerData::onAdd (%this)
+function InstrumentServerData::onAdd(%this)
 {
 	Parent::onAdd(%this);
 }
 
-function InstrumentServerData::onRemove (%this)
+function InstrumentServerData::onRemove(%this)
 {
 	Parent::onRemove(%this);
 }
 
 // ------------------------------------------------
 
-function InstrumentServerData::addNote (%this, %name, %datablock)
+function InstrumentServerData::addNote(%this, %name, %datablock)
 {
 	%added = Parent::addNote(%this, %name);
 
@@ -82,7 +82,7 @@ function InstrumentServerData::addNote (%this, %name, %datablock)
 	return %added;
 }
 
-function InstrumentServerData::getNoteSound (%this, %noteName)
+function InstrumentServerData::getNoteSound(%this, %noteName)
 {
 	return %this.instrNoteSound[%noteName];
 }

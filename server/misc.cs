@@ -1,9 +1,9 @@
-function SimObject::instrGetInstrument (%this)
+function SimObject::instrGetInstrument(%this)
 {
 	return %this.instrInstrument;
 }
 
-function SimObject::instrSetInstrument (%this, %instrument)
+function SimObject::instrSetInstrument(%this, %instrument)
 {
 	if (InstrumentsServer.hasInstrument(%instrument))
 	{

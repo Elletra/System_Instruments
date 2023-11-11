@@ -13,7 +13,7 @@
 
 //* TODO: Add support for reading/converting old notation versions. *//
 
-function FileObject::instrFileRead (%this, %expectedFileType)
+function FileObject::instrFileRead(%this, %expectedFileType)
 {
 	%data = %this.readLine();
 	%signature = getWord(%data, 0);

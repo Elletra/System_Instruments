@@ -1,4 +1,4 @@
-function InstrumentsServer::create ()
+function InstrumentsServer::create()
 {
 	while (isObject(InstrumentsServer))
 	{
@@ -10,14 +10,14 @@ function InstrumentsServer::create ()
 
 // ------------------------------------------------
 
-function InstrumentsServer::init (%this)
+function InstrumentsServer::init(%this)
 {
 	%this.loadInstruments();
 }
 
 // ------------------------------------------------
 
-function InstrumentsServer::loadInstruments (%this)
+function InstrumentsServer::loadInstruments(%this)
 {
 	echo("\n--------- Loading Instruments ---------");
 
@@ -47,7 +47,7 @@ function InstrumentsServer::loadInstruments (%this)
 }
 
 // Since Torque can't handle nested file finding loops properly, we build a list of add-ons instead.
-function InstrumentsServer::buildAddOnList (%this)
+function InstrumentsServer::buildAddOnList(%this)
 {
 	%list = "";
 	%pattern = "Add-Ons/Instrument_*/server.cs";
@@ -73,7 +73,7 @@ function InstrumentsServer::buildAddOnList (%this)
 	return %list;
 }
 
-function InstrumentsServer::loadInstrument (%this, %addOn)
+function InstrumentsServer::loadInstrument(%this, %addOn)
 {
 	echo("Loading instrument: ", %addOn);
 
@@ -88,7 +88,7 @@ function InstrumentsServer::loadInstrument (%this, %addOn)
 	}
 }
 
-function InstrumentsServer::loadSoundFiles (%this, %addOn)
+function InstrumentsServer::loadSoundFiles(%this, %addOn)
 {
 	%pattern = "Add-Ons/" @ %addOn @ "/sounds/*.wav";
 
@@ -98,7 +98,7 @@ function InstrumentsServer::loadSoundFiles (%this, %addOn)
 	}
 }
 
-function InstrumentsServer::loadSoundFile (%this, %file)
+function InstrumentsServer::loadSoundFile(%this, %file)
 {
 	%fileBase = fileBase(%file);
 
@@ -133,7 +133,7 @@ function InstrumentsServer::loadSoundFile (%this, %file)
 	}
 }
 
-function InstrumentsServer::loadCredits (%this, %addOn)
+function InstrumentsServer::loadCredits(%this, %addOn)
 {
 	// TODO: Implement
 	error("ERROR: InstrumentsServer::loadCredits() not implemented!");
@@ -141,18 +141,18 @@ function InstrumentsServer::loadCredits (%this, %addOn)
 
 // ------------------------------------------------
 
-function InstrumentsServer::isAddOnEnabled (%addOn)
+function InstrumentsServer::isAddOnEnabled(%addOn)
 {
 	// `$AddOnLoaded` is for the game mode system.
 	return $AddOn__[%addOn] == 1 || $AddOnLoaded__[%addOn] == 1;
 }
 
-function InstrumentsServer::getSoundFileName (%instrument, %note)
+function InstrumentsServer::getSoundFileName(%instrument, %note)
 {
 	return "Instrument_" @ %instrument @ "_" @ strreplace(%note, "#", "Sharp") @ "_Sound";
 }
 
-function InstrumentsServer::createNoteSound (%instrument, %note, %file)
+function InstrumentsServer::createNoteSound(%instrument, %note, %file)
 {
 	%sound = InstrumentsServer::getSoundFileName(%instrument, %note);
 
@@ -169,7 +169,7 @@ function InstrumentsServer::createNoteSound (%instrument, %note, %file)
 		__TEMP_NOTE_NAME__.delete();
 	}
 
-	datablock AudioProfile (__TEMP_NOTE_NAME__)
+	datablock AudioProfile(__TEMP_NOTE_NAME__)
 	{
 		description = "AudioClosest3D";
 		fileName = %file;

@@ -89,15 +89,15 @@ $Instruments::FileType::Song = 1;
 // established first. (See here: https://forum.blockland.us/index.php?topic=290879.0)
 //
 // This happens because TorqueScript is a horrible language!
-function Instruments::fixInheritanceHack ()
+function Instruments::fixInheritanceHack()
 {
-	new ScriptObject (InstrumentsServer)
+	new ScriptObject(InstrumentsServer)
 	{
 		superClass = InstrumentDatabase;
 		class = InstrumentServerDatabase;
 	}.delete();
 
-	new ScriptObject ()
+	new ScriptObject()
 	{
 		superClass = InstrumentData;
 		class = InstrumentServerData;

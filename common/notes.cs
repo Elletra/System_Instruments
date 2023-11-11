@@ -1,5 +1,5 @@
 // Splits up a note into words and fields.
-function Instruments::parseNote (%note)
+function Instruments::parseNote(%note)
 {
 	%note = stripMLControlChars(stripChars(%note, " \t\n"));
 
@@ -14,25 +14,25 @@ function Instruments::parseNote (%note)
 }
 
 // Whether a note is an actual note or a directive (e.g. $T=120).
-function Instruments::isDirective (%note)
+function Instruments::isDirective(%note)
 {
 	return strpos(%note, "$") == 0;
 }
 
 // Whether a note is an actual note or a rest.
-function Instruments::isRest (%note)
+function Instruments::isRest(%note)
 {
 	return strpos(%note, "|") == 0;
 }
 
 // Converts tempo to a millisecond delay.
-function Instruments::getDelayFromTempo (%tempo)
+function Instruments::getDelayFromTempo(%tempo)
 {
 	return 60000 / mClamp(%tempo, $Instruments::Min::Tempo, $Instruments::Max::Tempo);
 }
 
 // Get delay for things like half notes, quarter notes, etc.
-function Instruments::getNoteDelay (%parsedNote, %baseDelay)
+function Instruments::getNoteDelay(%parsedNote, %baseDelay)
 {
 	if (Instruments::isDirective(%parsedNote))
 	{

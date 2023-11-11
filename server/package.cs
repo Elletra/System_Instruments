@@ -1,6 +1,6 @@
 package System_Instruments__server
 {
-	function createMission ()
+	function createMission()
 	{
 		Parent::createMission();
 
@@ -11,7 +11,7 @@ package System_Instruments__server
 		}
 	}
 
-	function onServerDestroyed ()
+	function onServerDestroyed()
 	{
 		// Delete it manually if it didn't get automatically deleted for some reason.
 		if (isObject(InstrumentsServer))

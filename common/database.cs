@@ -7,9 +7,9 @@
 
 // ------------------------------------------------
 
-function InstrumentDatabase::create (%name)
+function InstrumentDatabase::create(%name)
 {
-	return new ScriptObject (%name)
+	return new ScriptObject(%name)
 	{
 		superClass = InstrumentDatabase;
 	};
@@ -17,19 +17,19 @@ function InstrumentDatabase::create (%name)
 
 // ------------------------------------------------
 
-function InstrumentDatabase::onAdd (%this)
+function InstrumentDatabase::onAdd(%this)
 {
 	%this.instrCount = 0;
 }
 
-function InstrumentDatabase::onRemove (%this)
+function InstrumentDatabase::onRemove(%this)
 {
 	%this.clear();
 }
 
 // ------------------------------------------------
 
-function InstrumentDatabase::addInstrument (%this, %name)
+function InstrumentDatabase::addInstrument(%this, %name)
 {
 	if (%this.hasInstrument(%name))
 	{
@@ -53,22 +53,22 @@ function InstrumentDatabase::addInstrument (%this, %name)
 	return %entry;
 }
 
-function InstrumentDatabase::getInstrument (%this, %name)
+function InstrumentDatabase::getInstrument(%this, %name)
 {
 	return %this.hasInstrument(%name) ? %this.instrData[%name] : 0;
 }
 
-function InstrumentDatabase::hasInstrument (%this, %name)
+function InstrumentDatabase::hasInstrument(%this, %name)
 {
 	return %this.instrData[%name] !$= "";
 }
 
-function InstrumentDatabase::getCount (%this)
+function InstrumentDatabase::getCount(%this)
 {
 	return %this.instrCount;
 }
 
-function InstrumentDatabase::clear (%this)
+function InstrumentDatabase::clear(%this)
 {
 	%count = %this.getCount();
 
@@ -88,16 +88,16 @@ function InstrumentDatabase::clear (%this)
 }
 
 // To allow subclasses to override and use custom classes (see "server/database.cs").
-function InstrumentDatabase::createEntry (%this, %name)
+function InstrumentDatabase::createEntry(%this, %name)
 {
 	return InstrumentData::create(%name);
 }
 
 // ------------------------------------------------
 
-function InstrumentData::create (%name)
+function InstrumentData::create(%name)
 {
-	return new ScriptObject ()
+	return new ScriptObject()
 	{
 		superClass = InstrumentData;
 		instrName = %name;
@@ -106,19 +106,19 @@ function InstrumentData::create (%name)
 
 // ------------------------------------------------
 
-function InstrumentData::onAdd (%this)
+function InstrumentData::onAdd(%this)
 {
 	%this.instrNoteCount = 0;
 }
 
-function InstrumentData::onRemove (%this)
+function InstrumentData::onRemove(%this)
 {
 	// Implementation to allow other scripts to package the function.
 }
 
 // ------------------------------------------------
 
-function InstrumentData::addNote (%this, %name)
+function InstrumentData::addNote(%this, %name)
 {
 	if (%this.hasNote(%name))
 	{
@@ -139,22 +139,22 @@ function InstrumentData::addNote (%this, %name)
 	return true;
 }
 
-function InstrumentData::hasNote (%this, %name)
+function InstrumentData::hasNote(%this, %name)
 {
 	return %this.instrNoteIndex[%name] !$= "";
 }
 
-function InstrumentData::getNoteName (%this, %index)
+function InstrumentData::getNoteName(%this, %index)
 {
 	return %this.instrNoteName[%index];
 }
 
-function InstrumentData::getNoteIndex (%this, %name)
+function InstrumentData::getNoteIndex(%this, %name)
 {
 	return %this.instrNoteIndex[%name];
 }
 
-function InstrumentData::getCount (%this)
+function InstrumentData::getCount(%this)
 {
 	return %this.instrNoteCount;
 }

@@ -1,4 +1,4 @@
-function Instruments::validatePattern (%pattern)
+function Instruments::validatePattern(%pattern)
 {
 	%length = strlen(%pattern);
 
