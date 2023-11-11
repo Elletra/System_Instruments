@@ -26,6 +26,10 @@ function SimObject::instrPlayPattern (%this, %pattern, %index, %delay)
 	{
 		%delay = Instruments::getDelayFromTempo($Instruments::Default::Tempo);
 	}
+	else
+	{
+		%delay = mClamp(%delay, $Instruments::Min::Delay, $Instruments::Max::Delay);
+	}
 
 	%note = Instruments::parseNote(getWord(%pattern, %index));
 

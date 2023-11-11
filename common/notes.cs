@@ -44,6 +44,5 @@ function Instruments::getNoteDelay (%parsedNote, %baseDelay)
 		return %baseDelay;
 	}
 
-	// The notation format only allows whole notes to eighth notes due to technical limitations.
-	return %baseDelay / mClamp(getField(%parsedNote, 1), 1, 8);
+	return %baseDelay / mClamp(getField(%parsedNote, 1), $Instruments::Min::NoteDivision, $Instruments::Max::NoteDivision);
 }

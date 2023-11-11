@@ -20,8 +20,16 @@ $Instruments::Min::Tempo = 1;
 // If we were to go lower than 33.3333... things would probably get weird, so I think it's best to
 // just get it as close as possible to the tick rate without going under.
 //
-// Plus, the human ear can't hear faster than 33 milliseconds anyway ;)
+// Besides, the human ear can't hear faster than 33 milliseconds anyway ;)
 $Instruments::Max::Tempo = 225;
+
+// The notation format only supports whole notes to eighth notes due to technical limitations.
+$Instruments::Min::NoteDivision = 1;
+$Instruments::Max::NoteDivision = 8;
+
+// Tempo and delay are inversely related, so we swap them here.
+$Instruments::Min::Delay = mFloatLength(60000 / $Instruments::Max::Tempo, 0) / $Instruments::Max::NoteDivision;
+$Instruments::Max::Delay = mFloatLength(60000 / $Instruments::Min::Tempo, 0) * $Instruments::Min::NoteDivision;
 
 // This is the standard tempo for most music programs.
 $Instruments::Default::Tempo = 120;
