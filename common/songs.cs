@@ -4,6 +4,7 @@ function Instruments::isValidPatternIndex(%index)
 	return mClamp(%index, 0, $Instruments::Max::SongPatterns - 1) $= %index;
 }
 
+// Validates a song where %patterns is a string of patterns separated by newlines.
 function Instruments::validateSong(%song, %patterns)
 {
 	%length = strlen(%song);

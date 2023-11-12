@@ -2,7 +2,8 @@
 // The instrument database is an object that contains data on instruments such as note names,
 // sound datablocks (server only, see "server/database.cs"), etc.
 //
-// This is the base super class that client- and server-specific databases inherit from.
+// This is the base super class that client- and server-specific databases inherit from. You don't
+// really want to use it directly.
 // ------------------------------------------------
 
 // ------------------------------------------------

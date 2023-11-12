@@ -29,7 +29,7 @@ function InstrumentsServer::loadInstruments(%this)
 		%this.loadInstrument(getRecord(%list, %i));
 	}
 
-	//* Absolutely insane hack to not fuck up the add-on loading loop. (Torque is a good engine.) *//
+	//* Absolutely insane hack to not fuck up the main add-on loading loop. (Torque is a good engine.) *//
 
 	%pattern = "Add-Ons/*/server.cs";
 
@@ -46,7 +46,7 @@ function InstrumentsServer::loadInstruments(%this)
 	echo("\n\c4Loaded ", %count, " instrument", %count != 1 ? "s" : "", " successfully.");
 }
 
-// Since Torque can't handle nested file finding loops properly, we build a list of add-ons instead.
+// Since Torque can't handle nested file-finding loops properly, we build a list of add-ons instead.
 function InstrumentsServer::buildAddOnList(%this)
 {
 	%list = "";
