@@ -28,8 +28,8 @@ $Instruments::Min::NoteDivision = 1;
 $Instruments::Max::NoteDivision = 8;
 
 // Tempo and delay are inversely related, so we swap them here.
-$Instruments::Min::Delay = mFloatLength(60000 / $Instruments::Max::Tempo, 0) / $Instruments::Max::NoteDivision;
-$Instruments::Max::Delay = mFloatLength(60000 / $Instruments::Min::Tempo, 0) * $Instruments::Min::NoteDivision;
+$Instruments::Min::Delay = (60000 / $Instruments::Max::Tempo) / $Instruments::Max::NoteDivision;
+$Instruments::Max::Delay = (60000 / $Instruments::Min::Tempo) * $Instruments::Min::NoteDivision;
 
 // This is the standard tempo for most music programs.
 $Instruments::Default::Tempo = 120;
