@@ -33,7 +33,7 @@ function FileObject::instrFileWrite(%this)
 			}
 
 		default:
-			error("Invalid file type '", %fileType, "'");
+			error("Invalid .blm file type '", %fileType, "'");
 	}
 }
 
@@ -58,6 +58,8 @@ function InstrumentsFileIO::savePattern(%fileName, %isServer, %pattern, %credits
 
 	if (!%file.openForWrite(%filePath))
 	{
+		%file.delete();
+
 		return $Instruments::Error::FileOpen;
 	}
 
@@ -97,6 +99,8 @@ function InstrumentsFileIO::saveSong(%fileName, %isServer, %song, %patterns, %cr
 
 	if (!%file.openForWrite(%filePath))
 	{
+		%file.delete();
+
 		return $Instruments::Error::FileOpen;
 	}
 
