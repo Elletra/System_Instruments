@@ -55,7 +55,7 @@ function InstrumentsFileIO::getTypeString(%type)
 			return "song";
 
 		default:
-			return "invalidType";
+			return "invalid";
 	}
 }
 
