@@ -25,7 +25,7 @@ function SimObject::instrPlaySong(%this, %song)
 	}
 }
 
-// If %delay is blank, it will be set to the default tempo.
+// If %delay is blank, it will be set to the default tempo in `SimObject::instrPlayPattern()`
 function SimObject::instrPlayNextPattern(%this, %delay)
 {
 	%this.instrSongIndex++;
@@ -41,9 +41,10 @@ function SimObject::instrPlayNextPattern(%this, %delay)
 		return;
 	}
 
-	%index = getWord(%this.instrSong, %this.instrSongIndex);
+	%patternIndex = getWord(%this.instrSong, %this.instrSongIndex);
 
-	%this.instrPlayPattern(Instruments::isValidPatternIndex(%index) ? %this.instrSongPattern[%index] : "", 0, %delay);
+	%this.instrPlayPattern(Instruments::isValidPatternIndex(%patternIndex)
+		? %this.instrSongPattern[%patternIndex] : "", 0, %delay);
 }
 
 // ------------------------------------------------
@@ -90,15 +91,13 @@ function serverCmdInstr_setSongPattern(%client, %index, %pattern, %preview)
 
 function serverCmdInstr_playSong(%client, %song, %preview)
 {
-	if (!%preview && !isObject(%player = %client.player))
+	if (%preview || isObject(%player = %client.player))
 	{
-		return;
-	}
+		%object = %preview ? %client : %player;
 
-	%object = %preview ? %client : %player;
-
-	if (%object.instrServerCmdPlayCheck())
-	{
-		%object.instrPlaySong(%song);
+		if (%object.instrServerCmdPlayCheck())
+		{
+			%object.instrPlaySong(%song);
+		}
 	}
 }

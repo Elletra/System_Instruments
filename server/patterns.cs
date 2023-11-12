@@ -82,15 +82,13 @@ function SimObject::onInstrumentsPatternEnd(%this, %delay)
 
 function serverCmdInstr_playPattern(%client, %pattern, %preview)
 {
-	if (!%preview && !isObject(%player = %client.player))
+	if (%preview || isObject(%player = %client.player))
 	{
-		return;
-	}
+		%object = %preview ? %client : %player;
 
-	%object = %preview ? %client : %player;
-
-	if (%object.instrServerCmdPlayCheck())
-	{
-		%object.instrPlayPattern(%pattern);
+		if (%object.instrServerCmdPlayCheck())
+		{
+			%object.instrPlayPattern(%pattern);
+		}
 	}
 }

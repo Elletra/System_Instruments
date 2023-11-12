@@ -14,7 +14,7 @@ package System_Instruments__server
 	function onServerDestroyed()
 	{
 		// Delete it manually if it didn't get automatically deleted for some reason.
-		if (isObject(InstrumentsServer))
+		while (isObject(InstrumentsServer))
 		{
 			InstrumentsServer.delete();
 		}
