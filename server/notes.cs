@@ -1,3 +1,4 @@
+// %parsedNote **must** be parsed with Instruments::parseNote() first!
 function SimObject::instrPlayNote(%this, %parsedNote)
 {
 	if (%parsedNote $= "" || Instruments::isDirective(%parsedNote) || Instruments::isRest(%parsedNote))
@@ -14,12 +15,11 @@ function SimObject::instrPlayNote(%this, %parsedNote)
 
 		if (%instrument !$= "")
 		{
-			%sound = InstrumentsServer.getNoteSound(%instrument, getWord(%parsedNote, %i));
-
-			%this.instrPlaySound(%sound);
+			%this.instrPlaySound(InstrumentsServer.getNoteSound(%instrument, getWord(%parsedNote, %i)));
 		}
 	}
 
+	%this.instrLastPlayTime = $Sim::Time;
 	%this.onInstrumentsPlayNote(%parsedNote);
 }
 
@@ -76,4 +76,25 @@ function InstrumentsServer::isValidInstrumentName(%name)
 function InstrumentsServer::isValidNoteName(%name)
 {
 	return stripChars(%name, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#") $= "";
+}
+
+// ------------------------------------------------
+
+// ------------------------------------------------
+// Server commands
+// ------------------------------------------------
+
+function serverCmdInstr_playNote(%client, %note, %preview)
+{
+	if (!%preview && !isObject(%player = %client.player))
+	{
+		return;
+	}
+
+	%object = %preview ? %client : %player;
+
+	if (%object.instrServerCmdPlayCheck())
+	{
+		%object.instrPlayNote(Instruments::parseNote(%note));
+	}
 }

@@ -73,3 +73,24 @@ function SimObject::onInstrumentsPatternEnd(%this, %delay)
 		%this.instrPlayNextPattern(%delay);
 	}
 }
+
+// ------------------------------------------------
+
+// ------------------------------------------------
+// Server commands
+// ------------------------------------------------
+
+function serverCmdInstr_playPattern(%client, %pattern, %preview)
+{
+	if (!%preview && !isObject(%player = %client.player))
+	{
+		return;
+	}
+
+	%object = %preview ? %client : %player;
+
+	if (%object.instrServerCmdPlayCheck())
+	{
+		%object.instrPlayPattern(%pattern);
+	}
+}

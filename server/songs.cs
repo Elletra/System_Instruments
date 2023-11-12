@@ -43,8 +43,7 @@ function SimObject::instrPlayNextPattern(%this, %delay)
 
 	%index = getWord(%this.instrSong, %this.instrSongIndex);
 
-	%this.instrPlayPattern(Instruments::isValidPatternIndex(%index)
-		? %this.instrSongPattern[%index] : "", 0, %delay);
+	%this.instrPlayPattern(Instruments::isValidPatternIndex(%index) ? %this.instrSongPattern[%index] : "", 0, %delay);
 }
 
 // ------------------------------------------------
@@ -73,4 +72,33 @@ function SimObject::onInstrumentsSongStart(%this)
 function SimObject::onInstrumentsSongEnd(%this)
 {
 	%this.instrIsPlayingSong = false;
+}
+
+// ------------------------------------------------
+
+// ------------------------------------------------
+// Server commands
+// ------------------------------------------------
+
+function serverCmdInstr_setSongPattern(%client, %index, %pattern, %preview)
+{
+	if (%preview || isObject(%player = %client.player))
+	{
+		(%preview ? %client : %player).instrSetSongPattern(%index, %pattern);
+	}
+}
+
+function serverCmdInstr_playSong(%client, %song, %preview)
+{
+	if (!%preview && !isObject(%player = %client.player))
+	{
+		return;
+	}
+
+	%object = %preview ? %client : %player;
+
+	if (%object.instrServerCmdPlayCheck())
+	{
+		%object.instrPlaySong(%song);
+	}
 }

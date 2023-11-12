@@ -7,7 +7,25 @@ function SimObject::instrSetInstrument(%this, %instrument)
 {
 	if (InstrumentsServer.hasInstrument(%instrument))
 	{
-		// Not a big fan of `instrInstrument`, but we do want to keep names and prefixes consistent...
 		%this.instrInstrument = %instrument;
 	}
+}
+
+// ------------------------------------------------
+
+// Common checks for server commands like serverCmdInstr_playNote, serverCmdInstr_playPattern, etc.
+function SimObject::instrServerCmdPlayCheck(%this)
+{
+	return InstrumentsServer.hasInstrument(%this.instrInstrument)
+		&& ($Sim::Time - %this.instrLastPlayTime) * 1000 >= $Instruments::Min::Delay;
+}
+
+// ------------------------------------------------
+// Server commands
+// ------------------------------------------------
+
+// For previews only! Players must use physical instruments.
+function serverCmdInstr_setInstrument(%client, %instrument)
+{
+	%client.instrSetInstrument(%instrument);
 }
