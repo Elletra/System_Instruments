@@ -12,7 +12,7 @@ function Instruments::validatePattern(%pattern)
 		return $Instruments::Error::PatternMax;
 	}
 
-	if (strpos(%pattern, "\t") != -1 || strpos(%pattern, "\n") != -1 || stripMLControlChars(%pattern) !$= %pattern)
+	if (stripMLControlChars(%pattern) !$= %pattern)
 	{
 		return $Instruments::Error::InvalidChars;
 	}

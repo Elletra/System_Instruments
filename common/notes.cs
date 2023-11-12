@@ -1,7 +1,7 @@
 // Splits up a note into words and fields.
 function Instruments::parseNote(%note)
 {
-	%note = stripMLControlChars(stripChars(%note, " \t\n"));
+	%note = stripMLControlChars(stripChars(%note, " "));
 
 	if (Instruments::isDirective(%note))
 	{
