@@ -1,4 +1,4 @@
-// %parsedNote **must** be parsed with Instruments::parseNote() first!
+// %parsedNote **must** be a note that was parsed with `Instruments::parseNote()`
 function SimObject::instrPlayNote(%this, %parsedNote)
 {
 	if (%parsedNote $= "" || Instruments::isDirective(%parsedNote) || Instruments::isRest(%parsedNote))
@@ -7,7 +7,7 @@ function SimObject::instrPlayNote(%this, %parsedNote)
 	}
 
 	%parsedNote = getField(%parsedNote, 0);
-	%count = mClamp(getWordCount(%parsedNote), 0, 4);
+	%count = mClamp(getWordCount(%parsedNote), 0, $Instruments::Max::ChordNotes);
 
 	for (%i = 0; %i < %count; %i++)
 	{
@@ -35,7 +35,7 @@ function SimObject::onInstrumentsPlayNote(%this, %parsedNote)
 
 // ------------------------------------------------
 
-// All objects with a transform.
+// SceneObject is all objects with a transform.
 function SceneObject::instrPlaySound(%this, %sound)
 {
 	if (InstrumentsServer::isValidSound(%sound))

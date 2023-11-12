@@ -34,6 +34,9 @@ $Instruments::Max::Delay = (60000 / $Instruments::Min::Tempo) * $Instruments::Mi
 // This is the standard tempo for most music programs.
 $Instruments::Default::Tempo = 120;
 
+// This is due to the limited number of audio channels Torque uses.
+$Instruments::Max::ChordNotes = 4;
+
 // This just feels like a good limit.
 $Instruments::Max::SongPatterns = 50;
 
